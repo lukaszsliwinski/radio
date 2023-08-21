@@ -5,6 +5,7 @@ const bp = require('body-parser');
 
 // import controllers
 const passData = require('./controllers/passData.controller');
+const search = require('./controllers/search.controller');
 
 // create express app
 const app = express();
@@ -39,6 +40,7 @@ app.get(['/'], (req, res) => {
 
 // endpoints
 app.get('/api/pass-data', passData);
+app.get('/api/search', search);
 
 // run server
 app.listen(PORT, () => {
