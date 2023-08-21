@@ -40,7 +40,7 @@ app.get(['/'], (req, res) => {
 
 // endpoints
 app.get('/api/pass-data', passData);
-app.get('/api/search', search);
+app.post('/api/search', search);
 
 // run server
 app.listen(PORT, () => {

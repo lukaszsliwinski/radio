@@ -13,7 +13,7 @@ export class AppComponent {
 
   getData() {
     axios
-      .get('/api/pass-data')
+      .get('/api/search')
       .then(res => {
         this.dataString = res.data.testData;
       })
