@@ -2,7 +2,5 @@
   <img src={{favicon}} width=50 height=50 />
   <h5>{{name}}</h5>
   <h6>{{country}}</h6>
-  <audio controls>
-    <source src={{url}}>
-  </audio>
+  <button (click)="audioService.loadSource(url)">play</button>
 </div>
