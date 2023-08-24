@@ -1,3 +1,15 @@
 <input #searchInput (keyup.enter)="stationService.searchStations(searchInput.value)" />
 <button (click)="stationService.searchStations(searchInput.value)">Search</button>
-<div>response: {{ stationService.response }}</div>
+<div *ngFor='let station of stationService.stations'>
+  <app-station
+    name={{station.name}}
+    url={{station.url}}
+    favicon={{station.favicon}}
+    country={{station.country}}
+  ></app-station>
+  <!-- <div> {{station.id}} </div>
+  <div> {{station.name}} </div>
+  <div> {{station.url}} </div>
+  <div> {{station.favicon}} </div>
+  <div> {{station.country}} </div> -->
+</div>

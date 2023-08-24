@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
+import { Station } from './station';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StationService {
-  response: string;
+  stations: Station[];
 
   constructor() { }
 
@@ -14,13 +15,13 @@ export class StationService {
       axios
       .post('/api/search', {query: inputValue})
       .then(res => {
-        this.response = JSON.stringify(res.data.stations);
+        this.stations = res.data.stations
       })
       .catch(err => {
         console.log(err);
       })
     } else {
-      this.response = '';
+      this.stations = [];
     }
   }
 }
