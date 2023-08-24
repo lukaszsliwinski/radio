@@ -3,6 +3,9 @@ const path = require('path');
 const express = require('express');
 const bp = require('body-parser');
 
+// import database connection
+const dbConnect = require('./config/db.config');
+
 // import controllers
 const passData = require('./controllers/passData.controller');
 const search = require('./controllers/search.controller');
@@ -41,6 +44,9 @@ app.get(['/'], (req, res) => {
 // endpoints
 app.get('/api/pass-data', passData);
 app.post('/api/search', search);
+
+// execute database connection
+dbConnect();
 
 // run server
 app.listen(PORT, () => {
