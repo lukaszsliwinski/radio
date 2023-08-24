@@ -1,0 +1,3 @@
+<input #searchInput (keyup.enter)="stationService.searchStations(searchInput.value)" />
+<button (click)="stationService.searchStations(searchInput.value)">Search</button>
+<div>response: {{ stationService.response }}</div>
