@@ -15,7 +15,11 @@ export class StationService {
       axios
       .post('/api/search', {query: inputValue})
       .then(res => {
-        this.stations = res.data.stations
+        if (res.data.status === 503) {
+          alert(res.data.message);
+        } else {
+          this.stations = res.data.stations
+        }
       })
       .catch(err => {
         console.log(err);

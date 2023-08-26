@@ -23,7 +23,16 @@ const search = (request, response) => {
       });
     })
     .catch(error => {
-      console.log(error)
+      if (error.response.status === 503) {
+        response.json({
+          status: 503,
+          message: `The server 'api.radio-browser.info' is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.`
+        })
+        console.log(error.response);
+      } else {
+        console.log(error);
+      }
+
     });
 };
 
