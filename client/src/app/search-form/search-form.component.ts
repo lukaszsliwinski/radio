@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { StationService } from '../station.service';
+import { StationService } from '../services/station.service';
 
 @Component({
   selector: 'app-search-form',
