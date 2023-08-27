@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AudioService } from '../audio.service';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'app-player',
@@ -7,5 +7,10 @@ import { AudioService } from '../audio.service';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {
-  constructor(public audioService: AudioService) { }
+  name$ = this.playerService.name$;
+  favicon$ = this.playerService.favicon$;
+  country$ = this.playerService.country$;
+  btnLabel$ = this.playerService.btnLabel$;
+
+  constructor(public playerService: PlayerService) { }
 }

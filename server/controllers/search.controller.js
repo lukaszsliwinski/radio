@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const search = (request, response) => {
-  const url = `https://de1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=10`
+  const url = `https://at1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=10`
 
   let stations = [];
 

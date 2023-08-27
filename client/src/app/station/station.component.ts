@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AudioService } from '../audio.service';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'app-station',
@@ -7,7 +7,7 @@ import { AudioService } from '../audio.service';
   styleUrls: ['./station.component.scss']
 })
 export class StationComponent {
-  constructor(public audioService: AudioService) { }
+  constructor(public playerService: PlayerService) { }
 
   @Input()
   name: string;
