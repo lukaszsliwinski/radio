@@ -12,6 +12,7 @@ export class PlayerComponent {
   country$ = this.playerService.country$;
   btnLabel$ = this.playerService.btnLabel$;
   idDisabled$ = this.playerService.isDisabled$;
+  loading$ = this.playerService.loading$;
 
   constructor(public playerService: PlayerService) { }
 }
