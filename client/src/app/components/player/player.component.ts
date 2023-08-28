@@ -11,6 +11,7 @@ export class PlayerComponent {
   favicon$ = this.playerService.favicon$;
   country$ = this.playerService.country$;
   btnLabel$ = this.playerService.btnLabel$;
+  idDisabled$ = this.playerService.isDisabled$;
 
   constructor(public playerService: PlayerService) { }
 }

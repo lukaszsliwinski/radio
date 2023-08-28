@@ -9,6 +9,7 @@ export class PlayerService {
   private favicon = new BehaviorSubject<string>('');
   private country = new BehaviorSubject<string>('');
   private btnLabel = new BehaviorSubject<string>('play');
+  private isDisabled = new BehaviorSubject<boolean>(true);
 
   private audioObj = new Audio();
 
@@ -16,6 +17,7 @@ export class PlayerService {
   public favicon$ = this.favicon.asObservable();
   public country$ = this.country.asObservable();
   public btnLabel$ = this.btnLabel.asObservable();
+  public isDisabled$ = this.isDisabled.asObservable();
 
   constructor() { }
 
@@ -28,6 +30,7 @@ export class PlayerService {
     this.favicon.next(favicon);
     this.country.next(country);
     this.btnLabel.next('pause');
+    this.isDisabled.next(false);
   };
 
   togglePlay() {
