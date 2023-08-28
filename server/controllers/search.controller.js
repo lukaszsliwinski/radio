@@ -1,6 +1,7 @@
 const axios = require('axios');
 
 const search = (request, response) => {
+  // de1, at1, nl1
   const url = `https://at1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=10`
 
   let stations = [];
@@ -9,11 +10,14 @@ const search = (request, response) => {
     .get(url)
     .then((result) => {
       result.data.forEach(element => {
+        let newFavicon;
+        element.favicon === '' ? newFavicon = '// default favicon //' : newFavicon = element.favicon;
+
         stations.push({
           id: element.stationuuid,
           name: element.name,
-          url: element.url,
-          favicon: element.favicon,
+          url: element.url_resolved,
+          favicon: newFavicon,
           country: element.country
         })
       });
