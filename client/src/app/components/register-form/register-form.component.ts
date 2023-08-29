@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register-form',
@@ -7,6 +8,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register-form.component.scss']
 })
 export class RegisterFormComponent {
+  constructor(public authService: AuthService) {}
+
   registerForm = new FormGroup({
     usernameInput: new FormControl('', [
       Validators.required,
@@ -22,8 +25,10 @@ export class RegisterFormComponent {
     ])
   });
 
-  // TODO: move to auth service
-  register() {
-    console.log(this.registerForm.value);
+  submit() {
+    const uInput = this.registerForm.value.usernameInput;
+    const pInput = this.registerForm.value.passwordInput;
+
+    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined) this.authService.register(uInput, pInput);
   }
 }
