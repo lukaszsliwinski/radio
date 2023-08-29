@@ -1,3 +1,4 @@
+<h2>register</h2>
 <form [formGroup]="registerForm" (ngSubmit)="submit()">
   <label for="usernameInput">username: </label>
   <input id="usernameInput" type="text" formControlName="usernameInput">
@@ -32,3 +33,8 @@
   <li>should contain at least 1 digit</li>
   <li>should not contain spaces</li>
 </ul>
+
+<div>
+  already have an account?
+  <a href="/login">login</a>
+</div>

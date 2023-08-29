@@ -1,0 +1,16 @@
+<h2>login</h2>
+<form [formGroup]="loginForm" (ngSubmit)="submit()">
+  <label for="usernameInput">username: </label>
+  <input id="usernameInput" type="text" formControlName="usernameInput">
+  <div *ngIf=""></div>
+  <br><br>
+  <label for="passwordInput">password: </label>
+  <input id="passwordInput" type="text" formControlName="passwordInput">
+  <br><br>
+  <button type="submit" [disabled]="!loginForm.valid">login</button>
+</form>
+
+<div>
+  don't have an account?
+  <a href="/register">register</a>
+</div>

@@ -8,6 +8,7 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 import { StationComponent } from './components/station/station.component';
 import { PlayerComponent } from './components/player/player.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     SearchFormComponent,
     StationComponent,
     PlayerComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
