@@ -6,9 +6,15 @@ const bp = require('body-parser');
 // import database connection
 const dbConnect = require('./config/db.config');
 
+// import auth middleware
+const auth = require('./middleware/auth.middleware');
+
 // import controllers
-const passData = require('./controllers/passData.controller');
 const search = require('./controllers/search.controller');
+const register = require('./controllers/register.controller');
+const login = require('./controllers/login.controller');
+const getUser = require('./controllers/getUser.controller');
+const changePassword = require('./controllers/changePassword.controller');
 
 // create express app
 const app = express();
@@ -42,8 +48,11 @@ app.get(['/'], (req, res) => {
 });
 
 // endpoints
-app.get('/api/pass-data', passData);
 app.post('/api/search', search);
+app.post('/api/register', register);
+app.post('/api/login', login);
+app.get('/api/get-user', auth, getUser);
+app.post('/api/change-password', auth, changePassword);
 
 // execute database connection
 dbConnect();
