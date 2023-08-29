@@ -10,6 +10,7 @@ export class PlayerService {
   private country = new BehaviorSubject<string>('');
   private btnLabel = new BehaviorSubject<string>('play');
   private isDisabled = new BehaviorSubject<boolean>(true);
+  private loading = new BehaviorSubject<boolean>(false);
 
   private audioObj = new Audio();
 
@@ -18,19 +19,24 @@ export class PlayerService {
   public country$ = this.country.asObservable();
   public btnLabel$ = this.btnLabel.asObservable();
   public isDisabled$ = this.isDisabled.asObservable();
+  public loading$ = this.loading.asObservable();
 
   constructor() { }
 
   loadAndPlay(url: string, name: string, favicon: string, country: string) {
-    this.audioObj.src = url;
-    this.audioObj.load();
-    this.audioObj.play();
-
-    this.name.next(name);
-    this.favicon.next(favicon);
-    this.country.next(country);
-    this.btnLabel.next('pause');
-    this.isDisabled.next(false);
+    if (!this.loading.value) {
+      this.loading.next(true);
+      this.audioObj.src = url;
+      this.audioObj.load();
+      this.audioObj.play().then(() => {
+        this.name.next(name);
+        this.favicon.next(favicon);
+        this.country.next(country);
+        this.btnLabel.next('pause');
+        this.isDisabled.next(false);
+        this.loading.next(false);
+      });
+    }
   };
 
   togglePlay() {
