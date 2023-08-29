@@ -1,7 +1,9 @@
-<img *ngIf="favicon$ | async as favicon" src={{favicon}} width=50 height=50 />
-<div *ngIf="name$ | async as name">name: {{name}}</div>
-<div *ngIf="country$ | async as country">country: {{country}}</div>
-<div *ngIf="loading$ | async as loading">loading...</div>
-<button (click)="playerService.togglePlay()" [disabled]="idDisabled$ | async">
-  <span *ngIf="btnLabel$ | async as btnLabel">{{btnLabel}}</span>
-</button>
+<div style="margin-bottom: 2rem;">
+  <img *ngIf="favicon$ | async as favicon" src={{favicon}} width=50 height=50 />
+  <div *ngIf="name$ | async as name">name: {{name}}</div>
+  <div *ngIf="country$ | async as country">country: {{country}}</div>
+  <div *ngIf="loading$ | async as loading">loading...</div>
+  <button (click)="playerService.togglePlay()" [disabled]="idDisabled$ | async">
+    <span *ngIf="btnLabel$ | async as btnLabel">{{btnLabel}}</span>
+  </button>
+</div>

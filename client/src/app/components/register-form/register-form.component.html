@@ -1,0 +1,25 @@
+<form [formGroup]="registerForm" (ngSubmit)="register()">
+  <label for="usernameInput">username: </label>
+  <input id="usernameInput" type="text" formControlName="usernameInput">
+  <div *ngIf=""></div>
+  <br><br>
+  <label for="passwordInput">password: </label>
+  <input id="passwordInput" type="text" formControlName="passwordInput">
+  <br><br>
+  <button type="submit" [disabled]="!registerForm.valid">register</button>
+</form>
+
+<p class="{{ registerForm.controls.usernameInput.status === 'VALID' ? 'valid' : 'invalid' }}">
+  <span class="v">v</span>
+  <span class="x">x</span>
+  &nbsp;
+  <span>username</span>
+</p>
+
+<p class="{{ registerForm.controls.passwordInput.status === 'VALID' ? 'valid' : 'invalid' }}">
+  <span class="v">v</span>
+  <span class="x">x</span>
+  &nbsp;
+  <span>password</span>
+</p>
+  
