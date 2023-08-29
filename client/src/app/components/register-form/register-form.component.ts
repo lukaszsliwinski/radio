@@ -14,7 +14,7 @@ export class RegisterFormComponent {
       Validators.maxLength(15),
       Validators.pattern(/^\S*$/)
     ]),
-    passwordInput: new FormControl('', [ 
+    passwordInput: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(100),
@@ -22,6 +22,7 @@ export class RegisterFormComponent {
     ])
   });
 
+  // TODO: move to auth service
   register() {
     console.log(this.registerForm.value);
   }
