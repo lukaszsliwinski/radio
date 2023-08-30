@@ -9,42 +9,43 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   private logged = new BehaviorSubject<boolean>(false);
-  private token = this.getToken();
+  private user = new BehaviorSubject<string>('');
 
   public logged$ = this.logged.asObservable();
+  public user$ = this.user.asObservable();
+
   constructor(
     private router: Router,
     private cookieService: CookieService,
-  ) {
-    if (this.token !== '') {
-      this.logged.next(true);
-    }
-    console.log('handle auth constructor')
-    console.log('logged: ', this.logged.value);
-    console.log('token: ', this.logged.value);
-  }
+  ) { }
+
 
   getToken() {
     return this.cookieService.get('TOKEN');
   };
 
   getUser() {
+    console.log('handle get user')
     axios
       .get(
         '/api/get-user',
         {
           headers: {
-            'Authorization': `Bearer ${this.getUser()}`
+            'Authorization': `Bearer ${this.getToken()}`
           }
         }
       )
       .then((result) => {
         console.log('username: ', result.data.user.username);
-        return result.data.user.username;
+        this.user.next(result.data.user.username);
       })
       .catch((error) => {
         console.log(error);
       })
+  }
+
+  setLogged() {
+    this.logged.next(true);
   }
 
   register(usernameInput: string, passwordInput: string) {
@@ -78,6 +79,8 @@ export class AuthService {
         // console.log(result);
         alert(result.data.message);
         this.cookieService.set('TOKEN', result.data.token, {path: '/'});
+        this.setLogged();
+        this.getUser();
         this.router.navigate(['']);
       })
       .catch(error => {

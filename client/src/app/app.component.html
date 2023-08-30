@@ -1,11 +1,16 @@
-<!-- <nav>
-  <a href="/">home</a>
-  <a href="/login">login</a>
-  <a href="/register">register</a>
-  <button type="button">logout</button>
-</nav> -->
+<nav>
+  <ul>
+    <li><a href="/">home</a></li>
+    <li *ngIf="!(logged$ | async)"><a href="/register">register</a></li>
+    <li *ngIf="logged$ | async"><a type="button">logout</a></li>
+    <li *ngIf="!(logged$ | async)"><a href="/login">login</a></li>
+  </ul>
+  <div *ngIf="logged$ | async">logged as {{ user$ | async }}</div>
 
-<!-- <div>logged as {{ user }}</div> -->
+
+
+</nav>
+
 
 <app-player></app-player>
 <router-outlet></router-outlet>
