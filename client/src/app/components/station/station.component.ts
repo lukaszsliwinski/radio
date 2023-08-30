@@ -10,14 +10,14 @@ export class StationComponent {
   constructor(public playerService: PlayerService) { }
 
   @Input()
-  name: string;
+  public name: string;
 
   @Input()
-  url: string;
+  public url: string;
 
   @Input()
-  favicon: string;
+  public favicon: string;
 
   @Input()
-  country: string;
+  public country: string;
 }

@@ -6,7 +6,7 @@ import { Station } from '../station';
   providedIn: 'root'
 })
 export class StationService {
-  stations: Station[];
+  public stations: Station[];
 
   constructor() { }
 

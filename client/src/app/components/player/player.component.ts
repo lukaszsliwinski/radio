@@ -7,12 +7,12 @@ import { PlayerService } from '../../services/player.service';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {
-  name$ = this.playerService.name$;
-  favicon$ = this.playerService.favicon$;
-  country$ = this.playerService.country$;
-  btnLabel$ = this.playerService.btnLabel$;
-  idDisabled$ = this.playerService.isDisabled$;
-  loading$ = this.playerService.loading$;
+  public name$ = this.playerService.name$;
+  public favicon$ = this.playerService.favicon$;
+  public country$ = this.playerService.country$;
+  public btnLabel$ = this.playerService.btnLabel$;
+  public idDisabled$ = this.playerService.isDisabled$;
+  public loading$ = this.playerService.loading$;
 
   constructor(public playerService: PlayerService) { }
 }
