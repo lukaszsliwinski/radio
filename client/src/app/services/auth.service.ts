@@ -19,33 +19,28 @@ export class AuthService {
     private cookieService: CookieService,
   ) { }
 
-
-  getToken() {
-    return this.cookieService.get('TOKEN');
-  };
-
   getUser() {
-    console.log('handle get user')
-    axios
-      .get(
-        '/api/get-user',
-        {
-          headers: {
-            'Authorization': `Bearer ${this.getToken()}`
+    const token = this.cookieService.get('TOKEN');
+    if (token !== '') {
+      axios
+        .get(
+          '/api/get-user',
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
           }
-        }
-      )
-      .then((result) => {
-        console.log('username: ', result.data.user.username);
-        this.user.next(result.data.user.username);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
-
-  setLogged() {
-    this.logged.next(true);
+        )
+        .then((result) => {
+          this.user.next(result.data.user.username);
+          this.logged.next(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          this.user.next('');
+          this.logged.next(false);
+        })
+    }
   }
 
   register(usernameInput: string, passwordInput: string) {
@@ -57,12 +52,10 @@ export class AuthService {
           passwordInput: passwordInput
         })
       .then((result) => {
-        // console.log(result);
         alert(result.data.message);
         this.router.navigate(['login']);
       })
       .catch(error => {
-        // console.log(error);
         alert(error.response.data.message);
       });
   };
@@ -76,16 +69,23 @@ export class AuthService {
           passwordInput: passwordInput
         })
       .then((result) => {
-        // console.log(result);
         alert(result.data.message);
         this.cookieService.set('TOKEN', result.data.token, {path: '/'});
-        this.setLogged();
-        this.getUser();
+        this.user.next(result.data.username);
+        this.logged.next(true);
         this.router.navigate(['']);
       })
       .catch(error => {
-        // console.log(error);
         alert(error.response.data.message);
+        this.user.next('');
+        this.logged.next(false);
       });
   };
+
+  logout() {
+    this.cookieService.set('TOKEN', '', {path: '/'});
+    this.user.next('');
+    this.logged.next(false);
+    this.router.navigate(['']);
+  }
 }

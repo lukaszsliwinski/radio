@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.setLogged();
     this.authService.getUser();
   }
 }
