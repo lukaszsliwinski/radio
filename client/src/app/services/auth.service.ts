@@ -8,16 +8,19 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private logged = new BehaviorSubject<boolean>(false);
-  private user = new BehaviorSubject<string>('');
+  private user = new BehaviorSubject<string | undefined>(undefined);
 
-  public logged$ = this.logged.asObservable();
   public user$ = this.user.asObservable();
 
   constructor(
     private router: Router,
     private cookieService: CookieService,
   ) { }
+
+
+  setLoggedUser(username: string | undefined) {
+    this.user.next(username)
+  }
 
   getUser() {
     const token = this.cookieService.get('TOKEN');
@@ -31,14 +34,11 @@ export class AuthService {
             }
           }
         )
-        .then((result) => {
-          this.user.next(result.data.user.username);
-          this.logged.next(true);
+        .then(result => {
+          this.setLoggedUser(result.data.user.username);
         })
-        .catch((error) => {
-          console.log(error);
-          this.user.next('');
-          this.logged.next(false);
+        .catch(() => {
+          this.setLoggedUser(undefined);
         })
     }
   }
@@ -51,7 +51,7 @@ export class AuthService {
           usernameInput: usernameInput,
           passwordInput: passwordInput
         })
-      .then((result) => {
+      .then(result => {
         alert(result.data.message);
         this.router.navigate(['login']);
       })
@@ -68,24 +68,20 @@ export class AuthService {
           usernameInput: usernameInput,
           passwordInput: passwordInput
         })
-      .then((result) => {
+      .then(result => {
         alert(result.data.message);
         this.cookieService.set('TOKEN', result.data.token, {path: '/'});
-        this.user.next(result.data.username);
-        this.logged.next(true);
+        this.setLoggedUser(result.data.username);
         this.router.navigate(['']);
       })
       .catch(error => {
         alert(error.response.data.message);
-        this.user.next('');
-        this.logged.next(false);
+        this.setLoggedUser(undefined);
       });
   };
 
   logout() {
     this.cookieService.set('TOKEN', '', {path: '/'});
-    this.user.next('');
-    this.logged.next(false);
-    this.router.navigate(['']);
+    this.setLoggedUser(undefined);
   }
 }

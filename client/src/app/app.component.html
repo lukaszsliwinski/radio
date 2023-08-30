@@ -1,16 +1,12 @@
 <nav>
   <ul>
     <li><a href="/">home</a></li>
-    <li *ngIf="!(logged$ | async)"><a href="/register">register</a></li>
-    <li *ngIf="logged$ | async"><a type="button" (click)="this.authService.logout()">logout</a></li>
-    <li *ngIf="!(logged$ | async)"><a href="/login">login</a></li>
+    <li *ngIf="!(user$ | async)"><a href="/register">register</a></li>
+    <li *ngIf="user$ | async"><a type="button" (click)="this.authService.logout()" style="cursor: pointer;">logout</a></li>
+    <li *ngIf="!(user$ | async)"><a href="/login">login</a></li>
   </ul>
-  <div *ngIf="logged$ | async">logged as {{ user$ | async }}</div>
-
-
-
+  <div *ngIf="user$ | async as user">logged as {{ user }}</div>
 </nav>
-
 
 <app-player></app-player>
 <router-outlet></router-outlet>
