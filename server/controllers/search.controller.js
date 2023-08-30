@@ -14,7 +14,7 @@ const search = (request, response) => {
     .then((result) => {
       result.data.forEach(element => {
         let newFavicon;
-        element.favicon === '' ? newFavicon = '// default favicon //' : newFavicon = element.favicon;
+        element.favicon === '' ? newFavicon = 'api/img/default-radio-icon' : newFavicon = element.favicon;
 
         stations.push({
           id: element.stationuuid,

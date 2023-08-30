@@ -54,6 +54,11 @@ app.post('/api/login', login);
 app.get('/api/get-user', auth, getUser);
 app.post('/api/change-password', auth, changePassword);
 
+// default favicon endpoint
+app.get('/api/img/default-radio-icon', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './img', 'default-radio-icon.png'));
+})
+
 // execute database connection
 dbConnect();
 
