@@ -15,6 +15,7 @@ const register = require('./controllers/register.controller');
 const login = require('./controllers/login.controller');
 const getUser = require('./controllers/getUser.controller');
 const changePassword = require('./controllers/changePassword.controller');
+const addFavourite = require('./controllers/addFavourite.controller');
 
 // create express app
 const app = express();
@@ -53,6 +54,7 @@ app.post('/api/register', register);
 app.post('/api/login', login);
 app.get('/api/get-user', auth, getUser);
 app.post('/api/change-password', auth, changePassword);
+app.post('/api/add-favourite', auth, addFavourite);
 
 // default favicon endpoint
 app.get('/api/img/default-radio-icon', (req, res) => {
