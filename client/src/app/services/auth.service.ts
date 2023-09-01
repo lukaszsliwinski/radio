@@ -22,6 +22,11 @@ export class AuthService {
     this.user.next(username)
   }
 
+  getLoggedUser(): string | undefined {
+    return this.user.value;
+  }
+
+  // get user from server
   getUser() {
     const token = this.cookieService.get('TOKEN');
     if (token !== '') {
