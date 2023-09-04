@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { PlayerService } from '../../services/player.service';
+import { StationService } from '../../services/station.service';
 
 @Component({
   selector: 'app-station',
@@ -7,7 +9,16 @@ import { PlayerService } from '../../services/player.service';
   styleUrls: ['./station.component.scss']
 })
 export class StationComponent {
-  constructor(public playerService: PlayerService) { }
+  public user$ = this.authService.user$;
+  
+  constructor(
+    public authService: AuthService,
+    public playerService: PlayerService,
+    public stationService: StationService
+  ) { }
+
+  @Input()
+  public id: string;
 
   @Input()
   public name: string;

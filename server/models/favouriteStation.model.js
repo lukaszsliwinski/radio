@@ -3,32 +3,32 @@ const mongoose = require('mongoose');
 const FavouriteStationSchema = new mongoose.Schema({
   id: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
 
   name: {
     type: String,
-    required: true,
-    unique: false
+    required: true
   },
 
   url: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
 
   favicon: {
     type: String,
-    required: true,
-    unique: false
+    required: true
   },
 
   country: {
     type: String,
-    required: true,
-    unique: false
+    required: true
+  },
+
+  user: {
+    type: String,
+    required: true
   }
 });
 

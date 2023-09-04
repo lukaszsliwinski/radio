@@ -1,6 +1,15 @@
+<hr>
 <div style="display: flex; flex-direction: column;">
   <img src={{favicon}} width=50 height=50 />
   <h5>{{name}}</h5>
   <h6>{{country}}</h6>
-  <button (click)="playerService.loadAndPlay(url, name, favicon, country)">load and play</button>
+  <button (click)="playerService.loadAndPlay(url, name, favicon, country)" style="width: 100px;">load and play</button>
+  <button *ngIf="user$ | async" (click)="stationService.addFavourite({
+      id: id,
+      name: name,
+      url: url,
+      favicon: favicon,
+      country: country
+    })" style="width: 100px;">add to fav</button>
 </div>
+

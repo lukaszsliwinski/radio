@@ -6,6 +6,7 @@
 
 <div *ngFor='let station of stationService.stations'>
   <app-station
+    id={{station.id}}
     name={{station.name}}
     url={{station.url}}
     favicon={{station.favicon}}

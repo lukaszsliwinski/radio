@@ -26,9 +26,13 @@ export class AuthService {
     return this.user.value;
   }
 
+  getToken(): string {
+    return this.cookieService.get('TOKEN');
+  }
+
   // get user from server
   getUser() {
-    const token = this.cookieService.get('TOKEN');
+    const token = this.getToken();
     if (token !== '') {
       axios
         .get(
@@ -88,5 +92,6 @@ export class AuthService {
   logout() {
     this.cookieService.set('TOKEN', '', {path: '/'});
     this.setLoggedUser(undefined);
+    this.router.navigate(['']);
   }
 }
