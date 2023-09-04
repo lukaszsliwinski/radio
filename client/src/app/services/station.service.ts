@@ -51,7 +51,11 @@ export class StationService {
         alert(result.data.message);
       })
       .catch(error => {
-        console.log(error);
+        if (error.response.status === 422) {
+          alert(error.response.data.message)
+        } else {
+          console.log(error);
+        }
       })
   }
 }
