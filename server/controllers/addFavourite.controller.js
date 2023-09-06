@@ -16,17 +16,20 @@ const addFavourite = (request, response) => {
   favStation
     .save()
     .then(() => {
-      response.status(201).send({
+      response.send({
+        status: 201,
         message: 'Station successfully added to favourites!'
       });
     })
     .catch((error) => {
       if (error.code === 11000) {
         response.send({
+          status: 422,
           message: 'This station is already in favourites'
         });
       } else {
-        response.status(500).send({
+        response.send({
+          status: 500,
           message: 'Error, please try again later'
         });
       }

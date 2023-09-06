@@ -19,6 +19,6 @@ export class LoginFormComponent {
     const uInput = this.loginForm.value.usernameInput;
     const pInput = this.loginForm.value.passwordInput;
 
-    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined) this.authService.login(uInput, pInput);
+    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined) this.authService.login(uInput, pInput).subscribe();
   }
 }

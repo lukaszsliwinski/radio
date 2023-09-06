@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 
 import axios from 'axios';
 import { IGetUserHttpResponse } from '../models/http-response-models/get-user-http-response';
+import { ILoginHttpResponse } from '../models/http-response-models/login-http-response';
 
 
 @Injectable({
@@ -37,7 +38,6 @@ export class AuthService {
 
   // get user from server
   getUser(): Observable<IGetUserHttpResponse> {
-    console.log('handle get user')
     const token = this.getToken();
 
     const headers = new HttpHeaders({
@@ -45,7 +45,7 @@ export class AuthService {
     });
 
     return this.http.get<IGetUserHttpResponse>('/api/get-user', {headers: headers}).pipe(
-      tap(result => this.setLoggedUser(result.user)),
+      tap(result => this.setLoggedUser(result.username)),
       catchError((error: HttpErrorResponse) => {
         this.setLoggedUser(undefined);
         return throwError(() => error);
@@ -70,24 +70,28 @@ export class AuthService {
       });
   };
 
-  login(usernameInput: string, passwordInput: string) {
-    axios
-      .post(
-        '/api/login',
-        {
-          usernameInput: usernameInput,
-          passwordInput: passwordInput
-        })
-      .then(result => {
-        alert(result.data.message);
-        this.cookieService.set('TOKEN', result.data.token, {path: '/'});
-        this.setLoggedUser(result.data.username);
-        this.router.navigate(['']);
+  login(usernameInput: string, passwordInput: string): Observable<ILoginHttpResponse> {
+    const body = {
+      usernameInput: usernameInput,
+      passwordInput: passwordInput
+    }
+
+    return this.http.post<ILoginHttpResponse>('/api/login', body).pipe(
+      tap(result => {
+        if (result.status === 200) {
+          alert(result.message);
+          if (result.token) this.cookieService.set('TOKEN', result.token, {path: '/'});
+          this.setLoggedUser(result.username);
+          this.router.navigate(['']);
+        } else {
+          alert(result.message);
+          this.setLoggedUser(undefined);
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
       })
-      .catch(error => {
-        alert(error.response.data.message);
-        this.setLoggedUser(undefined);
-      });
+    );
   };
 
   logout() {
