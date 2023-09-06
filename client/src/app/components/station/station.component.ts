@@ -31,4 +31,14 @@ export class StationComponent {
 
   @Input()
   public country: string;
+
+  addFavourite() {
+    this.stationService.addFavourite({
+      id: this.id,
+      name: this.name,
+      url: this.url,
+      favicon: this.favicon,
+      country: this.country
+    }).subscribe();
+  };
 }

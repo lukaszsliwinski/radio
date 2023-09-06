@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParamsOptions } from '@angular/common/http';
 import { catchError, tap, throwError } from 'rxjs';
 import axios from 'axios';
 import { IStation } from '../models/station';
 import { IStationsHttpResponse } from '../models/stations-http-response';
+import { IAddFavouriteHttpResponse } from '../models/add-favourite-http-response';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
 
@@ -28,32 +29,24 @@ export class StationService {
       );
   };
 
-  addFavourite(station: IStation) {
+  addFavourite(station: IStation): Observable<IAddFavouriteHttpResponse> {
     const token = this.authService.getToken();
-    axios
-      .post(
-        '/api/add-favourite',
-        {
-          id: station.id,
-          name: station.name,
-          url: station.url,
-          favicon: station.favicon,
-          country: station.country
-        },
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        })
-      .then(result => {
-        alert(result.data.message);
-      })
-      .catch(error => {
-        if (error.response.status === 422) {
-          alert(error.response.data.message)
-        } else {
-          console.log(error);
-        }
-      })
-  }
+
+    const body = {
+      id: station.id,
+      name: station.name,
+      url: station.url,
+      favicon: station.favicon,
+      country: station.country
+    };
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<IAddFavouriteHttpResponse>('/api/add-favourite', body, {headers: headers}).pipe(
+      tap(result => alert(result.message)),
+      catchError(throwError)
+    );
+  };
 }

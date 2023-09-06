@@ -15,25 +15,19 @@ const addFavourite = (request, response) => {
   // save station to database
   favStation
     .save()
-    .then((result) => {
-      console.log('201')
+    .then(() => {
       response.status(201).send({
-        message: 'Station successfully added to favourites!',
-        result
+        message: 'Station successfully added to favourites!'
       });
     })
     .catch((error) => {
       if (error.code === 11000) {
-        console.log('422')
-        response.status(422).send({
-          message: 'This station is already in favourites',
-          error
+        response.send({
+          message: 'This station is already in favourites'
         });
       } else {
-        console.log('500')
         response.status(500).send({
-          message: 'Error, please try again later',
-          error
+          message: 'Error, please try again later'
         });
       }
     });
