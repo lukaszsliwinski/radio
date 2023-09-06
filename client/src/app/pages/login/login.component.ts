@@ -3,11 +3,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginFormComponent {
+export class LoginComponent {
   constructor(public authService: AuthService) {}
 
   loginForm = new FormGroup({

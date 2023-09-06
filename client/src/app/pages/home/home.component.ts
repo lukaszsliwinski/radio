@@ -4,11 +4,11 @@ import { StationService } from '../../services/station.service';
 import { IStation } from 'src/app/models/station';
 
 @Component({
-  selector: 'app-search-form',
-  templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class SearchFormComponent {
+export class HomeComponent {
   public stations: IStation[] = [];
 
   constructor(public stationService: StationService) {}
