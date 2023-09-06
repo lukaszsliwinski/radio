@@ -1,36 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap, throwError } from 'rxjs';
 import axios from 'axios';
-import { Station } from '../station';
+import { IStation } from '../models/station';
+import { IStationsHttpResponse } from '../models/stations-http-response';
 import { AuthService } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StationService {
-  public stations: Station[];
+  constructor(
+    public authService: AuthService,
+    private http: HttpClient,
+  ) {}
 
-  constructor(public authService: AuthService) {}
-
-  searchStations(inputValue: string) {
-    if (inputValue !== '') {
-      axios
-        .post('/api/search', {query: inputValue})
-        .then(result => {
-          if (result.data.status === 503) {
-            alert(result.data.message);
-          } else {
-            this.stations = result.data.stations
+  searchStations(inputValue: string): Observable<IStationsHttpResponse> {
+    return this.http.post<IStationsHttpResponse>('/api/search', {query: inputValue})
+      .pipe(
+        tap(result => {
+          if (result.message) {
+            alert(result.message)
           }
-        })
-        .catch(error => {
-          console.log(error);
-        })
-    } else {
-      this.stations = [];
-    }
-  }
+        }),
+        catchError(throwError)
+      );
+  };
 
-  addFavourite(station: Station) {
+  addFavourite(station: IStation) {
     const token = this.authService.getToken();
     axios
       .post(

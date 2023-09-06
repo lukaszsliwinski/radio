@@ -4,7 +4,7 @@
   <button type="submit" [disabled]="!searchForm.valid">search</button>
 </form>
 
-<div *ngFor='let station of stationService.stations'>
+<div *ngFor='let station of stations'>
   <app-station
     id={{station.id}}
     name={{station.name}}

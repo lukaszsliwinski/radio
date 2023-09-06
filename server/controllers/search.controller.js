@@ -32,14 +32,14 @@ const search = (request, response) => {
     .catch(error => {
       if (error.response && error.response.status === 503) {
         response.json({
-          status: 503,
-          message: `The server 'api.radio-browser.info' is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.`
+          message: 'The radio-browser external server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.'
         })
       } else {
-        console.log(error);
+        response.json({
+          message: 'The radio-browser external server error. Please try again later.'
+        })
       }
     });
 };
 
 module.exports = search;
-
