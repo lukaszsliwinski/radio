@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
-import { BehaviorSubject } from 'rxjs';
+
+import axios from 'axios';
+import { IGetUserHttpResponse } from '../models/http-response-models/get-user-http-response';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +19,7 @@ export class AuthService {
   constructor(
     private router: Router,
     private cookieService: CookieService,
+    private http: HttpClient
   ) { }
 
 
@@ -31,25 +36,21 @@ export class AuthService {
   }
 
   // get user from server
-  getUser() {
+  getUser(): Observable<IGetUserHttpResponse> {
+    console.log('handle get user')
     const token = this.getToken();
-    if (token !== '') {
-      axios
-        .get(
-          '/api/get-user',
-          {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          }
-        )
-        .then(result => {
-          this.setLoggedUser(result.data.user.username);
-        })
-        .catch(() => {
-          this.setLoggedUser(undefined);
-        })
-    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<IGetUserHttpResponse>('/api/get-user', {headers: headers}).pipe(
+      tap(result => this.setLoggedUser(result.user)),
+      catchError((error: HttpErrorResponse) => {
+        this.setLoggedUser(undefined);
+        return throwError(() => error);
+      })
+    );
   }
 
   register(usernameInput: string, passwordInput: string) {

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParamsOptions } from '@angular/common/http';
-import { catchError, tap, throwError } from 'rxjs';
-import axios from 'axios';
-import { IStation } from '../models/station';
-import { IStationsHttpResponse } from '../models/stations-http-response';
-import { IAddFavouriteHttpResponse } from '../models/add-favourite-http-response';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, catchError, tap, throwError } from 'rxjs';
+
 import { AuthService } from './auth.service';
-import { Observable } from 'rxjs';
+
+import { IStation } from '../models/station';
+import { IStationsHttpResponse } from '../models/http-response-models/stations-http-response';
+import { IAddFavouriteHttpResponse } from '../models/http-response-models/add-favourite-http-response';
+
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,20 @@ export class StationService {
   ) {}
 
   searchStations(inputValue: string): Observable<IStationsHttpResponse> {
-    return this.http.post<IStationsHttpResponse>('/api/search', {query: inputValue})
+    const body = {
+      query: inputValue
+    };
+
+    return this.http.post<IStationsHttpResponse>('/api/search', body)
       .pipe(
         tap(result => {
           if (result.message) {
             alert(result.message)
           }
         }),
-        catchError(throwError)
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
       );
   };
 
@@ -46,7 +53,9 @@ export class StationService {
 
     return this.http.post<IAddFavouriteHttpResponse>('/api/add-favourite', body, {headers: headers}).pipe(
       tap(result => alert(result.message)),
-      catchError(throwError)
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
     );
   };
 }

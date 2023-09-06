@@ -1,4 +1,4 @@
-import { IStation } from "./station"
+import { IStation } from "../station"
 
 export interface IStationsHttpResponse {
   stations?: IStation[],
