@@ -21,13 +21,15 @@ passwordSchema
 const register = (request, response) => {
   // validate username and password
   if (!userSchema.validate(request.body.usernameInput)) {
-    response.status(400).send({
+    response.send({
+      status: 400,
       item: 'username',
       message: 'incorrect username format'
     });
   } else if (!passwordSchema.validate(request.body.passwordInput)) {
     console.log('handle incorrect password format');
-    response.status(400).send({
+    response.send({
+      status: 400,
       item: 'password',
       message: 'incorrect password format'
     });
@@ -42,31 +44,31 @@ const register = (request, response) => {
         // save new user to database
         user
           .save()
-          .then((result) => {
-            response.status(201).send({
-              message: 'Account successfully created!',
-              result
+          .then(() => {
+            response.send({
+              status: 201,
+              message: 'Account successfully created!'
             });
           })
           .catch((error) => {
             if (error.code === 11000) {
-              response.status(422).send({
+              response.send({
+                status: 422,
                 item: 'username',
-                message: 'account already exist',
-                error
+                message: 'account already exist'
               });
             } else {
-              response.status(500).send({
-                message: 'error creating account',
-                error
+              response.send({
+                status: 500,
+                message: 'error creating account'
               });
             }
           });
       })
-      .catch((error) => {
-        response.status(500).send({
-          message: 'password was not hashed successfully',
-          error
+      .catch(() => {
+        response.send({
+          status: 500,
+          message: 'password was not hashed successfully'
         });
       });
   }

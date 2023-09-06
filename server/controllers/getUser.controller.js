@@ -1,7 +1,7 @@
 // get logged username
 const getUser = async (request, response) => {
   response.json({
-    user: response.locals.user // requires auth middleware set in index.js
+    username: response.locals.user.username // requires auth middleware set in index.js
   });
 };
 

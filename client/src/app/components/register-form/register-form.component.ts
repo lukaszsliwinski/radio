@@ -29,6 +29,6 @@ export class RegisterFormComponent {
     const uInput = this.registerForm.value.usernameInput;
     const pInput = this.registerForm.value.passwordInput;
 
-    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined) this.authService.register(uInput, pInput);
+    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined) this.authService.register(uInput, pInput).subscribe();
   }
 }

@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
 
-import axios from 'axios';
 import { IGetUserHttpResponse } from '../models/http-response-models/get-user-http-response';
+import { IRegisterHttpResponse } from '../models/http-response-models/register-http-response';
 import { ILoginHttpResponse } from '../models/http-response-models/login-http-response';
 
 
@@ -28,9 +28,9 @@ export class AuthService {
     this.user.next(username)
   }
 
-  getLoggedUser(): string | undefined {
-    return this.user.value;
-  }
+  // getLoggedUser(): string | undefined {
+  //   return this.user.value;
+  // }
 
   getToken(): string {
     return this.cookieService.get('TOKEN');
@@ -53,21 +53,25 @@ export class AuthService {
     );
   }
 
-  register(usernameInput: string, passwordInput: string) {
-    axios
-      .post(
-        '/api/register',
-        {
-          usernameInput: usernameInput,
-          passwordInput: passwordInput
-        })
-      .then(result => {
-        alert(result.data.message);
-        this.router.navigate(['login']);
+  register(usernameInput: string, passwordInput: string): Observable<IRegisterHttpResponse> {
+    const body = {
+      usernameInput: usernameInput,
+      passwordInput: passwordInput
+    }
+
+    return this.http.post<IRegisterHttpResponse>('/api/register', body).pipe(
+      tap(result => {
+        if (result.status === 201) {
+          alert(result.message);
+          this.router.navigate(['login']);
+        } else {
+          alert(result.message);
+        }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
       })
-      .catch(error => {
-        alert(error.response.data.message);
-      });
+    );
   };
 
   login(usernameInput: string, passwordInput: string): Observable<ILoginHttpResponse> {
