@@ -28,9 +28,9 @@ export class AuthService {
     this.user.next(username)
   }
 
-  // getLoggedUser(): string | undefined {
-  //   return this.user.value;
-  // }
+  getLoggedUser(): string | undefined {
+    return this.user.value;
+  }
 
   getToken(): string {
     return this.cookieService.get('TOKEN');
@@ -48,6 +48,7 @@ export class AuthService {
       tap(result => this.setLoggedUser(result.username)),
       catchError((error: HttpErrorResponse) => {
         this.setLoggedUser(undefined);
+        this.cookieService.set('TOKEN', '', {path: '/'});
         return throwError(() => error);
       })
     );

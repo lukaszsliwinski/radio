@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getUser().subscribe();
+    const token = this.authService.getToken();
+    if (token) this.authService.getUser().subscribe();
   }
 }
