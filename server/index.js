@@ -16,6 +16,7 @@ const login = require('./controllers/login.controller');
 const getUser = require('./controllers/getUser.controller');
 const changePassword = require('./controllers/changePassword.controller');
 const addFavourite = require('./controllers/addFavourite.controller');
+const getFavourites = require('./controllers/getFavourites.controller');
 
 // create express app
 const app = express();
@@ -33,19 +34,19 @@ const NODE_ENV = process.env.NODE_ENV;
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client/dist/client')));
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader(
+app.use((request, response, next) => {
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'
   );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
 });
 
 // render client app
-app.get(['/'], (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/dist/client', 'index.html'));
+app.get(['/'], (request, response) => {
+  response.sendFile(path.resolve(__dirname, '../client/dist/client', 'index.html'));
 });
 
 // endpoints
@@ -55,10 +56,11 @@ app.post('/api/login', login);
 app.get('/api/get-user', auth, getUser);
 app.post('/api/change-password', auth, changePassword);
 app.post('/api/add-favourite', auth, addFavourite);
+app.get('/api/get-favourites', auth, getFavourites);
 
 // default favicon endpoint
-app.get('/api/img/default-radio-icon', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './img', 'default-radio-icon.png'));
+app.get('/api/img/default-radio-icon', (request, response) => {
+  response.sendFile(path.resolve(__dirname, './img', 'default-radio-icon.png'));
 })
 
 // execute database connection

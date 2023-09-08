@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
 import { IStation } from '../models/station';
 import { IStationsHttpResponse } from '../models/http-response-models/stations-http-response';
 import { IAddFavouriteHttpResponse } from '../models/http-response-models/add-favourite-http-response';
+import { IGetFavouritesHttpResponse } from '../models/http-response-models/get-favourites-http-response';
 
 
 @Injectable({
@@ -51,11 +52,28 @@ export class StationService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.post<IAddFavouriteHttpResponse>('/api/add-favourite', body, {headers: headers}).pipe(
+    return this.http.post<IAddFavouriteHttpResponse>('/api/add-favourite', body, { headers: headers }).pipe(
       tap(result => alert(result.message)),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   };
+
+  getFavourites(): Observable<IGetFavouritesHttpResponse> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<IGetFavouritesHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
+      tap(result => {
+        if (result.message) alert(result.message);
+      }),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
 }

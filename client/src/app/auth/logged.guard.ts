@@ -8,5 +8,7 @@ export const loggedGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  return authService.getToken() ? router.navigate(['/']) : true;
+  const token = authService.getToken();
+
+  return token ? router.navigate(['/']) : true;
 };

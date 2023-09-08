@@ -24,7 +24,6 @@ const search = (request, response) => {
           country: element.country
         })
       });
-      console.log(stations);
       response.json({
         stations: stations
       });

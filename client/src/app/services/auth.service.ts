@@ -44,11 +44,11 @@ export class AuthService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<IGetUserHttpResponse>('/api/get-user', {headers: headers}).pipe(
+    return this.http.get<IGetUserHttpResponse>('/api/get-user', { headers: headers }).pipe(
       tap(result => this.setLoggedUser(result.username)),
       catchError((error: HttpErrorResponse) => {
         this.setLoggedUser(undefined);
-        this.cookieService.set('TOKEN', '', {path: '/'});
+        this.cookieService.set('TOKEN', '', { path: '/' });
         return throwError(() => error);
       })
     );
@@ -85,7 +85,7 @@ export class AuthService {
       tap(result => {
         if (result.status === 200) {
           alert(result.message);
-          if (result.token) this.cookieService.set('TOKEN', result.token, {path: '/'});
+          if (result.token) this.cookieService.set('TOKEN', result.token, { path: '/' });
           this.setLoggedUser(result.username);
           this.router.navigate(['']);
         } else {
@@ -100,7 +100,7 @@ export class AuthService {
   };
 
   logout() {
-    this.cookieService.set('TOKEN', '', {path: '/'});
+    this.cookieService.set('TOKEN', '', { path: '/' });
     this.setLoggedUser(undefined);
     this.router.navigate(['']);
   }

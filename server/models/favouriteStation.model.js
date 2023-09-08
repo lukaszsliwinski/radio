@@ -3,6 +3,12 @@ const mongoose = require('mongoose');
 const FavouriteStationSchema = new mongoose.Schema({
   id: {
     type: String,
+    required: true,
+    unique: true
+  },
+
+  stationId: {
+    type: String,
     required: true
   },
 

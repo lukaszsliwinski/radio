@@ -4,7 +4,8 @@ const FavouriteStation = require('../models/favouriteStation.model');
 const addFavourite = (request, response) => {
 
   const favStation = new FavouriteStation({
-    id: request.body.id,
+    id: `${response.locals.user.username}_${request.body.id}`,
+    stationId: request.body.id,
     name: request.body.name,
     url: request.body.url,
     favicon: request.body.favicon,
@@ -22,6 +23,7 @@ const addFavourite = (request, response) => {
       });
     })
     .catch((error) => {
+      console.log(error);
       if (error.code === 11000) {
         response.send({
           status: 422,
