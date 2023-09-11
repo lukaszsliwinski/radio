@@ -4,5 +4,8 @@
   <h5>{{name}}</h5>
   <h6>{{country}}</h6>
   <button (click)="playerService.loadAndPlay(url, name, favicon, country)" style="width: 100px;">load and play</button>
-  <button *ngIf="user$ | async" (click)="this.addFavourite()" style="width: 100px;">add to fav</button>
+  <button *ngIf="user$ | async" (click)="this.addFavourite()" style="width: 100px;" [disabled]="fav" id="addFavBtn">
+    <span *ngIf="fav">favourite (icon)</span>
+    <span *ngIf="!fav">add to fav (icon)</span>
+  </button>
 </div>

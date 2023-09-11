@@ -8,6 +8,7 @@ import { IStation } from '../models/station';
 import { IStationsHttpResponse } from '../models/http-response-models/stations-http-response';
 import { IAddFavouriteHttpResponse } from '../models/http-response-models/add-favourite-http-response';
 import { IGetFavouritesHttpResponse } from '../models/http-response-models/get-favourites-http-response';
+import { ICheckFavouriteHttpResponse } from '../models/http-response-models/check-favourite-http-response';
 
 
 @Injectable({
@@ -59,6 +60,24 @@ export class StationService {
       })
     );
   };
+
+  checkFavourite(id: string): Observable<ICheckFavouriteHttpResponse> {
+    const token = this.authService.getToken();
+
+    const body = {
+      id: id
+    };
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<ICheckFavouriteHttpResponse>('/api/check-favourite', body, { headers: headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    )
+  }
 
   getFavourites(): Observable<IGetFavouritesHttpResponse> {
     const token = this.authService.getToken();

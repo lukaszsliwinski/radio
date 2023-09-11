@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { PlayerService } from '../../services/player.service';
 import { StationService } from '../../services/station.service';
@@ -8,9 +8,10 @@ import { StationService } from '../../services/station.service';
   templateUrl: './station.component.html',
   styleUrls: ['./station.component.scss']
 })
-export class StationComponent {
+export class StationComponent implements OnInit {
   public user$ = this.authService.user$;
-  
+  public fav: boolean;
+
   constructor(
     public authService: AuthService,
     public playerService: PlayerService,
@@ -32,6 +33,15 @@ export class StationComponent {
   @Input()
   public country: string;
 
+  ngOnInit() {
+    const token = this.authService.getToken();
+    if (token) this.stationService.checkFavourite(this.id).subscribe(
+      result => {
+        this.fav = result.fav;
+      }
+    )
+  }
+
   addFavourite() {
     this.stationService.addFavourite({
       id: this.id,
@@ -39,6 +49,9 @@ export class StationComponent {
       url: this.url,
       favicon: this.favicon,
       country: this.country
-    }).subscribe();
+    }).subscribe((result) => {
+      if (result.status === 201) this.fav = true;
+      }
+    );
   };
 }
