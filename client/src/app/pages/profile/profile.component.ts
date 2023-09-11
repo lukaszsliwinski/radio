@@ -17,6 +17,10 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.renderStations();
+  }
+
+  renderStations() {
     this.stationService.getFavourites()
       .subscribe((result) => {
         console.log('tu: ', result);

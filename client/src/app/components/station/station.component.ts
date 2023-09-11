@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { PlayerService } from '../../services/player.service';
 import { StationService } from '../../services/station.service';
+import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 
 @Component({
   selector: 'app-station',
@@ -15,7 +16,8 @@ export class StationComponent implements OnInit {
   constructor(
     public authService: AuthService,
     public playerService: PlayerService,
-    public stationService: StationService
+    public stationService: StationService,
+    private profileComponent: ProfileComponent
   ) { }
 
   @Input()
@@ -60,6 +62,7 @@ export class StationComponent implements OnInit {
 
   deleteFavourite() {
     this.stationService.deleteFavourite(this.id).subscribe((result) => {
+      this.profileComponent.renderStations();
       // if (result.status === 201) this.fav = true;
       }
     );
