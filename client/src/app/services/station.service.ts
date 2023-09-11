@@ -9,7 +9,7 @@ import { IStationsHttpResponse } from '../models/http-response-models/stations-h
 import { IAddFavouriteHttpResponse } from '../models/http-response-models/add-favourite-http-response';
 import { IGetFavouritesHttpResponse } from '../models/http-response-models/get-favourites-http-response';
 import { ICheckFavouriteHttpResponse } from '../models/http-response-models/check-favourite-http-response';
-
+import { IDeleteFavouriteHttpResponse } from '../models/http-response-models/delete-favourite-http-response';
 
 @Injectable({
   providedIn: 'root'
@@ -94,5 +94,23 @@ export class StationService {
         return throwError(() => error);
       })
     );
+  }
+
+  deleteFavourite(id: string): Observable<IDeleteFavouriteHttpResponse> {
+    const token = this.authService.getToken();
+
+    const body = {
+      id: id
+    };
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<IDeleteFavouriteHttpResponse>('/api/delete-favourite', body, { headers: headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    )
   }
 }

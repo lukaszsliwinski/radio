@@ -33,6 +33,9 @@ export class StationComponent implements OnInit {
   @Input()
   public country: string;
 
+  @Input()
+  public inProfile: boolean;
+
   ngOnInit() {
     const token = this.authService.getToken();
     if (token) this.stationService.checkFavourite(this.id).subscribe(
@@ -51,6 +54,13 @@ export class StationComponent implements OnInit {
       country: this.country
     }).subscribe((result) => {
       if (result.status === 201) this.fav = true;
+      }
+    );
+  };
+
+  deleteFavourite() {
+    this.stationService.deleteFavourite(this.id).subscribe((result) => {
+      // if (result.status === 201) this.fav = true;
       }
     );
   };

@@ -4,9 +4,9 @@ const FavouriteStation = require('../models/favouriteStation.model');
 const deleteFavourite = (request, response) => {
   FavouriteStation.findOneAndDelete({ id: `${response.locals.user.username}_${request.body.id}` })
     .then((result) => {
-      console.log('response')
+      console.log(result)
       response.json({
-        fav: false
+        message: 'successfully deleted'
       })
     })
     .catch(() => {
