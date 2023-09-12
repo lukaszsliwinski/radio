@@ -1,13 +1,12 @@
 <p>profile: {{ authService.user$ | async }}</p>
 
 <div><b>favourite stations:</b></div>
-<div *ngFor='let station of stations'>
+<div *ngFor='let station of this.stationService.favStations'>
   <app-station
     id={{station.id}}
     name={{station.name}}
     url={{station.url}}
     favicon={{station.favicon}}
     country={{station.country}}
-    [inProfile]="true"
   ></app-station>
 </div>

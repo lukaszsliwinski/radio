@@ -15,6 +15,8 @@ import { IDeleteFavouriteHttpResponse } from '../models/http-response-models/del
   providedIn: 'root'
 })
 export class StationService {
+  public favStations: IStation[] = [];
+
   constructor(
     public authService: AuthService,
     private http: HttpClient,
@@ -54,7 +56,10 @@ export class StationService {
     });
 
     return this.http.post<IAddFavouriteHttpResponse>('/api/add-favourite', body, { headers: headers }).pipe(
-      tap(result => alert(result.message)),
+      tap((result) => {
+        alert(result.message);
+        this.getFavourites().subscribe();
+      }),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -89,6 +94,7 @@ export class StationService {
     return this.http.get<IGetFavouritesHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
       tap(result => {
         if (result.message) alert(result.message);
+        if (result.stations) this.favStations = result.stations
       }),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
@@ -108,6 +114,10 @@ export class StationService {
     });
 
     return this.http.post<IDeleteFavouriteHttpResponse>('/api/delete-favourite', body, { headers: headers }).pipe(
+      tap((result) => {
+        alert(result.message);
+        this.getFavourites().subscribe();
+      }),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

@@ -22,6 +22,7 @@ export class HomeComponent {
     if (input !== null && input !== undefined && input !== '') {
       this.stationService.searchStations(input)
         .subscribe((result) => {
+          // console.log(result);
           if (result.stations) this.stations = result.stations;
         });
     };

@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { PlayerService } from '../../services/player.service';
 import { StationService } from '../../services/station.service';
-import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 
 @Component({
   selector: 'app-station',
@@ -17,7 +16,6 @@ export class StationComponent implements OnInit {
     public authService: AuthService,
     public playerService: PlayerService,
     public stationService: StationService,
-    private profileComponent: ProfileComponent
   ) { }
 
   @Input()
@@ -35,9 +33,6 @@ export class StationComponent implements OnInit {
   @Input()
   public country: string;
 
-  @Input()
-  public inProfile: boolean;
-
   ngOnInit() {
     const token = this.authService.getToken();
     if (token) this.stationService.checkFavourite(this.id).subscribe(
@@ -47,24 +42,22 @@ export class StationComponent implements OnInit {
     )
   }
 
-  addFavourite() {
-    this.stationService.addFavourite({
-      id: this.id,
-      name: this.name,
-      url: this.url,
-      favicon: this.favicon,
-      country: this.country
-    }).subscribe((result) => {
-      if (result.status === 201) this.fav = true;
-      }
-    );
-  };
+  toggleFavourite() {
+    if (this.fav) {
+      this.stationService.deleteFavourite(this.id).subscribe((result) => {
+        if (result.status === 201) this.fav = false;
+      });
+    } else {
+      this.stationService.addFavourite({
+        id: this.id,
+        name: this.name,
+        url: this.url,
+        favicon: this.favicon,
+        country: this.country
+      }).subscribe((result) => {
+        if (result.status === 201) this.fav = true;
+      });
+    };
+  }
 
-  deleteFavourite() {
-    this.stationService.deleteFavourite(this.id).subscribe((result) => {
-      this.profileComponent.renderStations();
-      // if (result.status === 201) this.fav = true;
-      }
-    );
-  };
 }
