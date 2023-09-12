@@ -45,7 +45,7 @@ export class AuthService {
     });
 
     return this.http.get<IGetUserHttpResponse>('/api/get-user', { headers: headers }).pipe(
-      tap(result => this.setLoggedUser(result.username)),
+      tap((result) => this.setLoggedUser(result.username)),
       catchError((error: HttpErrorResponse) => {
         this.setLoggedUser(undefined);
         this.cookieService.set('TOKEN', '', { path: '/' });
@@ -61,15 +61,12 @@ export class AuthService {
     }
 
     return this.http.post<IRegisterHttpResponse>('/api/register', body).pipe(
-      tap(result => {
-        if (result.status === 201) {
-          alert(result.message);
-          this.router.navigate(['login']);
-        } else {
-          alert(result.message);
-        }
+      tap((result) => {
+        alert(result.message);
+        this.router.navigate(['login']);
       }),
       catchError((error: HttpErrorResponse) => {
+        alert(error.error.message);
         return throwError(() => error);
       })
     );
@@ -82,18 +79,15 @@ export class AuthService {
     }
 
     return this.http.post<ILoginHttpResponse>('/api/login', body).pipe(
-      tap(result => {
-        if (result.status === 200) {
-          alert(result.message);
-          if (result.token) this.cookieService.set('TOKEN', result.token, { path: '/' });
-          this.setLoggedUser(result.username);
-          this.router.navigate(['']);
-        } else {
-          alert(result.message);
-          this.setLoggedUser(undefined);
-        }
+      tap((result) => {
+        alert(result.message);
+        if (result.token) this.cookieService.set('TOKEN', result.token, { path: '/' });
+        this.setLoggedUser(result.username);
+        this.router.navigate(['']);
       }),
       catchError((error: HttpErrorResponse) => {
+        alert(error.error.message);
+        this.setLoggedUser(undefined);
         return throwError(() => error);
       })
     );
