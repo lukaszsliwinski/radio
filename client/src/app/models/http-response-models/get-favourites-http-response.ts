@@ -1,7 +1,7 @@
 import { IStation } from "../station"
 
 export interface IGetFavouritesHttpResponse {
-  stations?: IStation[],
-  status?: number,
+  status: number,
+  stations: IStation[],
   message?: string
 }

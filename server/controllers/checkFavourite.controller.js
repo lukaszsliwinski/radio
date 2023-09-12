@@ -4,12 +4,12 @@ const FavouriteStation = require('../models/favouriteStation.model');
 const checkFavourite = (request, response) => {
   FavouriteStation.findOne({ id: `${response.locals.user.username}_${request.body.id}` })
     .then((result) => {
-      response.json({
+      response.status(200).json({
         fav: result !== null
       })
     })
     .catch(() => {
-      response.json({
+      response.status(500).json({
         fav: false
       })
     });

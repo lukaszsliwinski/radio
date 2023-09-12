@@ -11,7 +11,7 @@ const login = (request, response) => {
         .compare(request.body.passwordInput, user.password)
         .then((passwordCheck) => {
           if (!passwordCheck) {
-            return response.status(401).send({
+            return response.status(401).json({
               status: 401,
               message: 'wrong password',
             });
@@ -26,7 +26,7 @@ const login = (request, response) => {
             { expiresIn: '24h' }
           );
 
-          response.status(200).send({
+          response.status(200).json({
             status: 200,
             message: 'Successfully logged in!',
             username: user.username,
@@ -34,14 +34,14 @@ const login = (request, response) => {
           });
         })
         .catch(() => {
-          response.status(401).send({
+          response.status(401).json({
             status: 401,
             message: 'wrong password'
           });
         });
     })
     .catch(() => {
-      response.status(404).send({
+      response.status(404).json({
         status: 404,
         message: 'user not found'
       });

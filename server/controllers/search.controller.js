@@ -24,18 +24,21 @@ const search = (request, response) => {
           country: element.country
         })
       });
-      response.json({
+      response.status(200).json({
+        status: 200,
         stations: stations
       });
     })
     .catch(error => {
       if (error.response && error.response.status === 503) {
-        response.json({
+        response.status(503).json({
+          status: 503,
           message: 'The radio-browser external server is temporarily unable to service your request due to maintenance downtime or capacity problems. Please try again later.'
         })
       } else {
-        response.json({
-          message: 'The radio-browser external server error. Please try again later.'
+        response.status(500).json({
+          status: 500,
+          message: 'The radio-browser external server error - lease try again later.'
         })
       }
     });

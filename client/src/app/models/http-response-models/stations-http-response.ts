@@ -1,6 +1,7 @@
 import { IStation } from "../station"
 
 export interface IStationsHttpResponse {
-  stations?: IStation[],
-  message?: string
+  status: number,
+  message?: string,
+  stations?: IStation[]
 }

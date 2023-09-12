@@ -14,12 +14,13 @@ const getFavourites = (request, response) => {
         });
       }
 
-      response.json({
+      response.status(200).json({
+        status: 200,
         stations: stations
       });
     })
     .catch(() => {
-      response.json({
+      response.status(500).json({
         status: 500,
         message: 'error connecting to db'
       })

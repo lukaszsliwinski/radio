@@ -21,12 +21,12 @@ passwordSchema
 const register = (request, response) => {
   // validate username and password
   if (!userSchema.validate(request.body.usernameInput)) {
-    response.status(400).send({
+    response.status(400).json({
       status: 400,
       message: 'incorrect username format'
     });
   } else if (!passwordSchema.validate(request.body.passwordInput)) {
-    response.status(400).send({
+    response.status(400).json({
       status: 400,
       message: 'incorrect password format'
     });
@@ -42,19 +42,19 @@ const register = (request, response) => {
         user
           .save()
           .then(() => {
-            response.status(201).send({
+            response.status(201).json({
               status: 201,
               message: 'Account successfully created!'
             });
           })
           .catch((error) => {
             if (error.code === 11000) {
-              response.status(422).send({
+              response.status(422).json({
                 status: 422,
                 message: 'account already exist'
               });
             } else {
-              response.status(500).send({
+              response.status(500).json({
                 status: 500,
                 message: 'error creating account - please try again later'
               });
@@ -63,7 +63,7 @@ const register = (request, response) => {
       })
       .catch(() => {
         // password was not hashed successfully
-        response.status(500).send({
+        response.status(500).json({
           status: 500,
           message: 'error creating account - please try again later'
         });

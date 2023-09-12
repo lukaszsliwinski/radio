@@ -16,7 +16,7 @@ passwordSchema
 // find user in database by username, hash new password and update
 const changePassword = async (request, response) => {
   if (!passwordSchema.validate(request.body.passwordInput)) {
-    response.status(400).send({
+    response.status(400).json({
       message: 'incorrect password format'
     });
   } else {
@@ -28,20 +28,20 @@ const changePassword = async (request, response) => {
           { password: hashedPassword }
         )
           .then((result) => {
-            response.status(201).send({
+            response.status(201).json({
               message: 'Password successfully changed!',
               result
             });
           })
           .catch((error) => {
-            response.status(500).send({
+            response.status(500).json({
               message: 'error changing password',
               error
             });
           });
       })
       .catch((error) => {
-        response.status(500).send({
+        response.status(500).json({
           message: 'password was not hashed successfully',
           error
         });
