@@ -13,7 +13,7 @@ export class LoginComponent {
     passwordInput: new FormControl('', Validators.required)
   });
 
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   submit() {
     const uInput = this.loginForm.value.usernameInput;

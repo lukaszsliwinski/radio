@@ -50,3 +50,8 @@ export interface IDeleteFavouriteHttpResponse {
   status: number,
   message: string
 }
+
+export interface IAddRecentHttpResponse {
+  status: number,
+  message: string
+}

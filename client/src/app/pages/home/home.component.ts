@@ -15,7 +15,7 @@ export class HomeComponent {
     searchInput: new FormControl('', Validators.required)
   });
 
-  constructor(public stationService: StationService) {}
+  constructor(private stationService: StationService) {}
 
   submit(): void {
     const input = this.searchForm.value.searchInput;

@@ -19,9 +19,9 @@ export class StationComponent implements OnInit {
   public fav: boolean;
 
   constructor(
-    public authService: AuthService,
     public playerService: PlayerService,
-    public stationService: StationService,
+    private authService: AuthService,
+    private stationService: StationService,
   ) { }
 
   ngOnInit() {

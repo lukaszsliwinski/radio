@@ -10,7 +10,8 @@ import {
   IAddFavouriteHttpResponse,
   IGetFavouritesHttpResponse,
   ICheckFavouriteHttpResponse,
-  IDeleteFavouriteHttpResponse
+  IDeleteFavouriteHttpResponse,
+  IAddRecentHttpResponse
 } from '../models/http-responses';
 
 
@@ -21,7 +22,7 @@ export class StationService {
   public favStations: IStation[] = [];
 
   constructor(
-    public authService: AuthService,
+    private authService: AuthService,
     private http: HttpClient,
   ) {}
 
@@ -114,4 +115,26 @@ export class StationService {
       })
     );
   }
+
+  addRecent(station: IStation): Observable<IAddRecentHttpResponse> {
+    const token = this.authService.getToken();
+
+    const body = {
+      name: station.name,
+      url: station.url,
+      favicon: station.favicon,
+      country: station.country
+    };
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<IAddRecentHttpResponse>('/api/add-recent', body, { headers: headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  };
+
 }

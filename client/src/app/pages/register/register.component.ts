@@ -23,7 +23,7 @@ export class RegisterComponent {
     ])
   });
 
-  constructor(public authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   submit() {
     const uInput = this.registerForm.value.usernameInput;

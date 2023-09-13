@@ -19,6 +19,7 @@ const addFavourite = require('./controllers/addFavourite.controller');
 const checkFavourite = require('./controllers/checkFavourite.controller');
 const getFavourites = require('./controllers/getFavourites.controller');
 const deleteFavourite = require('./controllers/deleteFavourite.controller');
+const addRecent = require('./controllers/addRecent.controller');
 
 // create express app
 const app = express();
@@ -52,15 +53,17 @@ app.get(['/'], (request, response) => {
 });
 
 // endpoints
+app.get('/api/get-user', auth, getUser);
+app.get('/api/get-favourites', auth, getFavourites);
+
 app.post('/api/search', search);
 app.post('/api/register', register);
 app.post('/api/login', login);
-app.get('/api/get-user', auth, getUser);
 app.post('/api/change-password', auth, changePassword);
 app.post('/api/add-favourite', auth, addFavourite);
 app.post('/api/check-favourite', auth, checkFavourite);
-app.get('/api/get-favourites', auth, getFavourites);
 app.post('/api/delete-favourite', auth, deleteFavourite);
+app.post('/api/add-recent', auth, addRecent);
 
 // default favicon endpoint
 app.get('/api/img/default-radio-icon', (request, response) => {

@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+import { StationService } from './station.service';
+import { AuthService } from './auth.service';
+
+import { IStation } from '../models/station';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,17 +26,23 @@ export class PlayerService {
   public isDisabled$ = this.isDisabled.asObservable();
   public loading$ = this.loading.asObservable();
 
-  constructor() { }
+  constructor(
+    private stationService: StationService,
+    private authService: AuthService
+  ) { }
 
-  loadAndPlay(url: string, name: string, favicon: string, country: string) {
+  loadAndPlay(station: IStation) {
     if (!this.loading.value) {
       this.loading.next(true);
-      this.audioObj.src = url;
+      this.audioObj.src = station.url;
       this.audioObj.load();
       this.audioObj.play().then(() => {
-        this.name.next(name);
-        this.favicon.next(favicon);
-        this.country.next(country);
+        const token = this.authService.getToken();
+        if (token) this.stationService.addRecent(station).subscribe();
+
+        this.name.next(station.name);
+        this.favicon.next(station.favicon);
+        this.country.next(station.country);
         this.btnLabel.next('pause');
         this.isDisabled.next(false);
         this.loading.next(false);
