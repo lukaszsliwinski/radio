@@ -11,18 +11,17 @@ import { IStation } from 'src/app/models/station';
 export class HomeComponent {
   public stations: IStation[] = [];
 
-  constructor(public stationService: StationService) {}
-
-  searchForm = new FormGroup({
+  public searchForm = new FormGroup({
     searchInput: new FormControl('', Validators.required)
   });
+
+  constructor(public stationService: StationService) {}
 
   submit(): void {
     const input = this.searchForm.value.searchInput;
     if (input !== null && input !== undefined && input !== '') {
       this.stationService.searchStations(input)
         .subscribe((result) => {
-          // console.log(result);
           if (result.stations) this.stations = result.stations;
         });
     };

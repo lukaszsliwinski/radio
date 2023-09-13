@@ -8,9 +8,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-  constructor(public authService: AuthService) {}
-
-  registerForm = new FormGroup({
+  public registerForm = new FormGroup({
     usernameInput: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
@@ -24,6 +22,8 @@ export class RegisterComponent {
       Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)\S*$/)
     ])
   });
+
+  constructor(public authService: AuthService) {}
 
   submit() {
     const uInput = this.registerForm.value.usernameInput;

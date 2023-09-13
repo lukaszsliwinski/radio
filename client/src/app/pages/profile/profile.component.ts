@@ -9,12 +9,7 @@ import { StationService } from 'src/app/services/station.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  constructor(
-    public authService: AuthService,
-    public stationService: StationService
-  ) {}
-
-  changePasswordForm = new FormGroup({
+  public changePasswordForm = new FormGroup({
     passwordInput: new FormControl('', [
       Validators.required,
       Validators.minLength(8),
@@ -22,6 +17,11 @@ export class ProfileComponent implements OnInit {
       Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)\S*$/)
     ])
   });
+
+  constructor(
+    public authService: AuthService,
+    public stationService: StationService
+  ) {}
 
   ngOnInit() {
     this.stationService.getFavourites().subscribe();

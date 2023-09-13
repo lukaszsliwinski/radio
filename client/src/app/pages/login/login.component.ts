@@ -8,12 +8,12 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(public authService: AuthService) {}
-
-  loginForm = new FormGroup({
+  public loginForm = new FormGroup({
     usernameInput: new FormControl('', Validators.required),
     passwordInput: new FormControl('', Validators.required)
   });
+
+  constructor(public authService: AuthService) {}
 
   submit() {
     const uInput = this.loginForm.value.usernameInput;

@@ -9,6 +9,12 @@ import { StationService } from '../../services/station.service';
   styleUrls: ['./station.component.scss']
 })
 export class StationComponent implements OnInit {
+  @Input() public id: string;
+  @Input() public name: string;
+  @Input() public url: string;
+  @Input() public favicon: string;
+  @Input() public country: string;
+
   public user$ = this.authService.user$;
   public fav: boolean;
 
@@ -17,21 +23,6 @@ export class StationComponent implements OnInit {
     public playerService: PlayerService,
     public stationService: StationService,
   ) { }
-
-  @Input()
-  public id: string;
-
-  @Input()
-  public name: string;
-
-  @Input()
-  public url: string;
-
-  @Input()
-  public favicon: string;
-
-  @Input()
-  public country: string;
 
   ngOnInit() {
     const token = this.authService.getToken();
