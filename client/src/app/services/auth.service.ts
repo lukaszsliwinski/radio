@@ -4,10 +4,12 @@ import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { Router } from '@angular/router'
 import { CookieService } from 'ngx-cookie-service';
 
-import { IGetUserHttpResponse } from '../models/http-response-models/get-user-http-response';
-import { IRegisterHttpResponse } from '../models/http-response-models/register-http-response';
-import { ILoginHttpResponse } from '../models/http-response-models/login-http-response';
-import { IChangePasswordHttpResponse } from '../models/http-response-models/change-password-http-response';
+import {
+  IGetUserHttpResponse,
+  IRegisterHttpResponse,
+  ILoginHttpResponse,
+  IChangePasswordHttpResponse
+} from '../models/http-responses';
 
 
 @Injectable({

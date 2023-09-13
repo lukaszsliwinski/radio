@@ -5,11 +5,14 @@ import { Observable, catchError, tap, throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
 import { IStation } from '../models/station';
-import { IStationsHttpResponse } from '../models/http-response-models/stations-http-response';
-import { IAddFavouriteHttpResponse } from '../models/http-response-models/add-favourite-http-response';
-import { IGetFavouritesHttpResponse } from '../models/http-response-models/get-favourites-http-response';
-import { ICheckFavouriteHttpResponse } from '../models/http-response-models/check-favourite-http-response';
-import { IDeleteFavouriteHttpResponse } from '../models/http-response-models/delete-favourite-http-response';
+import {
+  IStationsHttpResponse,
+  IAddFavouriteHttpResponse,
+  IGetFavouritesHttpResponse,
+  ICheckFavouriteHttpResponse,
+  IDeleteFavouriteHttpResponse
+} from '../models/http-responses';
+
 
 @Injectable({
   providedIn: 'root'
