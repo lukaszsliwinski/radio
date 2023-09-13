@@ -17,6 +17,7 @@ passwordSchema
 const changePassword = async (request, response) => {
   if (!passwordSchema.validate(request.body.passwordInput)) {
     response.status(400).json({
+      status: 400,
       message: 'incorrect password format'
     });
   } else {
@@ -27,23 +28,23 @@ const changePassword = async (request, response) => {
           { username: response.locals.user.username },
           { password: hashedPassword }
         )
-          .then((result) => {
+          .then(() => {
             response.status(201).json({
-              message: 'Password successfully changed!',
-              result
+              status: 201,
+              message: 'Password successfully changed!'
             });
           })
-          .catch((error) => {
+          .catch(() => {
             response.status(500).json({
-              message: 'error changing password',
-              error
+              status: 500,
+              message: 'error changing password'
             });
           });
       })
-      .catch((error) => {
+      .catch(() => {
         response.status(500).json({
-          message: 'password was not hashed successfully',
-          error
+          status: 500,
+          message: 'password was not hashed successfully'
         });
       });
   }

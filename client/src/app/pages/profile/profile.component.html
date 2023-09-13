@@ -10,3 +10,24 @@
     country={{station.country}}
   ></app-station>
 </div>
+
+<h2>change password</h2>
+<form [formGroup]="changePasswordForm" (ngSubmit)="submit()">
+  <label for="passwordInput">new password: </label>
+  <input id="passwordInput" type="text" formControlName="passwordInput">
+  <br><br>
+  <button type="submit" [disabled]="!changePasswordForm.valid">change</button>
+</form>
+
+<p class="{{ changePasswordForm.controls.passwordInput.status === 'VALID' ? 'valid' : 'invalid' }}">
+  <span class="v">v</span>
+  <span class="x">x</span>
+  &nbsp;
+  <span>password:</span>
+</p>
+<ul>
+  <li>should contain 8 - 100 characters</li>
+  <li>should contain uppercase and lowercase letters</li>
+  <li>should contain at least 1 digit</li>
+  <li>should not contain spaces</li>
+</ul>

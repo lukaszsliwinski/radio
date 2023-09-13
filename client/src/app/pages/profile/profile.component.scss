@@ -1,0 +1,15 @@
+.valid {
+  font-weight: bold;
+  color: green;
+  & > .x {
+    display: none;
+  }
+}
+
+.invalid {
+  font-weight: bold;
+  color: red;
+  & > .v {
+    display: none;
+  }
+}

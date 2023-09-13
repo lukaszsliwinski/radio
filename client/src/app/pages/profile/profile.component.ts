@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { StationService } from 'src/app/services/station.service';
 
@@ -13,7 +14,24 @@ export class ProfileComponent implements OnInit {
     public stationService: StationService
   ) {}
 
+  changePasswordForm = new FormGroup({
+    passwordInput: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(100),
+      Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)\S*$/)
+    ])
+  });
+
   ngOnInit() {
     this.stationService.getFavourites().subscribe();
+  }
+  
+  submit() {
+    const pInput = this.changePasswordForm.value.passwordInput;
+
+    if (pInput !== null && pInput !== undefined) this.authService.changePassword(pInput).subscribe(
+      () => this.changePasswordForm.setValue({ passwordInput: '' })
+    );
   }
 }

@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { IGetUserHttpResponse } from '../models/http-response-models/get-user-http-response';
 import { IRegisterHttpResponse } from '../models/http-response-models/register-http-response';
 import { ILoginHttpResponse } from '../models/http-response-models/login-http-response';
+import { IChangePasswordHttpResponse } from '../models/http-response-models/change-password-http-response';
 
 
 @Injectable({
@@ -98,4 +99,25 @@ export class AuthService {
     this.setLoggedUser(undefined);
     this.router.navigate(['']);
   }
+
+  changePassword(passwordInput: string): Observable<IChangePasswordHttpResponse> {
+    const token = this.getToken();
+
+    const body = {
+      passwordInput: passwordInput
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.post<IChangePasswordHttpResponse>('api/change-password', body, { headers: headers }).pipe(
+      tap((result) => alert(result.message)),
+      catchError((error: HttpErrorResponse) => {
+        alert(error.error.message);
+        return throwError(() => error);
+      })
+    );
+  };
+
 }
