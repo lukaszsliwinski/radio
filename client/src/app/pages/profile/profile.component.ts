@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { StationService } from 'src/app/services/station.service';
-import { IStation } from 'src/app/models/station';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +10,7 @@ import { IStation } from 'src/app/models/station';
 })
 export class ProfileComponent implements OnInit {
   public user$ = this.authService.user$;
-  public favStations: IStation[] = [];
+  public favStations$ = this.stationService.favStations$;
 
   public changePasswordForm = new FormGroup({
     passwordInput: new FormControl('', [
@@ -28,9 +27,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.stationService.getFavourites().subscribe(
-      (result) => this.favStations = result.stations
-    );
+    this.stationService.getFavourites().subscribe();
   }
   
   submit() {

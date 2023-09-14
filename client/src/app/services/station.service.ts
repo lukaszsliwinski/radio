@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 
 import { AuthService } from './auth.service';
 
@@ -19,6 +19,10 @@ import {
   providedIn: 'root'
 })
 export class StationService {
+  private favStations = new BehaviorSubject<IStation[]>([]);
+
+  public favStations$ = this.favStations.asObservable();
+
   constructor(
     private authService: AuthService,
     private http: HttpClient,
@@ -106,6 +110,7 @@ export class StationService {
     });
 
     return this.http.get<IGetFavouritesHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
+      tap((result) => this.favStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
         alert(error.error.message)
         return throwError(() => error);

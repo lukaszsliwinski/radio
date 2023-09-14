@@ -1,7 +1,7 @@
 <p>profile: {{ user$ | async }}</p>
 
 <div><b>favourite stations:</b></div>
-<div *ngFor='let station of favStations'>
+<div *ngFor='let station of (favStations$ | async)'>
   <app-station
     id={{station.id}}
     name={{station.name}}
