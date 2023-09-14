@@ -3,7 +3,7 @@
   <div *ngIf="name$ | async as name">name: {{name}}</div>
   <div *ngIf="country$ | async as country">country: {{country}}</div>
   <div *ngIf="loading$ | async as loading">loading...</div>
-  <button (click)="playerService.togglePlay()" [disabled]="idDisabled$ | async">
+  <button (click)="play()" [disabled]="idDisabled$ | async">
     <span *ngIf="btnLabel$ | async as btnLabel">{{btnLabel}}</span>
   </button>
 </div>
