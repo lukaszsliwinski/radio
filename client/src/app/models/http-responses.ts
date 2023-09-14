@@ -28,18 +28,12 @@ export interface IChangePasswordHttpResponse {
 export interface IStationsHttpResponse {
   status: number,
   message?: string,
-  stations?: IStation[]
+  stations: IStation[]
 }
 
 export interface IAddFavouriteHttpResponse {
   status: number,
   message: string
-}
-
-export interface IGetFavouritesHttpResponse {
-  status: number,
-  stations: IStation[],
-  message?: string
 }
 
 export interface ICheckFavouriteHttpResponse {

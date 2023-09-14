@@ -20,6 +20,7 @@ const checkFavourite = require('./controllers/checkFavourite.controller');
 const getFavourites = require('./controllers/getFavourites.controller');
 const deleteFavourite = require('./controllers/deleteFavourite.controller');
 const addRecent = require('./controllers/addRecent.controller');
+const getRecent = require('./controllers/getRecent.controller');
 
 // create express app
 const app = express();
@@ -55,6 +56,7 @@ app.get(['/'], (request, response) => {
 // endpoints
 app.get('/api/get-user', auth, getUser);
 app.get('/api/get-favourites', auth, getFavourites);
+app.get('/api/get-recent', auth, getRecent);
 
 app.post('/api/search', search);
 app.post('/api/register', register);

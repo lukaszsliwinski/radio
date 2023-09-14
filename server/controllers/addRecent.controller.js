@@ -4,6 +4,7 @@ const moment = require('moment');
 // add station to recenlty played list
 const addRecent = (request, response) => {
   const recentStation = new RecentStation({
+    id: request.body.id,
     name: request.body.name,
     url: request.body.url,
     favicon: request.body.favicon,
@@ -21,12 +22,11 @@ const addRecent = (request, response) => {
         message: 'Successfully added to recently played list'
       });
     })
-    .catch((error) => {
-        console.log(error);
-        response.status(500).json({
-          status: 500,
-          message: 'Server error'
-        });
+    .catch(() => {
+      response.status(500).json({
+        status: 500,
+        message: 'Server error'
+      });
     });
 }
 

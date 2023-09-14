@@ -14,6 +14,7 @@ export class StationComponent implements OnInit {
   @Input() public url: string;
   @Input() public favicon: string;
   @Input() public country: string;
+  @Input() public datetime: string;
 
   public user$ = this.authService.user$;
   public fav: boolean;

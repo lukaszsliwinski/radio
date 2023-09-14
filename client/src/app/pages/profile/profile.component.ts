@@ -11,6 +11,7 @@ import { StationService } from 'src/app/services/station.service';
 export class ProfileComponent implements OnInit {
   public user$ = this.authService.user$;
   public favStations$ = this.stationService.favStations$;
+  public recentStations$ = this.stationService.recentStations$;
 
   public changePasswordForm = new FormGroup({
     passwordInput: new FormControl('', [
@@ -28,6 +29,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.stationService.getFavourites().subscribe();
+    this.stationService.getRecent().subscribe();
   }
   
   submit() {

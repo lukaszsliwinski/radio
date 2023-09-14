@@ -31,3 +31,15 @@
   <li>should contain at least 1 digit</li>
   <li>should not contain spaces</li>
 </ul>
+
+<div><b>recent stations:</b></div>
+<div *ngFor='let station of (recentStations$ | async)'>
+  <app-station
+    id={{station.id}}
+    name={{station.name}}
+    url={{station.url}}
+    favicon={{station.favicon}}
+    country={{station.country}}
+    datetime={{station.datetime}}
+  ></app-station>
+</div>

@@ -2,7 +2,6 @@ const FavouriteStation = require('../models/favouriteStation.model');
 
 // add station to favourites
 const addFavourite = (request, response) => {
-
   const favStation = new FavouriteStation({
     id: `${response.locals.user.username}_${request.body.id}`,
     stationId: request.body.id,

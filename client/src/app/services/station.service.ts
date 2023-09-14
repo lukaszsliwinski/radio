@@ -8,7 +8,6 @@ import { IStation } from '../models/station';
 import {
   IStationsHttpResponse,
   IAddFavouriteHttpResponse,
-  IGetFavouritesHttpResponse,
   ICheckFavouriteHttpResponse,
   IDeleteFavouriteHttpResponse,
   IAddRecentHttpResponse
@@ -20,8 +19,10 @@ import {
 })
 export class StationService {
   private favStations = new BehaviorSubject<IStation[]>([]);
+  private recentStations = new BehaviorSubject<IStation[]>([]);
 
   public favStations$ = this.favStations.asObservable();
+  public recentStations$ = this.recentStations.asObservable();
 
   constructor(
     private authService: AuthService,
@@ -76,7 +77,10 @@ export class StationService {
     });
 
     return this.http.post<IAddFavouriteHttpResponse>('/api/add-favourite', body, { headers: headers }).pipe(
-      tap(() => this.getFavourites().subscribe()),
+      tap(() => {
+        this.getFavourites().subscribe();
+        this.getRecent().subscribe();
+      }),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -95,21 +99,24 @@ export class StationService {
     });
 
     return this.http.post<IDeleteFavouriteHttpResponse>('/api/delete-favourite', body, { headers: headers }).pipe(
-      tap(() => this.getFavourites().subscribe()),
+      tap(() => {
+        this.getFavourites().subscribe();
+        this.getRecent().subscribe();
+      }),
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     )
   }
 
-  getFavourites(): Observable<IGetFavouritesHttpResponse> {
+  getFavourites(): Observable<IStationsHttpResponse> {
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<IGetFavouritesHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
+    return this.http.get<IStationsHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
       tap((result) => this.favStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
         alert(error.error.message)
@@ -122,6 +129,7 @@ export class StationService {
     const token = this.authService.getToken();
 
     const body = {
+      id: station.id,
       name: station.name,
       url: station.url,
       favicon: station.favicon,
@@ -138,5 +146,21 @@ export class StationService {
       })
     );
   };
+
+  getRecent(): Observable<IStationsHttpResponse> {
+    const token = this.authService.getToken();
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<IStationsHttpResponse>('/api/get-recent', { headers: headers }).pipe(
+      tap((result) => this.recentStations.next(result.stations)),
+      catchError((error: HttpErrorResponse) => {
+        alert(error.error.message)
+        return throwError(() => error);
+      })
+    );
+  }
 
 }
