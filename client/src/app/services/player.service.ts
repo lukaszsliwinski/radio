@@ -6,6 +6,13 @@ import { AuthService } from './auth.service';
 
 import { IStation } from '../models/station';
 
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+
+import {
+  faPlay,
+  faPause
+} from '@fortawesome/free-solid-svg-icons';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +20,7 @@ export class PlayerService {
   private name = new BehaviorSubject<string>('');
   private favicon = new BehaviorSubject<string>('');
   private country = new BehaviorSubject<string>('');
-  private btnLabel = new BehaviorSubject<string>('play');
+  private btnLabel = new BehaviorSubject<IconDefinition>(faPlay);
   private isDisabled = new BehaviorSubject<boolean>(true);
   private loading = new BehaviorSubject<boolean>(false);
 
@@ -43,7 +50,7 @@ export class PlayerService {
         this.name.next(station.name);
         this.favicon.next(station.favicon);
         this.country.next(station.country);
-        this.btnLabel.next('pause');
+        this.btnLabel.next(faPause);
         this.isDisabled.next(false);
         this.loading.next(false);
       });
@@ -54,10 +61,10 @@ export class PlayerService {
     if (this.audioObj.src) {
       if (this.audioObj.paused) {
         this.audioObj.play();
-        this.btnLabel.next('pause');
+        this.btnLabel.next(faPause);
       } else {
         this.audioObj.pause();
-        this.btnLabel.next('play');
+        this.btnLabel.next(faPlay);
       }
     }
   }

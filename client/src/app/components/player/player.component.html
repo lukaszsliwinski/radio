@@ -1,9 +1,20 @@
-<div style="margin-bottom: 2rem;">
-  <img *ngIf="favicon$ | async as favicon" src={{favicon}} width=50 height=50 />
-  <div *ngIf="name$ | async as name">name: {{name}}</div>
-  <div *ngIf="country$ | async as country">country: {{country}}</div>
-  <div *ngIf="loading$ | async as loading">loading...</div>
-  <button (click)="play()" [disabled]="idDisabled$ | async">
-    <span *ngIf="btnLabel$ | async as btnLabel">{{btnLabel}}</span>
-  </button>
+<div id="playerBar">
+  <img *ngIf="favicon$ | async as favicon; else defaultImg" src={{favicon}} />
+  <ng-template #defaultImg>
+    <img src="/api/img/default-radio-icon" />
+  </ng-template>
+  <hgroup>
+    <h2 *ngIf="name$ | async as name; else noStation">{{name}}</h2>
+    <ng-template #noStation><h2>no station selected</h2></ng-template>
+    <h3 *ngIf="country$ | async as country">{{country}}</h3>
+  </hgroup>
+  <span class="spacer"></span>
+  <div *ngIf="loading$ | async as loading; else playBtn" class="loader">
+    <div class="spinner"></div>
+  </div>
+  <ng-template #playBtn>
+    <button (click)="play()" [disabled]="idDisabled$ | async">
+      <fa-icon *ngIf="btnLabel$ | async as btnLabel" [icon]="btnLabel"></fa-icon>
+    </button>
+  </ng-template>
 </div>

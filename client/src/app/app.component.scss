@@ -1,0 +1,29 @@
+@import '../styles.scss';
+
+nav {
+  display: flex;
+  padding: .35rem .75rem;
+
+  /* nav btn style */
+  > a[type=button], button {
+    display: inline-flex;
+    align-items: center;
+    margin: 0 .2rem;
+    padding: .5rem .6rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: .85rem;
+
+    &:hover {
+      color: darkgoldenrod;
+      box-shadow: $shadow-sm;
+    }
+
+    /* btn's icon */
+    > .ng-fa-icon {
+      margin-right: .4rem;
+      font-size: .75rem;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import '../../../styles.scss';
+
+#playerBar {
+  display: flex;
+  box-shadow: $shadow-sm;
+  height: 4rem;
+  padding: 0 1rem;
+  background-color: $light;
+
+  hgroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: .65rem;
+
+    h2 {
+      font-weight: 600;
+    }
+
+    h3 {
+      font-size: .85rem;
+      font-weight: 400;
+    }
+  }
+
+  button {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: auto .5rem;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: darkgoldenrod;
+      box-shadow: $shadow-sm;
+    }
+
+    &:disabled {
+      opacity: .5;
+      &:hover {
+        color: inherit;
+        box-shadow: none;
+      }
+    }
+
+    /* btn's icon */
+    > .ng-fa-icon {
+      font-size: 1.35rem;
+
+      &:has(.fa-play) {
+        margin-left: .25rem;
+      }
+    }
+  }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+
+    > .spinner {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: conic-gradient(#0000 10%, $main);
+      -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+      animation: spinner-zp9dbg 1s infinite linear;
+
+      @keyframes spinner-zp9dbg {
+        to {
+            transform: rotate(1turn);
+        }
+      }
+    }
+  }
+
+
+}
