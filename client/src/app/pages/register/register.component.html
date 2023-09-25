@@ -1,40 +1,66 @@
-<h2>register</h2>
 <form [formGroup]="registerForm" (ngSubmit)="submit()">
-  <label for="usernameInput">username: </label>
-  <input id="usernameInput" type="text" formControlName="usernameInput">
-  <div *ngIf=""></div>
-  <br><br>
-  <label for="passwordInput">password: </label>
-  <input id="passwordInput" type="text" formControlName="passwordInput">
-  <br><br>
+  <h2>register</h2>
+  <div class="input-group">
+    <input id="usernameInput" type="text" formControlName="usernameInput" placeholder="" />
+    <label for="usernameInput">username</label>
+  </div>
+
+  <div class="input-group">
+    <input id="passwordInput" type={{passwordInputType}} formControlName="passwordInput" placeholder="" />
+    <label for="passwordInput">password</label>
+    <button type="button" (click)="showPassword()">
+      <fa-icon *ngIf="this.passwordInputType === 'password'; else eyeSlash" [icon]="faEye"></fa-icon>
+      <ng-template #eyeSlash>
+        <fa-icon [icon]="faEyeSlash"></fa-icon>
+      </ng-template>
+    </button>
+  </div>
   <button type="submit" [disabled]="!registerForm.valid">register</button>
+
+  <small>
+    already have an account?
+    <a routerLink="/login">login</a>
+  </small>
 </form>
 
-<p class="{{ registerForm.controls.usernameInput.status === 'VALID' ? 'valid' : 'invalid' }}">
-  <span class="v">v</span>
-  <span class="x">x</span>
-  &nbsp;
-  <span>username:</span>
-</p>
-<ul>
-  <li>should contain 3 - 15 characters</li>
-  <li>should not contain spaces</li>
-</ul>
+<div class="validation-info">
+  <span
+    *ngIf="registerForm.controls.usernameInput.status === 'VALID'; else invalidUsername"
+    class="valid"
+  >
+    <fa-icon [icon]="faCheck"></fa-icon>
+    username:
+  </span>
+  <ng-template #invalidUsername>
+    <span class="invalid">
+      <fa-icon [icon]="faXmark"></fa-icon>
+      username:
+    </span>
+  </ng-template>
+  <ul>
+    <li>should contain 3 - 15 characters</li>
+    <li>should not contain spaces</li>
+  </ul>
+</div>
 
-<p class="{{ registerForm.controls.passwordInput.status === 'VALID' ? 'valid' : 'invalid' }}">
-  <span class="v">v</span>
-  <span class="x">x</span>
-  &nbsp;
-  <span>password:</span>
-</p>
-<ul>
-  <li>should contain 8 - 100 characters</li>
-  <li>should contain uppercase and lowercase letters</li>
-  <li>should contain at least 1 digit</li>
-  <li>should not contain spaces</li>
-</ul>
-
-<div>
-  already have an account?
-  <a routerLink="/login">login</a>
+<div class="validation-info">
+  <span
+    *ngIf="registerForm.controls.passwordInput.status === 'VALID'; else invalidPassword"
+    class="valid"
+  >
+    <fa-icon [icon]="faCheck"></fa-icon>
+    password:
+  </span>
+  <ng-template #invalidPassword>
+    <span class="invalid">
+      <fa-icon [icon]="faXmark"></fa-icon>
+      password:
+    </span> 
+  </ng-template>
+  <ul>
+    <li>should contain 8 - 100 characters</li>
+    <li>should contain uppercase and lowercase letters</li>
+    <li>should contain at least 1 digit</li>
+    <li>should not contain spaces</li>
+  </ul>
 </div>

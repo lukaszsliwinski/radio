@@ -2,12 +2,26 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
+import {
+  faEye,
+  faEyeSlash,
+  faCheck,
+  faXmark
+} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  public faEye = faEye;
+  public faEyeSlash = faEyeSlash;
+  public faCheck = faCheck;
+  public faXmark = faXmark;
+
+  public passwordInputType: 'password' | 'text' = 'password'
+
   public registerForm = new FormGroup({
     usernameInput: new FormControl('', [
       Validators.required,
@@ -24,6 +38,10 @@ export class RegisterComponent {
   });
 
   constructor(private authService: AuthService) {}
+
+  showPassword() {
+    this.passwordInputType === 'password' ? this.passwordInputType = 'text' : this.passwordInputType = 'password';
+  }
 
   submit() {
     const uInput = this.registerForm.value.usernameInput;
