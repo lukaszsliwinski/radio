@@ -1,4 +1,4 @@
-@import '../../../styles.scss';
+@import '../../../assets/styles/variables.scss';
 
 #playerBar {
   display: flex;
@@ -39,7 +39,7 @@
     &:disabled {
       opacity: .5;
       cursor:not-allowed;
-      
+
       &:hover {
         color: inherit;
         box-shadow: none;
