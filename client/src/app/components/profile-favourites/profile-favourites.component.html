@@ -1,0 +1,10 @@
+<div><b>favourite stations:</b></div>
+<div *ngFor='let station of (favStations$ | async)'>
+  <app-station
+    id={{station.id}}
+    name={{station.name}}
+    url={{station.url}}
+    favicon={{station.favicon}}
+    country={{station.country}}
+  ></app-station>
+</div>

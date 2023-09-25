@@ -13,7 +13,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NavComponent } from './components/nav/nav.component'
+import { NavComponent } from './components/nav/nav.component';
+import { ProfileFavouritesComponent } from './components/profile-favourites/profile-favourites.component';
+import { ProfileRecentComponent } from './components/profile-recent/profile-recent.component';
+import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { NavComponent } from './components/nav/nav.component'
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    NavComponent
+    NavComponent,
+    ProfileFavouritesComponent,
+    ProfileRecentComponent,
+    ProfileSettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,4 +43,3 @@ import { NavComponent } from './components/nav/nav.component'
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
