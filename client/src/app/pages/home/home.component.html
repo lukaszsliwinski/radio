@@ -1,7 +1,9 @@
 <form [formGroup]="searchForm" (ngSubmit)="submit()">
-  <label for="searchInput">station: </label>
-  <input id="searchInput" type="text" formControlName="searchInput">
-  <button type="submit" [disabled]="!searchForm.valid">search</button>
+  <input id="searchInput" type="text" formControlName="searchInput" placeholder=" ">
+  <label for="searchInput">Search station</label>
+  <button type="submit" [disabled]="!searchForm.valid">
+    <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+  </button>
 </form>
 
 <div *ngFor='let station of stations'>
@@ -13,3 +15,4 @@
     country={{station.country}}
   ></app-station>
 </div>
+

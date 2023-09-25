@@ -3,12 +3,16 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StationService } from '../../services/station.service';
 import { IStation } from 'src/app/models/station';
 
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  public faMagnifyingGlass = faMagnifyingGlass;
+
   public stations: IStation[] = [];
 
   public searchForm = new FormGroup({
