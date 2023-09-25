@@ -38,6 +38,8 @@
 
     &:disabled {
       opacity: .5;
+      cursor:not-allowed;
+      
       &:hover {
         color: inherit;
         box-shadow: none;
@@ -76,6 +78,4 @@
       }
     }
   }
-
-
 }

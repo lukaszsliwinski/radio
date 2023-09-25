@@ -1,5 +1,5 @@
 <form [formGroup]="searchForm" (ngSubmit)="submit()">
-  <input id="searchInput" type="text" formControlName="searchInput" placeholder=" ">
+  <input id="searchInput" type="text" formControlName="searchInput" placeholder="" />
   <label for="searchInput">Search station</label>
   <button type="submit" [disabled]="!searchForm.valid">
     <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
@@ -15,4 +15,3 @@
     country={{station.country}}
   ></app-station>
 </div>
-

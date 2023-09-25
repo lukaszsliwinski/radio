@@ -1,16 +1,25 @@
-<h2>login</h2>
 <form [formGroup]="loginForm" (ngSubmit)="submit()">
-  <label for="usernameInput">username: </label>
-  <input id="usernameInput" type="text" formControlName="usernameInput">
-  <div *ngIf=""></div>
-  <br><br>
-  <label for="passwordInput">password: </label>
-  <input id="passwordInput" type="text" formControlName="passwordInput">
-  <br><br>
-  <button type="submit" [disabled]="!loginForm.valid">login</button>
-</form>
+  <h2>login</h2>
+  <div class="input-group">
+    <input id="usernameInput" type="text" formControlName="usernameInput" placeholder="" />
+    <label for="usernameInput">username</label>
+  </div>
 
-<div>
-  don't have an account?
-  <a routerLink="/register">register</a>
-</div>
+  <div class="input-group">
+    <input id="passwordInput" type={{passwordInputType}} formControlName="passwordInput" placeholder="" />
+    <label for="passwordInput">password</label>
+    <button type="button" (click)="showPassword()">
+      <fa-icon *ngIf="this.passwordInputType === 'password'; else eyeSlash" [icon]="faEye"></fa-icon>
+      <ng-template #eyeSlash>
+        <fa-icon [icon]="faEyeSlash"></fa-icon>
+      </ng-template>
+    </button>
+  </div>
+
+  <button type="submit" [disabled]="!loginForm.valid">login</button>
+  
+  <small>
+    don't have an account?
+    <a routerLink="/register">register</a>
+  </small>
+</form>
