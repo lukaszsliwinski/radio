@@ -1,5 +1,15 @@
-<p>logged as: {{ user$ | async }}</p>
-<a routerLink="favourites">favourites</a> | 
-<a routerLink="recent">recent</a> | 
-<a routerLink="settings">settings</a>
+<nav>
+  <a type="button" routerLink="favourites" routerLinkActive="active-link">
+    <fa-icon [icon]="faStar"></fa-icon>
+    favourites
+  </a>
+  <a type="button" routerLink="recent" routerLinkActive="active-link">
+    <fa-icon [icon]="faClockRotateLeft"></fa-icon>
+    recent
+  </a>
+  <a type="button" routerLink="settings" routerLinkActive="active-link">
+    <fa-icon [icon]="faGear"></fa-icon>
+    settings
+  </a>
+</nav>
 <router-outlet></router-outlet>
