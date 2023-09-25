@@ -1,0 +1,23 @@
+<nav>
+  <h1 routerLink="/">
+    <fa-icon [icon]="faRadio"></fa-icon>
+    RADIO APP
+  </h1>
+  <span class="spacer"></span>
+  <a *ngIf="!(user$ | async)" type="button" routerLink="/login">
+    <fa-icon [icon]="faRightToBracket"></fa-icon>
+    login
+  </a>
+  <a *ngIf="!(user$ | async)" type="button" routerLink="/register">
+    <fa-icon [icon]="faUserPlus"></fa-icon>
+    register
+  </a>
+  <a *ngIf="user$ | async as user" type="button" routerLink="/profile">
+    <fa-icon [icon]="faUser"></fa-icon>
+    {{ user }}
+  </a>
+  <button *ngIf="user$ | async" (click)="this.authService.logout()">
+    <fa-icon [icon]="faRightFromBracket"></fa-icon>
+    logout
+  </button>
+</nav>
