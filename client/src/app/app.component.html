@@ -1,5 +1,8 @@
 <nav>
-  <h1 routerLink="/">RADIO</h1>
+  <h1 routerLink="/">
+    <fa-icon [icon]="faRadio"></fa-icon>
+    RADIO APP
+  </h1>
   <span class="spacer"></span>
   <a *ngIf="!(user$ | async)" type="button" routerLink="/login">
     <fa-icon [icon]="faRightToBracket"></fa-icon>

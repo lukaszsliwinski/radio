@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 import {
+  faRadio,
   faRightToBracket,
   faUserPlus,
   faUser,
@@ -14,6 +15,7 @@ import {
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  public faRadio = faRadio;
   public faRightToBracket = faRightToBracket
   public faUserPlus = faUserPlus
   public faUser = faUser
