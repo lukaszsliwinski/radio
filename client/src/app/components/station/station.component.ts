@@ -3,6 +3,12 @@ import { AuthService } from '../../services/auth.service';
 import { PlayerService } from '../../services/player.service';
 import { StationService } from '../../services/station.service';
 
+import {
+  faPlay,
+  faStar as faStarSolid
+} from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+
 @Component({
   selector: 'app-station',
   templateUrl: './station.component.html',
@@ -16,6 +22,11 @@ export class StationComponent implements OnInit {
   @Input() public country: string;
   @Input() public datetime: string;
 
+  public faPlay = faPlay;
+  public faStarSolid = faStarSolid;
+  public faStarRegular = faStarRegular;
+
+  public url$ = this.playerService.url$;
   public user$ = this.authService.user$;
   public fav: boolean;
 
@@ -37,7 +48,7 @@ export class StationComponent implements OnInit {
   toggleFavourite() {
     if (this.fav) {
       this.stationService.deleteFavourite(this.id).subscribe((result) => {
-        if (result.status === 201) this.fav = false;
+        if (result.status === 200) this.fav = false;
       });
     } else {
       this.stationService.addFavourite({

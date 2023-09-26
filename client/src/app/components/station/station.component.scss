@@ -1,24 +1,76 @@
-.fav-btn {
-  /* reset defaul style */
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  overflow: visible;
-  background: transparent;
-  color: inherit;
-  line-height: normal;
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-  -webkit-appearance: none;
+@import '../../../assets/styles/variables.scss';
 
-  &::-moz-focus-inner {
-    border: 0;
-    padding: 0;
+.station {
+  display: flex;
+  box-shadow: $shadow-sm;
+  width: 40rem;
+  height: 5rem;
+  margin: .5rem 0;
+  padding: 0 1rem;
+
+  img {
+    height: 5rem;
+    width: 5rem;
   }
 
+  hgroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: .65rem;
 
+    h2 {
+      font-weight: 600;
+    }
 
-  cursor: pointer;
-  width: 100px;
+    h3 {
+      font-size: .85rem;
+      font-weight: 400;
+    }
+  }
+
+  button.fav-btn {
+    width: 4rem;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: darkgoldenrod;
+    }
+  }
+  
+
+  button.load-and-play-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin: auto .5rem;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: darkgoldenrod;
+      box-shadow: $shadow-sm;
+    }
+
+    &:disabled {
+      opacity: .5;
+      cursor:not-allowed;
+
+      &:hover {
+        color: inherit;
+        box-shadow: none;
+      }
+    }
+
+    /* btn's icon */
+    > .ng-fa-icon {
+      font-size: 1.35rem;
+
+      &:has(.fa-play) {
+        margin-left: .25rem;
+      }
+    }
+  }
 }

@@ -20,6 +20,7 @@ export class PlayerService {
   private name = new BehaviorSubject<string>('');
   private favicon = new BehaviorSubject<string>('');
   private country = new BehaviorSubject<string>('');
+  private url = new BehaviorSubject<string>('');
   private btnLabel = new BehaviorSubject<IconDefinition>(faPlay);
   private isDisabled = new BehaviorSubject<boolean>(true);
   private loading = new BehaviorSubject<boolean>(false);
@@ -29,6 +30,7 @@ export class PlayerService {
   public name$ = this.name.asObservable();
   public favicon$ = this.favicon.asObservable();
   public country$ = this.country.asObservable();
+  public url$ = this.url.asObservable();
   public btnLabel$ = this.btnLabel.asObservable();
   public isDisabled$ = this.isDisabled.asObservable();
   public loading$ = this.loading.asObservable();
@@ -50,6 +52,7 @@ export class PlayerService {
         this.name.next(station.name);
         this.favicon.next(station.favicon);
         this.country.next(station.country);
+        this.url.next(station.url);
         this.btnLabel.next(faPause);
         this.isDisabled.next(false);
         this.loading.next(false);
