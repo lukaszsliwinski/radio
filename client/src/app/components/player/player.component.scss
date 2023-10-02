@@ -15,7 +15,7 @@
     overflow: hidden;
     
     > * {
-      @media only screen and (max-width: 480px) {
+      @media only screen and (max-width: $display-sm) {
         white-space: nowrap;
         
         /* sliding animation properties */

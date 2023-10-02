@@ -17,7 +17,7 @@ nav {
     user-select: none;
     cursor: pointer;
     white-space: nowrap;
-    
+
     .ng-fa-icon {
       margin-right: .5rem;
       font-size: 1.25rem;
@@ -45,7 +45,7 @@ nav {
     .ng-fa-icon {
       font-size: .75rem;
 
-      @media only screen and (max-width: 480px) {
+      @media only screen and (max-width: $display-sm) {
         font-size: 1rem;
       }
     }
@@ -54,7 +54,7 @@ nav {
       display: inline-block;
       margin-left: .4rem;
 
-      @media only screen and (max-width: 480px) {
+      @media only screen and (max-width: $display-sm) {
         display: none;
       }
     }
