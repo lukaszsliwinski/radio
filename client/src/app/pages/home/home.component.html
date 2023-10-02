@@ -6,12 +6,14 @@
   </button>
 </form>
 
-<div *ngFor='let station of stations'>
-  <app-station
-    id={{station.id}}
-    name={{station.name}}
-    url={{station.url}}
-    favicon={{station.favicon}}
-    country={{station.country}}
-  ></app-station>
-</div>
+<section>
+  <div *ngFor='let station of stations'>
+    <app-station
+      id={{station.id}}
+      name={{station.name}}
+      url={{station.url}}
+      favicon={{station.favicon}}
+      country={{station.country}}
+    ></app-station>
+  </div>
+</section>
