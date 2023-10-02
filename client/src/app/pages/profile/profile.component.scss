@@ -33,5 +33,18 @@ nav {
       margin-right: .4rem;
       font-size: .75rem;
     }
+    
+    @media only screen and (max-width: $display-sm) {
+      margin: 0 .6rem;
+      width: 3rem;
+
+      .ng-fa-icon {
+        font-size: 1.2rem;
+      }
+  
+      span {
+        display: none;
+      }
+    }
   }
 }

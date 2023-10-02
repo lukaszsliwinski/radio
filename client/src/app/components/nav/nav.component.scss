@@ -44,17 +44,19 @@ nav {
     /* btn's icon */
     .ng-fa-icon {
       font-size: .75rem;
-
-      @media only screen and (max-width: $display-sm) {
-        font-size: 1rem;
-      }
     }
     
     span {
       display: inline-block;
       margin-left: .4rem;
+    }
 
-      @media only screen and (max-width: $display-sm) {
+    @media only screen and (max-width: $display-sm) {
+      .ng-fa-icon {
+        font-size: 1rem;
+      }
+
+      span {
         display: none;
       }
     }

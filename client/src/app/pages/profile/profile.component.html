@@ -1,15 +1,15 @@
 <nav>
   <a type="button" routerLink="favourites" routerLinkActive="active-link">
     <fa-icon [icon]="faStar"></fa-icon>
-    favourites
+    <span>favourites</span>
   </a>
   <a type="button" routerLink="recent" routerLinkActive="active-link">
     <fa-icon [icon]="faClockRotateLeft"></fa-icon>
-    recent
+    <span>recent</span>
   </a>
   <a type="button" routerLink="settings" routerLinkActive="active-link">
     <fa-icon [icon]="faGear"></fa-icon>
-    settings
+    <span>settings</span>
   </a>
 </nav>
 <router-outlet></router-outlet>
