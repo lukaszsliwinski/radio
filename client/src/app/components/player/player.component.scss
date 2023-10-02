@@ -12,6 +12,47 @@
     flex-direction: column;
     justify-content: space-around;
     margin: .65rem;
+    overflow: hidden;
+    
+    > * {
+      @media only screen and (max-width: 480px) {
+        white-space: nowrap;
+        
+        /* sliding animation properties */
+        -moz-transform: translateX(100%);
+        -webkit-transform: translateX(100%);
+        transform: translateX(100%);
+        
+        -moz-animation: my-animation 12s linear infinite;
+        -webkit-animation: my-animation 12s linear infinite;
+        animation: my-animation 12s linear infinite;
+        
+        /* for Firefox */
+        @-moz-keyframes my-animation {
+          from { -moz-transform: translateX(10%); }
+          to { -moz-transform: translateX(-100%); }
+        }
+
+        /* for Chrome */
+        @-webkit-keyframes my-animation {
+          from { -webkit-transform: translateX(10%); }
+          to { -webkit-transform: translateX(-100%); }
+        }
+
+        @keyframes my-animation {
+          from {
+            -moz-transform: translateX(10%);
+            -webkit-transform: translateX(10%);
+            transform: translateX(10%);
+          }
+          to {
+            -moz-transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+          }
+        }
+      }
+    }
 
     h2 {
       font-weight: 600;
