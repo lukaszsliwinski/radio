@@ -16,7 +16,8 @@ nav {
     letter-spacing: 2.5px;
     user-select: none;
     cursor: pointer;
-
+    white-space: nowrap;
+    
     .ng-fa-icon {
       margin-right: .5rem;
       font-size: 1.25rem;
@@ -42,8 +43,20 @@ nav {
 
     /* btn's icon */
     .ng-fa-icon {
-      margin-right: .4rem;
       font-size: .75rem;
+
+      @media only screen and (max-width: 480px) {
+        font-size: 1rem;
+      }
+    }
+    
+    span {
+      display: inline-block;
+      margin-left: .4rem;
+
+      @media only screen and (max-width: 480px) {
+        display: none;
+      }
     }
   }
 }

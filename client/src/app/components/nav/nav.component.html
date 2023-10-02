@@ -6,18 +6,18 @@
   <span class="spacer"></span>
   <a *ngIf="!(user$ | async)" type="button" routerLink="/login">
     <fa-icon [icon]="faRightToBracket"></fa-icon>
-    login
+    <span>login</span>
   </a>
   <a *ngIf="!(user$ | async)" type="button" routerLink="/register">
     <fa-icon [icon]="faUserPlus"></fa-icon>
-    register
+    <span>register</span>
   </a>
   <a *ngIf="user$ | async as user" type="button" routerLink="/profile">
     <fa-icon [icon]="faUser"></fa-icon>
-    {{ user }}
+    <span>{{ user }}</span>
   </a>
   <button *ngIf="user$ | async" (click)="this.authService.logout()">
     <fa-icon [icon]="faRightFromBracket"></fa-icon>
-    logout
+    <span>logout</span>
   </button>
 </nav>
