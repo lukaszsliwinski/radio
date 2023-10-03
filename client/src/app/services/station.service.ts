@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 
 import { AuthService } from './auth.service';
+import { AlertService } from './alert.service';
 
 import { IStation } from '../models/station';
 import {
@@ -27,6 +28,7 @@ export class StationService {
   constructor(
     private authService: AuthService,
     private http: HttpClient,
+    private alertService: AlertService
   ) {}
 
   searchStations(inputValue: string): Observable<IStationsHttpResponse> {
@@ -37,7 +39,7 @@ export class StationService {
     return this.http.post<IStationsHttpResponse>('/api/search', body)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          alert(error.error.message)
+          this.alertService.setAlert(error.error.message)
           return throwError(() => error);
         })
       );
@@ -119,7 +121,7 @@ export class StationService {
     return this.http.get<IStationsHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
       tap((result) => this.favStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
-        alert(error.error.message)
+        this.alertService.setAlert(error.error.message)
         return throwError(() => error);
       })
     );
@@ -157,7 +159,7 @@ export class StationService {
     return this.http.get<IStationsHttpResponse>('/api/get-recent', { headers: headers }).pipe(
       tap((result) => this.recentStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
-        alert(error.error.message)
+        this.alertService.setAlert(error.error.message)
         return throwError(() => error);
       })
     );

@@ -16,7 +16,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavComponent } from './components/nav/nav.component';
 import { ProfileFavouritesComponent } from './components/profile-favourites/profile-favourites.component';
 import { ProfileRecentComponent } from './components/profile-recent/profile-recent.component';
-import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component'
+import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
+import { AlertComponent } from './components/alert/alert.component'
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ProfileSettingsComponent } from './components/profile-settings/profile-
     NavComponent,
     ProfileFavouritesComponent,
     ProfileRecentComponent,
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,

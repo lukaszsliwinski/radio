@@ -11,6 +11,7 @@ import {
   IChangePasswordHttpResponse
 } from '../models/http-responses';
 
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private cookieService: CookieService,
-    private http: HttpClient
+    private http: HttpClient,
+    private alertService: AlertService
   ) { }
 
 
@@ -65,11 +67,11 @@ export class AuthService {
 
     return this.http.post<IRegisterHttpResponse>('/api/register', body).pipe(
       tap((result) => {
-        alert(result.message);
+        this.alertService.setAlert(result.message);
         this.router.navigate(['login']);
       }),
       catchError((error: HttpErrorResponse) => {
-        alert(error.error.message);
+        this.alertService.setAlert(error.error.message);
         return throwError(() => error);
       })
     );
@@ -83,13 +85,13 @@ export class AuthService {
 
     return this.http.post<ILoginHttpResponse>('/api/login', body).pipe(
       tap((result) => {
-        alert(result.message);
+        this.alertService.setAlert(result.message);
         if (result.token) this.cookieService.set('TOKEN', result.token, { path: '/' });
         this.setLoggedUser(result.username);
         this.router.navigate(['']);
       }),
       catchError((error: HttpErrorResponse) => {
-        alert(error.error.message);
+        this.alertService.setAlert(error.error.message);
         this.setLoggedUser(undefined);
         return throwError(() => error);
       })
@@ -114,9 +116,9 @@ export class AuthService {
     });
 
     return this.http.post<IChangePasswordHttpResponse>('api/change-password', body, { headers: headers }).pipe(
-      tap((result) => alert(result.message)),
+      tap((result) => this.alertService.setAlert(result.message)),
       catchError((error: HttpErrorResponse) => {
-        alert(error.error.message);
+        this.alertService.setAlert(error.error.message);
         return throwError(() => error);
       })
     );
