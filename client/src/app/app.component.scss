@@ -1,0 +1,33 @@
+@import '../assets/styles/variables.scss';
+
+main {
+  height: calc(100vh - 7.75rem);
+  overflow-y: auto;
+
+  /* custom scrollbar */
+  scrollbar-color: $main transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+main::-webkit-scrollbar {
+  width: 8px;
+}
+
+main::-webkit-scrollbar-thumb {
+  background: $main;
+}
+
+main::-webkit-scrollbar-thumb:hover {
+  background: $main-light ;
+}
+
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+section#content {
+  margin: 0 auto;
+  padding: 1rem;
+  max-width: 42rem;
+}
