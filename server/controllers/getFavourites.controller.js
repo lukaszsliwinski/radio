@@ -24,7 +24,7 @@ const getFavourites = (request, response) => {
       response.status(500).json({
         status: 500,
         message: 'error connecting to db'
-      })
+      });
     });
 };
 

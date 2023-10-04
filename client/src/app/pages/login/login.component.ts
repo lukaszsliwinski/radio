@@ -2,10 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
-import {
-  faEye,
-  faEyeSlash
-} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +15,7 @@ export class LoginComponent {
   public faEyeSlash = faEyeSlash;
 
   // password input type
-  public passwordInputType: 'password' | 'text' = 'password'
+  public passwordInputType: 'password' | 'text' = 'password';
 
   // create login form
   public loginForm = new FormGroup({
@@ -30,13 +27,16 @@ export class LoginComponent {
 
   // toggle show password method
   showPassword() {
-    this.passwordInputType === 'password' ? this.passwordInputType = 'text' : this.passwordInputType = 'password';
+    this.passwordInputType === 'password'
+      ? (this.passwordInputType = 'text')
+      : (this.passwordInputType = 'password');
   }
 
   submit() {
     const uInput = this.loginForm.value.usernameInput;
     const pInput = this.loginForm.value.passwordInput;
 
-    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined) this.authService.login(uInput, pInput).subscribe();
+    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined)
+      this.authService.login(uInput, pInput).subscribe();
   }
 }

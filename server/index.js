@@ -61,7 +61,7 @@ app.post('/api/add-recent', auth, addRecent);
 // default favicon endpoint
 app.get('/api/img/default-radio-icon', (request, response) => {
   response.sendFile(path.resolve(__dirname, './img', 'default-radio-icon.png'));
-})
+});
 
 // execute database connection
 dbConnect();

@@ -7,11 +7,9 @@ const deleteFavourite = (request, response) => {
       response.status(200).json({
         status: 200,
         message: 'successfully deleted'
-      })
+      });
     })
-    .catch(() => {
-
-    });
+    .catch(() => {});
 };
 
 module.exports = deleteFavourite;

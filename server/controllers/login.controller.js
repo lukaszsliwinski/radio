@@ -13,7 +13,7 @@ const login = (request, response) => {
           if (!passwordCheck) {
             return response.status(401).json({
               status: 401,
-              message: 'wrong password',
+              message: 'wrong password'
             });
           }
 

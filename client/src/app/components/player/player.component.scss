@@ -11,32 +11,40 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: .65rem;
+    margin: 0.65rem;
     overflow: hidden;
-    
+
     > * {
       @media only screen and (max-width: $display-sm) {
         white-space: nowrap;
-        
+
         /* sliding animation properties */
         -moz-transform: translateX(100%);
         -webkit-transform: translateX(100%);
         transform: translateX(100%);
-        
+
         -moz-animation: my-animation 12s linear infinite;
         -webkit-animation: my-animation 12s linear infinite;
         animation: my-animation 12s linear infinite;
-        
+
         /* for Firefox */
         @-moz-keyframes my-animation {
-          from { -moz-transform: translateX(10%); }
-          to { -moz-transform: translateX(-100%); }
+          from {
+            -moz-transform: translateX(10%);
+          }
+          to {
+            -moz-transform: translateX(-100%);
+          }
         }
 
         /* for Chrome */
         @-webkit-keyframes my-animation {
-          from { -webkit-transform: translateX(10%); }
-          to { -webkit-transform: translateX(-100%); }
+          from {
+            -webkit-transform: translateX(10%);
+          }
+          to {
+            -webkit-transform: translateX(-100%);
+          }
         }
 
         @keyframes my-animation {
@@ -59,7 +67,7 @@
     }
 
     h3 {
-      font-size: .85rem;
+      font-size: 0.85rem;
       font-weight: 400;
     }
   }
@@ -67,7 +75,7 @@
   button {
     width: 3.5rem;
     height: 3.5rem;
-    margin: auto .5rem;
+    margin: auto 0.5rem;
     border-radius: 50%;
     text-align: center;
     cursor: pointer;
@@ -78,8 +86,8 @@
     }
 
     &:disabled {
-      opacity: .5;
-      cursor:not-allowed;
+      opacity: 0.5;
+      cursor: not-allowed;
 
       &:hover {
         color: inherit;
@@ -92,7 +100,7 @@
       font-size: 1.35rem;
 
       &:has(.fa-play) {
-        margin-left: .25rem;
+        margin-left: 0.25rem;
       }
     }
   }
@@ -109,12 +117,12 @@
       height: 2.5rem;
       border-radius: 50%;
       background: conic-gradient(#0000 10%, $main);
-      -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+      -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
       animation: spinner-zp9dbg 1s infinite linear;
 
       @keyframes spinner-zp9dbg {
         to {
-            transform: rotate(1turn);
+          transform: rotate(1turn);
         }
       }
     }

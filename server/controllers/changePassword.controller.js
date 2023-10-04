@@ -6,12 +6,19 @@ const User = require('../models/user.model');
 // password limitations
 const passwordSchema = new passwordValidator();
 passwordSchema
-  .is().min(8)
-  .is().max(100)
-  .has().uppercase()
-  .has().lowercase()
-  .has().digits(1)
-  .has().not().spaces();
+  .is()
+  .min(8)
+  .is()
+  .max(100)
+  .has()
+  .uppercase()
+  .has()
+  .lowercase()
+  .has()
+  .digits(1)
+  .has()
+  .not()
+  .spaces();
 
 // find user in database by username, hash new password and update
 const changePassword = async (request, response) => {

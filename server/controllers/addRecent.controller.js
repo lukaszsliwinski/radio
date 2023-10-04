@@ -28,6 +28,6 @@ const addRecent = (request, response) => {
         message: 'Server error'
       });
     });
-}
+};
 
 module.exports = addRecent;

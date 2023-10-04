@@ -34,6 +34,6 @@ const addFavourite = (request, response) => {
         });
       }
     });
-}
+};
 
 module.exports = addFavourite;

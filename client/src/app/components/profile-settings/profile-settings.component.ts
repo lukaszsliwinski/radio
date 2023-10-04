@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
-import {
-  faEye,
-  faEyeSlash,
-  faCheck,
-  faXmark
-} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-profile-settings',
@@ -22,7 +17,7 @@ export class ProfileSettingsComponent {
   public faXmark = faXmark;
 
   // password input type
-  public passwordInputType: 'password' | 'text' = 'password'
+  public passwordInputType: 'password' | 'text' = 'password';
 
   // logged user's name
   public user$ = this.authService.user$;
@@ -37,20 +32,21 @@ export class ProfileSettingsComponent {
     ])
   });
 
-  constructor(
-    private authService: AuthService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   // toggle show password method
   showPassword() {
-    this.passwordInputType === 'password' ? this.passwordInputType = 'text' : this.passwordInputType = 'password';
+    this.passwordInputType === 'password'
+      ? (this.passwordInputType = 'text')
+      : (this.passwordInputType = 'password');
   }
-  
+
   submit() {
     const pInput = this.changePasswordForm.value.passwordInput;
 
-    if (pInput !== null && pInput !== undefined) this.authService.changePassword(pInput).subscribe(
-      () => this.changePasswordForm.setValue({ passwordInput: '' })
-    );
+    if (pInput !== null && pInput !== undefined)
+      this.authService
+        .changePassword(pInput)
+        .subscribe(() => this.changePasswordForm.setValue({ passwordInput: '' }));
   }
 }

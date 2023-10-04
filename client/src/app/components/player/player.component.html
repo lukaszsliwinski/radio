@@ -1,20 +1,20 @@
 <div id="playerBar">
   <!-- station icon -->
-  <img *ngIf="favicon$ | async as favicon; else defaultImg" src={{favicon}} />
+  <img *ngIf="favicon$ | async as favicon; else defaultImg" src="{{ favicon }}" />
   <!-- default icon when no station is loaded into player -->
   <ng-template #defaultImg>
     <img src="/api/img/default-radio-icon" />
   </ng-template>
-  
+
   <!-- station name -->
   <hgroup>
-    <h2 *ngIf="name$ | async as name; else noStation">{{name}}</h2>
+    <h2 *ngIf="name$ | async as name; else noStation">{{ name }}</h2>
     <ng-template #noStation><h2>no station selected</h2></ng-template>
-    <h3 *ngIf="country$ | async as country">{{country}}</h3>
+    <h3 *ngIf="country$ | async as country">{{ country }}</h3>
   </hgroup>
-  
+
   <span class="spacer"></span>
-  
+
   <!-- loader -->
   <div *ngIf="loading$ | async as loading; else playBtn" class="loader">
     <div class="spinner"></div>

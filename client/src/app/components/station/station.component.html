@@ -1,15 +1,11 @@
 <div class="station">
-  <img src={{favicon}} />
+  <img src="{{ favicon }}" />
   <hgroup>
-    <h2>{{name}}</h2>
-    <h3>{{country}}</h3>
+    <h2>{{ name }}</h2>
+    <h3>{{ country }}</h3>
   </hgroup>
   <span class="spacer"></span>
-  <button
-    *ngIf="user$ | async"
-    class="fav-btn"
-    (click)="this.toggleFavourite()"
-  >
+  <button *ngIf="user$ | async" class="fav-btn" (click)="this.toggleFavourite()">
     <fa-icon *ngIf="fav; else notFavIcon" [icon]="faStarSolid"></fa-icon>
     <ng-template #notFavIcon>
       <fa-icon [icon]="faStarRegular"></fa-icon>
@@ -17,13 +13,15 @@
   </button>
   <button
     class="load-and-play-btn"
-    (click)="playerService.loadAndPlay({
-      id: id,
-      url:url,
-      name: name,
-      favicon: favicon,
-      country: country
-    })"
+    (click)="
+      playerService.loadAndPlay({
+        id: id,
+        url: url,
+        name: name,
+        favicon: favicon,
+        country: country
+      })
+    "
     [disabled]="this.url === (this.url$ | async)"
   >
     <fa-icon [icon]="this.faPlay"></fa-icon>

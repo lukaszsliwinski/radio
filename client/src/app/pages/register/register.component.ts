@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
-import {
-  faEye,
-  faEyeSlash,
-  faCheck,
-  faXmark
-} from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +17,7 @@ export class RegisterComponent {
   public faXmark = faXmark;
 
   // password input type
-  public passwordInputType: 'password' | 'text' = 'password'
+  public passwordInputType: 'password' | 'text' = 'password';
 
   // create register form
   public registerForm = new FormGroup({
@@ -44,13 +39,16 @@ export class RegisterComponent {
 
   // toggle show password method
   showPassword() {
-    this.passwordInputType === 'password' ? this.passwordInputType = 'text' : this.passwordInputType = 'password';
+    this.passwordInputType === 'password'
+      ? (this.passwordInputType = 'text')
+      : (this.passwordInputType = 'password');
   }
 
   submit() {
     const uInput = this.registerForm.value.usernameInput;
     const pInput = this.registerForm.value.passwordInput;
 
-    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined) this.authService.register(uInput, pInput).subscribe();
+    if (uInput !== null && uInput !== undefined && pInput !== null && pInput !== undefined)
+      this.authService.register(uInput, pInput).subscribe();
   }
 }

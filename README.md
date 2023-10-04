@@ -9,11 +9,13 @@
 This is my side-project that I made to improve my web programming skills and leard Angular.<br>
 The application is an online radio player.<br><br>
 Features for all users:
+
 - search station and play
 - create an account and log in
-<br>
+  <br>
 
 Features only for logged in users:
+
 - add station to favourites
 - view the history of recently played stations
 - change password

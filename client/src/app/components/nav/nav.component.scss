@@ -4,7 +4,7 @@
 nav {
   display: flex;
   align-items: center;
-  padding: .35rem .75rem;
+  padding: 0.35rem 0.75rem;
 
   /* app logo style */
   h1 {
@@ -19,22 +19,23 @@ nav {
     white-space: nowrap;
 
     .ng-fa-icon {
-      margin-right: .5rem;
+      margin-right: 0.5rem;
       font-size: 1.25rem;
     }
   }
 
   /* nav btn style */
-  a[type=button], button {
+  a[type='button'],
+  button {
     display: inline-flex;
     align-items: center;
-    margin: 0 .2rem;
+    margin: 0 0.2rem;
     height: 1rem;
-    padding: .5rem .6rem;
+    padding: 0.5rem 0.6rem;
     cursor: pointer;
     text-transform: uppercase;
     font-weight: 500;
-    font-size: .85rem;
+    font-size: 0.85rem;
 
     &:hover {
       color: darkgoldenrod;
@@ -43,12 +44,12 @@ nav {
 
     /* font awesome icon */
     .ng-fa-icon {
-      font-size: .75rem;
+      font-size: 0.75rem;
     }
-    
+
     span {
       display: inline-block;
-      margin-left: .4rem;
+      margin-left: 0.4rem;
     }
 
     @media only screen and (max-width: $display-sm) {

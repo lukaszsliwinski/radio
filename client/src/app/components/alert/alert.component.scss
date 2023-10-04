@@ -11,7 +11,7 @@ dialog {
   width: fit-content;
   min-width: 10rem;
   max-width: 20rem;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   text-align: center;
 
   @media only screen and (max-width: $display-sm) {
@@ -21,11 +21,11 @@ dialog {
   /* show/hide alert */
   &.shown {
     margin-bottom: 1rem;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
 
   &.hidden {
     margin-bottom: -5rem;
-    transition: all .4s ease-in-out;
+    transition: all 0.4s ease-in-out;
   }
 }

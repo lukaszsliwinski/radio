@@ -15,7 +15,7 @@ export class PlayerComponent {
   public idDisabled$ = this.playerService.isDisabled$;
   public loading$ = this.playerService.loading$;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService) {}
 
   play() {
     this.playerService.togglePlay();

@@ -9,9 +9,7 @@ import { StationService } from 'src/app/services/station.service';
 export class ProfileRecentComponent implements OnInit {
   public recentStations$ = this.stationService.recentStations$;
 
-  constructor(
-    private stationService: StationService
-  ) {}
+  constructor(private stationService: StationService) {}
 
   ngOnInit() {
     // get recently played stations list

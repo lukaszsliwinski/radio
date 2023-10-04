@@ -5,7 +5,7 @@ const RecentStationSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  
+
   name: {
     type: String,
     required: true
@@ -37,4 +37,5 @@ const RecentStationSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model.RecentStations || mongoose.model('RecentStations', RecentStationSchema);
+module.exports =
+  mongoose.model.RecentStations || mongoose.model('RecentStations', RecentStationSchema);

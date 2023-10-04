@@ -7,10 +7,18 @@
   </div>
 
   <div class="input-group">
-    <input id="passwordInput" type={{passwordInputType}} formControlName="passwordInput" placeholder="" />
+    <input
+      id="passwordInput"
+      type="{{ passwordInputType }}"
+      formControlName="passwordInput"
+      placeholder=""
+    />
     <label for="passwordInput">password</label>
     <button type="button" (click)="showPassword()">
-      <fa-icon *ngIf="this.passwordInputType === 'password'; else eyeSlash" [icon]="faEye"></fa-icon>
+      <fa-icon
+        *ngIf="this.passwordInputType === 'password'; else eyeSlash"
+        [icon]="faEye"
+      ></fa-icon>
       <ng-template #eyeSlash>
         <fa-icon [icon]="faEyeSlash"></fa-icon>
       </ng-template>
@@ -18,7 +26,7 @@
   </div>
 
   <button type="submit" [disabled]="!loginForm.valid">login</button>
-  
+
   <small>
     don't have an account?
     <a routerLink="/register">register</a>

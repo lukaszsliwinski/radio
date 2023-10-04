@@ -27,10 +27,9 @@ export class HomeComponent {
   submit(): void {
     const input = this.searchForm.value.searchInput;
     if (input !== null && input !== undefined && input !== '') {
-      this.stationService.searchStations(input)
-        .subscribe((result) => {
-          if (result.stations) this.stations = result.stations;
-        });
-    };
+      this.stationService.searchStations(input).subscribe((result) => {
+        if (result.stations) this.stations = result.stations;
+      });
+    }
   }
 }

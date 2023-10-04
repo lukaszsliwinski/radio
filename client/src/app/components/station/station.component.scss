@@ -5,7 +5,7 @@
   box-shadow: $shadow-sm;
   width: 44rem;
   height: 5rem;
-  margin: .5rem 0;
+  margin: 0.5rem 0;
   padding: 0 1rem;
 
   img {
@@ -17,7 +17,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: .65rem;
+    margin: 0.65rem;
     max-width: 50%;
 
     h2 {
@@ -25,7 +25,7 @@
     }
 
     h3 {
-      font-size: .85rem;
+      font-size: 0.85rem;
       font-weight: 400;
     }
   }
@@ -40,11 +40,11 @@
       color: darkgoldenrod;
     }
   }
-  
+
   button.load-and-play-btn {
     width: 3.5rem;
     height: 3.5rem;
-    margin: auto .5rem;
+    margin: auto 0.5rem;
     border-radius: 50%;
     font-size: 1.35rem;
     text-align: center;
@@ -56,7 +56,7 @@
     }
 
     &:disabled {
-      opacity: .5;
+      opacity: 0.5;
       cursor: not-allowed;
 
       &:hover {
@@ -67,15 +67,15 @@
 
     /* btn's icon */
     .ng-fa-icon {
-      margin-left: .25rem;
+      margin-left: 0.25rem;
     }
   }
 
   @media only screen and (max-width: $display-md) {
     width: 85vw;
     height: 3.5rem;
-    padding: 0 .5rem;
-  
+    padding: 0 0.5rem;
+
     img {
       width: 3.5rem;
       height: 3.5rem;
@@ -83,11 +83,11 @@
 
     hgroup {
       h2 {
-        font-size: .8rem;
+        font-size: 0.8rem;
       }
 
       h3 {
-        font-size: .6rem;
+        font-size: 0.6rem;
       }
     }
 
@@ -97,7 +97,7 @@
     }
 
     button.load-and-play-btn {
-      margin: auto .25rem;
+      margin: auto 0.25rem;
       width: 2rem;
       height: 2rem;
       font-size: 1rem;

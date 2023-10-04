@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 import {
@@ -27,11 +27,11 @@ export class AuthService {
     private cookieService: CookieService,
     private http: HttpClient,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   // set logged user's name
   setLoggedUser(username: string | undefined) {
-    this.user.next(username)
+    this.user.next(username);
   }
 
   // get info about logged user from service
@@ -49,7 +49,7 @@ export class AuthService {
     const token = this.getToken();
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
     return this.http.get<IGetUserHttpResponse>('/api/get-user', { headers: headers }).pipe(
@@ -67,7 +67,7 @@ export class AuthService {
     const body = {
       usernameInput: usernameInput,
       passwordInput: passwordInput
-    }
+    };
 
     return this.http.post<IRegisterHttpResponse>('/api/register', body).pipe(
       tap((result) => {
@@ -79,14 +79,14 @@ export class AuthService {
         return throwError(() => error);
       })
     );
-  };
+  }
 
   // login method
   login(usernameInput: string, passwordInput: string): Observable<ILoginHttpResponse> {
     const body = {
       usernameInput: usernameInput,
       passwordInput: passwordInput
-    }
+    };
 
     return this.http.post<ILoginHttpResponse>('/api/login', body).pipe(
       tap((result) => {
@@ -101,7 +101,7 @@ export class AuthService {
         return throwError(() => error);
       })
     );
-  };
+  }
 
   // logout method
   logout() {
@@ -116,19 +116,20 @@ export class AuthService {
 
     const body = {
       passwordInput: passwordInput
-    }
+    };
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
-    return this.http.post<IChangePasswordHttpResponse>('api/change-password', body, { headers: headers }).pipe(
-      tap((result) => this.alertService.setAlert(result.message)),
-      catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message);
-        return throwError(() => error);
-      })
-    );
-  };
-
+    return this.http
+      .post<IChangePasswordHttpResponse>('api/change-password', body, { headers: headers })
+      .pipe(
+        tap((result) => this.alertService.setAlert(result.message)),
+        catchError((error: HttpErrorResponse) => {
+          this.alertService.setAlert(error.error.message);
+          return throwError(() => error);
+        })
+      );
+  }
 }

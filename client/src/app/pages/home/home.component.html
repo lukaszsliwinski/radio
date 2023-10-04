@@ -9,13 +9,13 @@
 
 <section>
   <!-- render found stations -->
-  <div *ngFor='let station of stations'>
+  <div *ngFor="let station of stations">
     <app-station
-      id={{station.id}}
-      name={{station.name}}
-      url={{station.url}}
-      favicon={{station.favicon}}
-      country={{station.country}}
+      id="{{ station.id }}"
+      name="{{ station.name }}"
+      url="{{ station.url }}"
+      favicon="{{ station.favicon }}"
+      country="{{ station.country }}"
     ></app-station>
   </div>
 </section>

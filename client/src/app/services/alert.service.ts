@@ -13,7 +13,7 @@ export class AlertService {
   public shown$ = this.shown.asObservable();
   public message$ = this.message.asObservable();
 
-  constructor() { }
+  constructor() {}
 
   setAlert(message: string) {
     // send data to alert and show

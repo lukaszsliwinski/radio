@@ -6,12 +6,12 @@ const checkFavourite = (request, response) => {
     .then((result) => {
       response.status(200).json({
         fav: result !== null
-      })
+      });
     })
     .catch(() => {
       response.status(500).json({
         fav: false
-      })
+      });
     });
 };
 

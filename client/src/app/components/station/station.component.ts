@@ -3,10 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { PlayerService } from '../../services/player.service';
 import { StationService } from '../../services/station.service';
 
-import {
-  faPlay,
-  faStar as faStarSolid
-} from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
@@ -35,17 +32,16 @@ export class StationComponent implements OnInit {
   constructor(
     public playerService: PlayerService,
     private authService: AuthService,
-    private stationService: StationService,
-  ) { }
+    private stationService: StationService
+  ) {}
 
   ngOnInit() {
     // check if station is favourite for this user
     const token = this.authService.getToken();
-    if (token) this.stationService.checkFavourite(this.id).subscribe(
-      result => {
+    if (token)
+      this.stationService.checkFavourite(this.id).subscribe((result) => {
         this.fav = result.fav;
-      }
-    )
+      });
   }
 
   // toggle favourite station method
@@ -55,16 +51,17 @@ export class StationComponent implements OnInit {
         if (result.status === 200) this.fav = false;
       });
     } else {
-      this.stationService.addFavourite({
-        id: this.id,
-        name: this.name,
-        url: this.url,
-        favicon: this.favicon,
-        country: this.country
-      }).subscribe((result) => {
-        if (result.status === 201) this.fav = true;
-      });
-    };
+      this.stationService
+        .addFavourite({
+          id: this.id,
+          name: this.name,
+          url: this.url,
+          favicon: this.favicon,
+          country: this.country
+        })
+        .subscribe((result) => {
+          if (result.status === 201) this.fav = true;
+        });
+    }
   }
-
 }

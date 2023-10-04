@@ -10,5 +10,5 @@ export class AlertComponent {
   public shown$ = this.alertService.shown$;
   public message$ = this.alertService.message$;
 
-  constructor(private alertService: AlertService) { }
+  constructor(private alertService: AlertService) {}
 }

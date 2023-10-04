@@ -8,10 +8,7 @@ import { IStation } from '../models/station';
 
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-import {
-  faPlay,
-  faPause
-} from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
   providedIn: 'root'
@@ -41,7 +38,7 @@ export class PlayerService {
   constructor(
     private stationService: StationService,
     private authService: AuthService
-  ) { }
+  ) {}
 
   // load and play method (used in station component)
   loadAndPlay(station: IStation) {
@@ -62,7 +59,7 @@ export class PlayerService {
         this.loading.next(false);
       });
     }
-  };
+  }
 
   // toggle play method (used in player component)
   togglePlay() {

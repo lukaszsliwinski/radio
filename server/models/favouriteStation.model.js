@@ -38,4 +38,5 @@ const FavouriteStationSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model.FavouriteStations || mongoose.model('FavouriteStations', FavouriteStationSchema);
+module.exports =
+  mongoose.model.FavouriteStations || mongoose.model('FavouriteStations', FavouriteStationSchema);

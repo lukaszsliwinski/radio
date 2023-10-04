@@ -14,7 +14,6 @@ import {
   IAddRecentHttpResponse
 } from '../models/http-responses';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -39,14 +38,13 @@ export class StationService {
       query: inputValue
     };
 
-    return this.http.post<IStationsHttpResponse>('/api/search', body)
-      .pipe(
-        catchError((error: HttpErrorResponse) => {
-          this.alertService.setAlert(error.error.message)
-          return throwError(() => error);
-        })
-      );
-  };
+    return this.http.post<IStationsHttpResponse>('/api/search', body).pipe(
+      catchError((error: HttpErrorResponse) => {
+        this.alertService.setAlert(error.error.message);
+        return throwError(() => error);
+      })
+    );
+  }
 
   // check of stations is favourite for logged user
   checkFavourite(id: string): Observable<ICheckFavouriteHttpResponse> {
@@ -57,14 +55,16 @@ export class StationService {
     };
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
-    return this.http.post<ICheckFavouriteHttpResponse>('/api/check-favourite', body, { headers: headers }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
-    )
+    return this.http
+      .post<ICheckFavouriteHttpResponse>('/api/check-favourite', body, { headers: headers })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      );
   }
 
   // add station to favourites
@@ -80,19 +80,21 @@ export class StationService {
     };
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
-    return this.http.post<IAddFavouriteHttpResponse>('/api/add-favourite', body, { headers: headers }).pipe(
-      tap(() => {
-        this.getFavourites().subscribe();
-        this.getRecent().subscribe();
-      }),
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
-    );
-  };
+    return this.http
+      .post<IAddFavouriteHttpResponse>('/api/add-favourite', body, { headers: headers })
+      .pipe(
+        tap(() => {
+          this.getFavourites().subscribe();
+          this.getRecent().subscribe();
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      );
+  }
 
   // remove station from favourites
   deleteFavourite(id: string): Observable<IDeleteFavouriteHttpResponse> {
@@ -103,18 +105,20 @@ export class StationService {
     };
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
-    return this.http.post<IDeleteFavouriteHttpResponse>('/api/delete-favourite', body, { headers: headers }).pipe(
-      tap(() => {
-        this.getFavourites().subscribe();
-        this.getRecent().subscribe();
-      }),
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
-    )
+    return this.http
+      .post<IDeleteFavouriteHttpResponse>('/api/delete-favourite', body, { headers: headers })
+      .pipe(
+        tap(() => {
+          this.getFavourites().subscribe();
+          this.getRecent().subscribe();
+        }),
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      );
   }
 
   // get list of favourite stations for logged user
@@ -122,13 +126,13 @@ export class StationService {
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
     return this.http.get<IStationsHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
       tap((result) => this.favStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message)
+        this.alertService.setAlert(error.error.message);
         return throwError(() => error);
       })
     );
@@ -147,31 +151,32 @@ export class StationService {
     };
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
-    return this.http.post<IAddRecentHttpResponse>('/api/add-recent', body, { headers: headers }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
-    );
-  };
+    return this.http
+      .post<IAddRecentHttpResponse>('/api/add-recent', body, { headers: headers })
+      .pipe(
+        catchError((error: HttpErrorResponse) => {
+          return throwError(() => error);
+        })
+      );
+  }
 
   // get list of recently played stations for logged user
   getRecent(): Observable<IStationsHttpResponse> {
     const token = this.authService.getToken();
 
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     });
 
     return this.http.get<IStationsHttpResponse>('/api/get-recent', { headers: headers }).pipe(
       tap((result) => this.recentStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message)
+        this.alertService.setAlert(error.error.message);
         return throwError(() => error);
       })
     );
   }
-
 }

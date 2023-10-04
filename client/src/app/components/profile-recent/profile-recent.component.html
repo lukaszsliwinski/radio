@@ -1,14 +1,14 @@
 <section>
   <h2>recently played</h2>
   <!-- render recently played stations -->
-  <div *ngFor='let station of (recentStations$ | async)'>
+  <div *ngFor="let station of recentStations$ | async">
     <app-station
-      id={{station.id}}
-      name={{station.name}}
-      url={{station.url}}
-      favicon={{station.favicon}}
-      country={{station.country}}
-      datetime={{station.datetime}}
+      id="{{ station.id }}"
+      name="{{ station.name }}"
+      url="{{ station.url }}"
+      favicon="{{ station.favicon }}"
+      country="{{ station.country }}"
+      datetime="{{ station.datetime }}"
     ></app-station>
   </div>
 </section>

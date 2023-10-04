@@ -17,7 +17,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ProfileFavouritesComponent } from './components/profile-favourites/profile-favourites.component';
 import { ProfileRecentComponent } from './components/profile-recent/profile-recent.component';
 import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
-import { AlertComponent } from './components/alert/alert.component'
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -44,4 +44,4 @@ import { AlertComponent } from './components/alert/alert.component'
   providers: [CookieService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

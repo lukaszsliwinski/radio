@@ -7,10 +7,18 @@
   </div>
 
   <div class="input-group">
-    <input id="passwordInput" type={{passwordInputType}} formControlName="passwordInput" placeholder="" />
+    <input
+      id="passwordInput"
+      type="{{ passwordInputType }}"
+      formControlName="passwordInput"
+      placeholder=""
+    />
     <label for="passwordInput">password</label>
     <button type="button" (click)="showPassword()">
-      <fa-icon *ngIf="this.passwordInputType === 'password'; else eyeSlash" [icon]="faEye"></fa-icon>
+      <fa-icon
+        *ngIf="this.passwordInputType === 'password'; else eyeSlash"
+        [icon]="faEye"
+      ></fa-icon>
       <ng-template #eyeSlash>
         <fa-icon [icon]="faEyeSlash"></fa-icon>
       </ng-template>
@@ -58,7 +66,7 @@
     <span class="invalid">
       <fa-icon [icon]="faXmark"></fa-icon>
       password:
-    </span> 
+    </span>
   </ng-template>
   <ul>
     <li>should contain 8 - 100 characters</li>
