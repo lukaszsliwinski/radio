@@ -1,7 +1,9 @@
+// interfaces for http responses
+
 import { IStation } from "./station"
 
 
-// auth
+// auth interfaces
 export interface IGetUserHttpResponse {
   username: string
 }
@@ -24,7 +26,7 @@ export interface IChangePasswordHttpResponse {
 }
 
 
-// stations
+// station interfaces
 export interface IStationsHttpResponse {
   status: number,
   message?: string,

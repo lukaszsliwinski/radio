@@ -14,6 +14,7 @@ export class ProfileFavouritesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // get favourite stations list
     this.stationService.getFavourites().subscribe();
   }
 }

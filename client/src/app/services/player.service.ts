@@ -17,6 +17,7 @@ import {
   providedIn: 'root'
 })
 export class PlayerService {
+  // local parameters
   private name = new BehaviorSubject<string>('');
   private favicon = new BehaviorSubject<string>('');
   private country = new BehaviorSubject<string>('');
@@ -25,8 +26,10 @@ export class PlayerService {
   private isDisabled = new BehaviorSubject<boolean>(true);
   private loading = new BehaviorSubject<boolean>(false);
 
+  // create audio object
   private audioObj = new Audio();
 
+  // global state
   public name$ = this.name.asObservable();
   public favicon$ = this.favicon.asObservable();
   public country$ = this.country.asObservable();
@@ -40,6 +43,7 @@ export class PlayerService {
     private authService: AuthService
   ) { }
 
+  // load and play method (used in station component)
   loadAndPlay(station: IStation) {
     if (!this.loading.value) {
       this.loading.next(true);
@@ -60,6 +64,7 @@ export class PlayerService {
     }
   };
 
+  // toggle play method (used in player component)
   togglePlay() {
     if (this.audioObj.src) {
       if (this.audioObj.paused) {

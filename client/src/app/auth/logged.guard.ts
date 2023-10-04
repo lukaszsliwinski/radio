@@ -1,4 +1,4 @@
-// guard file for blocking access by logged-in users to login and register pages
+// guard service file for blocking access by logged-in users to login and register pages
 import { CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';

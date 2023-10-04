@@ -13,11 +13,14 @@ import {
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  // font awesome icons
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;
 
+  // password input type
   public passwordInputType: 'password' | 'text' = 'password'
 
+  // create login form
   public loginForm = new FormGroup({
     usernameInput: new FormControl('', Validators.required),
     passwordInput: new FormControl('', Validators.required)
@@ -25,6 +28,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService) {}
 
+  // toggle show password method
   showPassword() {
     this.passwordInputType === 'password' ? this.passwordInputType = 'text' : this.passwordInputType = 'password';
   }

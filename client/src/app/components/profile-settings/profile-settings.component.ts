@@ -15,15 +15,19 @@ import {
   styleUrls: ['./profile-settings.component.scss']
 })
 export class ProfileSettingsComponent {
+  // font awesome icons
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;
   public faCheck = faCheck;
   public faXmark = faXmark;
 
+  // password input type
   public passwordInputType: 'password' | 'text' = 'password'
 
+  // logged user's name
   public user$ = this.authService.user$;
 
+  // create change password form
   public changePasswordForm = new FormGroup({
     passwordInput: new FormControl('', [
       Validators.required,
@@ -37,6 +41,7 @@ export class ProfileSettingsComponent {
     private authService: AuthService,
   ) {}
 
+  // toggle show password method
   showPassword() {
     this.passwordInputType === 'password' ? this.passwordInputType = 'text' : this.passwordInputType = 'password';
   }

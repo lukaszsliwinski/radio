@@ -1,5 +1,6 @@
 <section>
   <h2>favourite stations</h2>
+  <!-- render favourite stations -->
   <div *ngFor='let station of (favStations$ | async)'>
     <app-station
       id={{station.id}}

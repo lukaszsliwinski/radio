@@ -1,3 +1,4 @@
+// guard service file for blocking access by not logged-in users to profile page
 import { CanActivateFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';

@@ -11,10 +11,13 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  // font awesome icon
   public faMagnifyingGlass = faMagnifyingGlass;
 
+  // list for found stations
   public stations: IStation[] = [];
 
+  // create search station form
   public searchForm = new FormGroup({
     searchInput: new FormControl('', Validators.required)
   });

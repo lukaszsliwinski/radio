@@ -1,3 +1,4 @@
+<!-- change password form -->
 <form [formGroup]="changePasswordForm" (ngSubmit)="submit()">
   <h2>change password</h2>
   <div class="input-group">
@@ -13,6 +14,7 @@
   <button type="submit" [disabled]="!changePasswordForm.valid">change</button>
 </form>
 
+<!-- valid password info -->
 <div class="validation-info">
   <span
     *ngIf="changePasswordForm.controls.passwordInput.status === 'VALID'; else invalidPassword"

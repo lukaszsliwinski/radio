@@ -1,3 +1,4 @@
+<!-- register form -->
 <form [formGroup]="registerForm" (ngSubmit)="submit()">
   <h2>register</h2>
   <div class="input-group">
@@ -23,6 +24,7 @@
   </small>
 </form>
 
+<!-- valid username info -->
 <div class="validation-info">
   <span
     *ngIf="registerForm.controls.usernameInput.status === 'VALID'; else invalidUsername"
@@ -43,6 +45,7 @@
   </ul>
 </div>
 
+<!-- valid password info -->
 <div class="validation-info">
   <span
     *ngIf="registerForm.controls.passwordInput.status === 'VALID'; else invalidPassword"

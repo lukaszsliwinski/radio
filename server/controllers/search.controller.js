@@ -9,6 +9,7 @@ const search = (request, response) => {
 
   let stations = [];
 
+  // get stations from one of three endpoints
   Promise
     .any(requests)
     .then((result) => {

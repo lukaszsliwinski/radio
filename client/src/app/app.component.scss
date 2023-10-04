@@ -1,10 +1,9 @@
 @import '../assets/styles/variables.scss';
 
+/* main app content style with custom scrollbar */
 main {
   height: calc(100vh - 7.75rem);
   overflow-y: auto;
-
-  /* custom scrollbar */
   scrollbar-color: $main transparent;
   scrollbar-width: thin;
   scroll-behavior: smooth;

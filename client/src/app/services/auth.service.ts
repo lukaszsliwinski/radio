@@ -19,6 +19,7 @@ import { AlertService } from './alert.service';
 export class AuthService {
   private user = new BehaviorSubject<string | undefined>(undefined);
 
+  // global state
   public user$ = this.user.asObservable();
 
   constructor(
@@ -28,15 +29,17 @@ export class AuthService {
     private alertService: AlertService
   ) { }
 
-
+  // set logged user's name
   setLoggedUser(username: string | undefined) {
     this.user.next(username)
   }
 
+  // get info about logged user from service
   getLoggedUser(): string | undefined {
     return this.user.value;
   }
 
+  // get token from cookies
   getToken(): string {
     return this.cookieService.get('TOKEN');
   }
@@ -59,6 +62,7 @@ export class AuthService {
     );
   }
 
+  // register user method
   register(usernameInput: string, passwordInput: string): Observable<IRegisterHttpResponse> {
     const body = {
       usernameInput: usernameInput,
@@ -77,6 +81,7 @@ export class AuthService {
     );
   };
 
+  // login method
   login(usernameInput: string, passwordInput: string): Observable<ILoginHttpResponse> {
     const body = {
       usernameInput: usernameInput,
@@ -98,12 +103,14 @@ export class AuthService {
     );
   };
 
+  // logout method
   logout() {
     this.cookieService.set('TOKEN', '', { path: '/' });
     this.setLoggedUser(undefined);
     this.router.navigate(['']);
   }
 
+  // change password method
   changePassword(passwordInput: string): Observable<IChangePasswordHttpResponse> {
     const token = this.getToken();
 

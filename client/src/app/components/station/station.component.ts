@@ -15,6 +15,7 @@ import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./station.component.scss']
 })
 export class StationComponent implements OnInit {
+  // station input parameters
   @Input() public id: string;
   @Input() public name: string;
   @Input() public url: string;
@@ -22,6 +23,7 @@ export class StationComponent implements OnInit {
   @Input() public country: string;
   @Input() public datetime: string;
 
+  // font awesome icons
   public faPlay = faPlay;
   public faStarSolid = faStarSolid;
   public faStarRegular = faStarRegular;
@@ -37,6 +39,7 @@ export class StationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // check if station is favourite for this user
     const token = this.authService.getToken();
     if (token) this.stationService.checkFavourite(this.id).subscribe(
       result => {
@@ -45,6 +48,7 @@ export class StationComponent implements OnInit {
     )
   }
 
+  // toggle favourite station method
   toggleFavourite() {
     if (this.fav) {
       this.stationService.deleteFavourite(this.id).subscribe((result) => {

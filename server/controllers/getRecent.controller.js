@@ -1,5 +1,6 @@
 const RecentStation = require('../models/recentStation.model');
 
+// get list of recently played stations
 const getRecent = (request, response) => {
   RecentStation.find({ user: response.locals.user.username }).sort({ datetime: -1 }).limit(10)
     .then((result) => {

@@ -1,3 +1,4 @@
+<!-- search stations form -->
 <form [formGroup]="searchForm" (ngSubmit)="submit()">
   <input id="searchInput" type="text" formControlName="searchInput" placeholder="" />
   <label for="searchInput">Search station</label>
@@ -7,6 +8,7 @@
 </form>
 
 <section>
+  <!-- render found stations -->
   <div *ngFor='let station of stations'>
     <app-station
       id={{station.id}}

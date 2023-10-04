@@ -14,6 +14,7 @@ export class ProfileRecentComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // get recently played stations list
     this.stationService.getRecent().subscribe();
   }
 }

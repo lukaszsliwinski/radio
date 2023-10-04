@@ -19,9 +19,11 @@ import {
   providedIn: 'root'
 })
 export class StationService {
+  // local parameters
   private favStations = new BehaviorSubject<IStation[]>([]);
   private recentStations = new BehaviorSubject<IStation[]>([]);
 
+  // global state
   public favStations$ = this.favStations.asObservable();
   public recentStations$ = this.recentStations.asObservable();
 
@@ -31,6 +33,7 @@ export class StationService {
     private alertService: AlertService
   ) {}
 
+  // search stations method
   searchStations(inputValue: string): Observable<IStationsHttpResponse> {
     const body = {
       query: inputValue
@@ -45,6 +48,7 @@ export class StationService {
       );
   };
 
+  // check of stations is favourite for logged user
   checkFavourite(id: string): Observable<ICheckFavouriteHttpResponse> {
     const token = this.authService.getToken();
 
@@ -63,6 +67,7 @@ export class StationService {
     )
   }
 
+  // add station to favourites
   addFavourite(station: IStation): Observable<IAddFavouriteHttpResponse> {
     const token = this.authService.getToken();
 
@@ -89,6 +94,7 @@ export class StationService {
     );
   };
 
+  // remove station from favourites
   deleteFavourite(id: string): Observable<IDeleteFavouriteHttpResponse> {
     const token = this.authService.getToken();
 
@@ -111,6 +117,7 @@ export class StationService {
     )
   }
 
+  // get list of favourite stations for logged user
   getFavourites(): Observable<IStationsHttpResponse> {
     const token = this.authService.getToken();
 
@@ -127,6 +134,7 @@ export class StationService {
     );
   }
 
+  // add station recently played list for logged user when station is played
   addRecent(station: IStation): Observable<IAddRecentHttpResponse> {
     const token = this.authService.getToken();
 
@@ -149,6 +157,7 @@ export class StationService {
     );
   };
 
+  // get list of recently played stations for logged user
   getRecent(): Observable<IStationsHttpResponse> {
     const token = this.authService.getToken();
 

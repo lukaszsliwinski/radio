@@ -7,6 +7,7 @@ import { PlayerService } from '../../services/player.service';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {
+  // player properties passed from played station
   public name$ = this.playerService.name$;
   public favicon$ = this.playerService.favicon$;
   public country$ = this.playerService.country$;

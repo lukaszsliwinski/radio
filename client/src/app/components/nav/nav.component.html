@@ -4,6 +4,8 @@
     RADIO APP
   </h1>
   <span class="spacer"></span>
+
+  <!-- visible only not logged in users -->
   <a *ngIf="!(user$ | async)" type="button" routerLink="/login">
     <fa-icon [icon]="faRightToBracket"></fa-icon>
     <span>login</span>
@@ -12,6 +14,8 @@
     <fa-icon [icon]="faUserPlus"></fa-icon>
     <span>register</span>
   </a>
+
+  <!-- visible only logged in users -->
   <a *ngIf="user$ | async as user" type="button" routerLink="/profile">
     <fa-icon [icon]="faUser"></fa-icon>
     <span>{{ user }}</span>
@@ -20,4 +24,5 @@
     <fa-icon [icon]="faRightFromBracket"></fa-icon>
     <span>logout</span>
   </button>
+
 </nav>

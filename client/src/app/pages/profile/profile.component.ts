@@ -13,10 +13,12 @@ import {
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent {
+  // font awesome icon
   public faStar = faStar;
   public faClockRotateLeft = faClockRotateLeft;
   public faGear = faGear;
 
+  // logged user's name
   public user$ = this.authService.user$;
 
   constructor(

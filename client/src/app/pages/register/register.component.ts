@@ -15,13 +15,16 @@ import {
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  // font awesome icons
   public faEye = faEye;
   public faEyeSlash = faEyeSlash;
   public faCheck = faCheck;
   public faXmark = faXmark;
 
+  // password input type
   public passwordInputType: 'password' | 'text' = 'password'
 
+  // create register form
   public registerForm = new FormGroup({
     usernameInput: new FormControl('', [
       Validators.required,
@@ -39,6 +42,7 @@ export class RegisterComponent {
 
   constructor(private authService: AuthService) {}
 
+  // toggle show password method
   showPassword() {
     this.passwordInputType === 'password' ? this.passwordInputType = 'text' : this.passwordInputType = 'password';
   }

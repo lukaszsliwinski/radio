@@ -1,5 +1,6 @@
 <section>
   <h2>recently played</h2>
+  <!-- render recently played stations -->
   <div *ngFor='let station of (recentStations$ | async)'>
     <app-station
       id={{station.id}}

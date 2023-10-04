@@ -1,5 +1,6 @@
 @import 'variables.scss';
 
+/* shared form style */
 form {
   display: flex;
   flex-direction: column;
@@ -19,6 +20,7 @@ form {
     width: 100%;
     max-width: 18rem;
 
+    /* input with floating label */
     input {
       display: block;
       border: none;
@@ -118,6 +120,7 @@ form {
   }
 }
 
+/* validation info block */
 .validation-info {
   margin: 1.5rem auto;
   max-width: 20rem;
@@ -139,6 +142,7 @@ form {
       font-size: .9rem;
     }
 
+    /* colors for valid and invalid username and password */
     &.valid {
       color: green;
     }

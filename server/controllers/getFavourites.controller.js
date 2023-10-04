@@ -1,5 +1,6 @@
 const FavouriteStation = require('../models/favouriteStation.model');
 
+// get list of favourite stations
 const getFavourites = (request, response) => {
   FavouriteStation.find({ user: response.locals.user.username })
     .then((result) => {

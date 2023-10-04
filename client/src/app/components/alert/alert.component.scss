@@ -18,6 +18,7 @@ dialog {
     max-width: 10rem;
   }
 
+  /* show/hide alert */
   &.shown {
     margin-bottom: 1rem;
     transition: all .4s ease-in-out;
