@@ -3,17 +3,20 @@ const axios = require('axios');
 const search = (request, response) => {
   // posible api hosts
   const de1 = axios.get(
-    `https://de1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=10`
+    `https://de1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=50`
   );
   const at1 = axios.get(
-    `https://at1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=10`
+    `https://at1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=50`
   );
   const nl1 = axios.get(
-    `https://nl1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=10`
+    `https://nl1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=50`
   );
   const requests = [de1, at1, nl1];
 
   let stations = [];
+
+  // list for urls to prevent repetitions
+  let urls = [];
 
   // get stations from one of three endpoints
   Promise.any(requests)
@@ -24,13 +27,18 @@ const search = (request, response) => {
           ? (newFavicon = 'api/img/default-radio-icon')
           : (newFavicon = element.favicon);
 
-        stations.push({
-          id: element.stationuuid,
-          name: element.name,
-          url: element.url_resolved,
-          favicon: newFavicon,
-          country: element.country
-        });
+        // don't add station if the url exists it the list
+        if (!urls.includes(element.url_resolved)) {
+          stations.push({
+            id: element.stationuuid,
+            name: element.name,
+            url: element.url_resolved,
+            favicon: newFavicon,
+            country: element.country
+          });
+        }
+
+        urls.push(element.url_resolved);
       });
       response.status(200).json({
         status: 200,
