@@ -27,10 +27,11 @@ export class StationComponent implements OnInit {
 
   public url$ = this.playerService.url$;
   public user$ = this.authService.user$;
+  public btnLabel$ = this.playerService.btnLabel$;
   public fav: boolean;
 
   constructor(
-    public playerService: PlayerService,
+    private playerService: PlayerService,
     private authService: AuthService,
     private stationService: StationService
   ) {}
@@ -63,5 +64,20 @@ export class StationComponent implements OnInit {
           if (result.status === 201) this.fav = true;
         });
     }
+  }
+
+  // load station to player and play
+  loadAndPlay() {
+    this.playerService.loadAndPlay({
+      id: this.id,
+      url: this.url,
+      name: this.name,
+      favicon: this.favicon,
+      country: this.country
+    });
+  }
+
+  play() {
+    this.playerService.togglePlay();
   }
 }

@@ -5,25 +5,28 @@
     <h3>{{ country }}</h3>
   </hgroup>
   <span class="spacer"></span>
+
+  <!-- fav button -->
   <button *ngIf="user$ | async" class="fav-btn" (click)="this.toggleFavourite()">
     <fa-icon *ngIf="fav; else notFavIcon" [icon]="faStarSolid"></fa-icon>
     <ng-template #notFavIcon>
       <fa-icon [icon]="faStarRegular"></fa-icon>
     </ng-template>
   </button>
+
+  <!-- load and play btn -->
   <button
-    class="load-and-play-btn"
-    (click)="
-      playerService.loadAndPlay({
-        id: id,
-        url: url,
-        name: name,
-        favicon: favicon,
-        country: country
-      })
-    "
-    [disabled]="this.url === (this.url$ | async)"
+    *ngIf="this.url !== (this.url$ | async); else playBtn"
+    class="station-play-btn"
+    (click)="this.loadAndPlay()"
   >
     <fa-icon [icon]="this.faPlay"></fa-icon>
   </button>
+
+  <ng-template #playBtn>
+    <!-- play button -->
+    <button class="station-play-btn" (click)="this.play()">
+      <fa-icon *ngIf="btnLabel$ | async as btnLabel" [icon]="btnLabel"></fa-icon>
+    </button>
+  </ng-template>
 </div>

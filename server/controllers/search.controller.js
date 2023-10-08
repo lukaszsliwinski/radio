@@ -55,7 +55,7 @@ const search = (request, response) => {
       } else {
         response.status(500).json({
           status: 500,
-          message: 'The radio-browser external server error - lease try again later.'
+          message: 'The radio-browser external server error. Please try again later.'
         });
       }
     });
