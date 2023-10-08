@@ -2,11 +2,12 @@
 
 .station {
   display: flex;
-  box-shadow: $shadow-sm;
+  box-shadow: $shadow-md;
   width: 44rem;
   height: 5rem;
   margin: 0.5rem 0;
   padding: 0 1rem;
+  background-color: white;
 
   img {
     height: 5rem;
@@ -37,7 +38,8 @@
     cursor: pointer;
 
     &:hover {
-      color: darkgoldenrod;
+      transform: scale(1.25);
+      transition: all 0.2s ease-in-out;
     }
   }
 
@@ -51,18 +53,13 @@
     cursor: pointer;
 
     &:hover {
-      color: darkgoldenrod;
-      box-shadow: $shadow-sm;
+      transform: scale(1.25);
+      transition: all 0.2s ease-in-out;
     }
 
     &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-
-      &:hover {
-        color: inherit;
-        box-shadow: none;
-      }
+      cursor: default;
+      color: transparent;
     }
 
     /* btn's icon */

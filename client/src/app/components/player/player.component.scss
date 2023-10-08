@@ -2,10 +2,11 @@
 
 #playerBar {
   display: flex;
-  box-shadow: $shadow-sm;
+  box-shadow: $shadow-md;
   height: 4rem;
   padding: 0 1rem;
-  background-color: $light;
+  background-color: $main;
+  color: white;
 
   hgroup {
     display: flex;
@@ -81,8 +82,8 @@
     cursor: pointer;
 
     &:hover {
-      color: darkgoldenrod;
-      box-shadow: $shadow-sm;
+      transform: scale(1.25);
+      transition: all 0.2s ease-in-out;
     }
 
     &:disabled {
@@ -91,7 +92,7 @@
 
       &:hover {
         color: inherit;
-        box-shadow: none;
+        transform: none;
       }
     }
 
@@ -116,7 +117,7 @@
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 50%;
-      background: conic-gradient(#0000 10%, $main);
+      background: conic-gradient(#0000 10%, $light);
       -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
       animation: spinner-zp9dbg 1s infinite linear;
 

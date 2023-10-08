@@ -1,18 +1,20 @@
 @import '../../../assets/styles/variables.scss';
 
 dialog {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   display: block;
   margin: 1rem auto;
-  box-shadow: $shadow-sm;
+  box-shadow: $shadow-md;
   width: fit-content;
   min-width: 10rem;
   max-width: 20rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   text-align: center;
+  background-color: $light;
+  color: $dark;
 
   @media only screen and (max-width: $display-sm) {
     max-width: 10rem;
@@ -20,12 +22,13 @@ dialog {
 
   /* show/hide alert */
   &.shown {
-    margin-bottom: 1rem;
+    margin-top: 2.5rem;
     transition: all 0.4s ease-in-out;
   }
 
   &.hidden {
-    margin-bottom: -5rem;
+    // margin-top: 2.5rem;
+    margin-top: -5rem;
     transition: all 0.4s ease-in-out;
   }
 }

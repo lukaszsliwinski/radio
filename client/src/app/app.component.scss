@@ -17,10 +17,6 @@ main::-webkit-scrollbar-thumb {
   background: $main;
 }
 
-main::-webkit-scrollbar-thumb:hover {
-  background: $main-light;
-}
-
 main::-webkit-scrollbar-track {
   background: transparent;
 }
