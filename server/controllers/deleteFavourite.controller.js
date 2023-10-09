@@ -6,7 +6,7 @@ const deleteFavourite = (request, response) => {
     .then(() => {
       response.status(200).json({
         status: 200,
-        message: 'successfully deleted'
+        message: 'Station removed from favourites.'
       });
     })
     .catch(() => {});

@@ -23,12 +23,12 @@ const register = (request, response) => {
   if (!userSchema.validate(request.body.usernameInput)) {
     response.status(400).json({
       status: 400,
-      message: 'incorrect username format'
+      message: 'Incorrect username format.'
     });
   } else if (!passwordSchema.validate(request.body.passwordInput)) {
     response.status(400).json({
       status: 400,
-      message: 'incorrect password format'
+      message: 'Incorrect password format.'
     });
   } else {
     bcrypt
@@ -44,19 +44,19 @@ const register = (request, response) => {
           .then(() => {
             response.status(201).json({
               status: 201,
-              message: 'Account successfully created!'
+              message: 'Account successfully created.'
             });
           })
           .catch((error) => {
             if (error.code === 11000) {
               response.status(422).json({
                 status: 422,
-                message: 'account already exist'
+                message: 'Account already exist.'
               });
             } else {
               response.status(500).json({
                 status: 500,
-                message: 'error creating account - please try again later'
+                message: 'Error creating account. Please try again later.'
               });
             }
           });
@@ -65,7 +65,7 @@ const register = (request, response) => {
         // password was not hashed successfully
         response.status(500).json({
           status: 500,
-          message: 'error creating account - please try again later'
+          message: 'Error creating account. Please try again later.'
         });
       });
   }

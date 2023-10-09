@@ -23,7 +23,7 @@ const getFavourites = (request, response) => {
     .catch(() => {
       response.status(500).json({
         status: 500,
-        message: 'error connecting to db'
+        message: 'Error connecting to database.'
       });
     });
 };

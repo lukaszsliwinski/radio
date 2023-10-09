@@ -18,19 +18,19 @@ const addFavourite = (request, response) => {
     .then(() => {
       response.status(201).json({
         status: 201,
-        message: 'Station successfully added to favourites!'
+        message: 'Station added to favourites.'
       });
     })
     .catch((error) => {
       if (error.code === 11000) {
         response.status(422).json({
           status: 422,
-          message: 'This station is already in favourites'
+          message: 'This station is already in favourites.'
         });
       } else {
         response.status(500).json({
           status: 500,
-          message: 'Error, please try again later'
+          message: 'Error, please try again later.'
         });
       }
     });

@@ -86,9 +86,9 @@ export class StationService {
     return this.http
       .post<IAddFavouriteHttpResponse>('/api/add-favourite', body, { headers: headers })
       .pipe(
-        tap(() => {
+        tap((result) => {
           this.getFavourites().subscribe();
-          this.getRecent().subscribe();
+          this.alertService.setAlert(result.message);
         }),
         catchError((error: HttpErrorResponse) => {
           return throwError(() => error);
@@ -111,9 +111,9 @@ export class StationService {
     return this.http
       .post<IDeleteFavouriteHttpResponse>('/api/delete-favourite', body, { headers: headers })
       .pipe(
-        tap(() => {
+        tap((result) => {
           this.getFavourites().subscribe();
-          this.getRecent().subscribe();
+          this.alertService.setAlert(result.message);
         }),
         catchError((error: HttpErrorResponse) => {
           return throwError(() => error);

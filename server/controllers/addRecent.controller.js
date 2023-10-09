@@ -19,13 +19,13 @@ const addRecent = (request, response) => {
     .then(() => {
       response.status(201).json({
         status: 201,
-        message: 'Successfully added to recently played list'
+        message: 'Successfully added to recently played list.'
       });
     })
     .catch(() => {
       response.status(500).json({
         status: 500,
-        message: 'Server error'
+        message: 'Server error.'
       });
     });
 };

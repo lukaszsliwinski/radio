@@ -18,7 +18,7 @@ const changePassword = async (request, response) => {
   if (!passwordSchema.validate(request.body.passwordInput)) {
     response.status(400).json({
       status: 400,
-      message: 'incorrect password format'
+      message: 'Incorrect password format.'
     });
   } else {
     bcrypt
@@ -31,20 +31,20 @@ const changePassword = async (request, response) => {
           .then(() => {
             response.status(201).json({
               status: 201,
-              message: 'Password successfully changed!'
+              message: 'Password successfully changed.'
             });
           })
           .catch(() => {
             response.status(500).json({
               status: 500,
-              message: 'error changing password'
+              message: 'Error changing password.'
             });
           });
       })
       .catch(() => {
         response.status(500).json({
           status: 500,
-          message: 'password was not hashed successfully'
+          message: 'Password was not hashed successfully.'
         });
       });
   }

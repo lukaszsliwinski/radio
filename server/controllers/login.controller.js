@@ -13,7 +13,7 @@ const login = (request, response) => {
           if (!passwordCheck) {
             return response.status(401).json({
               status: 401,
-              message: 'wrong password'
+              message: 'Wrong password.'
             });
           }
 
@@ -28,7 +28,7 @@ const login = (request, response) => {
 
           response.status(200).json({
             status: 200,
-            message: 'Successfully logged in!',
+            message: 'Successfully logged in.',
             username: user.username,
             token
           });
@@ -36,14 +36,14 @@ const login = (request, response) => {
         .catch(() => {
           response.status(401).json({
             status: 401,
-            message: 'wrong password'
+            message: 'Wrong password.'
           });
         });
     })
     .catch(() => {
       response.status(404).json({
         status: 404,
-        message: 'user not found'
+        message: 'User not found.'
       });
     });
 };
