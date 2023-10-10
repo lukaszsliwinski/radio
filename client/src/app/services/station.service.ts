@@ -39,6 +39,9 @@ export class StationService {
     };
 
     return this.http.post<IStationsHttpResponse>('/api/search', body).pipe(
+      tap((result) => {
+        if (result.stations.length === 0) this.alertService.setAlert('No station found.');
+      }),
       catchError((error: HttpErrorResponse) => {
         this.alertService.setAlert(error.error.message);
         return throwError(() => error);

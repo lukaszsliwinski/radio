@@ -27,7 +27,7 @@ const search = (request, response) => {
           ? (newFavicon = 'api/img/default-radio-icon')
           : (newFavicon = element.favicon);
 
-        // don't add station if the url exists it the list
+        // don't push more than one station with the same url
         if (!urls.includes(element.url_resolved)) {
           stations.push({
             id: element.stationuuid,
