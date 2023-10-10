@@ -1,6 +1,11 @@
 <div id="playerBar">
   <!-- station icon -->
-  <img *ngIf="favicon$ | async as favicon; else defaultImg" src="{{ favicon }}" />
+  <img
+    *ngIf="favicon$ | async as favicon; else defaultImg"
+    src="{{ favicon }}"
+    alt="radio icon"
+    (error)="handleIconError($event)"
+  />
   <!-- default icon when no station is loaded into player -->
   <ng-template #defaultImg>
     <img src="/api/img/default-radio-icon" />

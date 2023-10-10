@@ -182,4 +182,8 @@ export class StationService {
       })
     );
   }
+
+  replaceIcon(event: Event) {
+    (event.target as HTMLImageElement).src = '/api/img/default-radio-icon';
+  }
 }

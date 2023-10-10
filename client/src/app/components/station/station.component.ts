@@ -80,4 +80,8 @@ export class StationComponent implements OnInit {
   play() {
     this.playerService.togglePlay();
   }
+
+  handleIconError(event: Event) {
+    this.stationService.replaceIcon(event);
+  }
 }

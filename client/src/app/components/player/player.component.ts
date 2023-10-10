@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PlayerService } from '../../services/player.service';
+import { StationService } from 'src/app/services/station.service';
 
 @Component({
   selector: 'app-player',
@@ -15,9 +16,16 @@ export class PlayerComponent {
   public idDisabled$ = this.playerService.isDisabled$;
   public loading$ = this.playerService.loading$;
 
-  constructor(private playerService: PlayerService) {}
+  constructor(
+    private playerService: PlayerService,
+    private stationService: StationService
+  ) {}
 
   play() {
     this.playerService.togglePlay();
+  }
+
+  handleIconError(event: Event) {
+    this.stationService.replaceIcon(event);
   }
 }
