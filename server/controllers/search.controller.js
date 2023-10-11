@@ -30,9 +30,7 @@ const search = (request, response) => {
         // don't add station if the url exists it the list and has disallowed format
         if (
           !urls.includes(element.url) &&
-          !['.m3u8', '.m3u', '?mp=/stream', '.pls'].some((format) =>
-            element.url.includes(format)
-          )
+          !['.m3u8', '.m3u', '?mp=/stream', '.pls'].some((format) => element.url.includes(format))
         ) {
           stations.push({
             id: element.stationuuid,
