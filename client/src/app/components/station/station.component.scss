@@ -102,6 +102,8 @@
   }
 
   @media only screen and (max-width: $display-xs) {
+    height: 6rem;
+
     img {
       display: none;
     }
