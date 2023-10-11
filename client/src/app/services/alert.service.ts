@@ -29,10 +29,10 @@ export class AlertService {
     // hide alert and clear message
     this.shownTimer = setTimeout(() => {
       this.shown.next(false);
-    }, 2000);
+    }, 3000);
 
     this.messageTimer = setTimeout(() => {
       this.message.next('');
-    }, 3000);
+    }, 3500);
   }
 }
