@@ -29,21 +29,21 @@ const search = (request, response) => {
 
         // don't add station if the url exists it the list and has disallowed format
         if (
-          !urls.includes(element.url_resolved) &&
+          !urls.includes(element.url) &&
           !['.m3u8', '.m3u', '?mp=/stream', '.pls'].some((format) =>
-            element.url_resolved.includes(format)
+            element.url.includes(format)
           )
         ) {
           stations.push({
             id: element.stationuuid,
             name: element.name,
-            url: element.url_resolved,
+            url: element.url,
             favicon: newFavicon,
             country: element.country
           });
         }
 
-        urls.push(element.url_resolved);
+        urls.push(element.url);
       });
       response.status(200).json({
         status: 200,

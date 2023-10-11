@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { StationService } from './station.service';
 import { AuthService } from './auth.service';
+import { AlertService } from './alert.service';
 
 import { IStation } from '../models/station';
 
@@ -37,7 +38,8 @@ export class PlayerService {
 
   constructor(
     private stationService: StationService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertService: AlertService
   ) {}
 
   // load and play method (used in station component)
@@ -46,10 +48,16 @@ export class PlayerService {
       this.loading.next(true);
       this.audioObj.src = station.url;
       this.audioObj.load();
+
+      // handle invalid stream source link and show alert
+      this.audioObj.addEventListener('error', () => {
+        this.loading.next(false);
+        this.alertService.setAlert('Failed to load due to a problem with stream source. Please select another station.');
+      })
+
       this.audioObj.play().then(() => {
         const token = this.authService.getToken();
         if (token) this.stationService.addRecent(station).subscribe();
-
         this.name.next(station.name);
         this.favicon.next(station.favicon);
         this.country.next(station.country);
