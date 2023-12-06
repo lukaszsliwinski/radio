@@ -6,7 +6,7 @@
 
 ## About project
 
-This is my side-project that I made to improve my web programming skills and leard Angular.<br>
+This is my side-project that I made to improve my web programming skills and learn Angular.<br>
 The application is an online radio player.<br><br>
 Features for all users:
 
