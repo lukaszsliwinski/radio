@@ -7,7 +7,7 @@
 ## About project
 
 This is my side-project that I made to improve my web programming skills and learn Angular.<br>
-The application is an online radio player.<br><br>
+The application is an online radio player streaming audio from 3rd party API.<br><br>
 Features for all users:
 
 - search station and play
