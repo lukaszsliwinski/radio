@@ -1,54 +1,20 @@
-const axios = require('axios');
+const { searchByName, formatResponse } = require('../services/search.service');
 
 const search = (request, response) => {
-  // posible api hosts
-  const de1 = axios.get(
-    `https://de1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=50`
-  );
-  const at1 = axios.get(
-    `https://at1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=50`
-  );
-  const nl1 = axios.get(
-    `https://nl1.api.radio-browser.info/json/stations/byname/${request.body.query}?limit=50`
-  );
-  const requests = [de1, at1, nl1];
-
-  let stations = [];
-
-  // list for urls to prevent repetitions
-  let urls = [];
-
-  // get stations from one of three endpoints
-  Promise.any(requests)
+  // get stations by name
+  searchByName(request.body.query)
     .then((result) => {
-      result.data.forEach((element) => {
-        let newFavicon;
-        element.favicon === ''
-          ? (newFavicon = 'api/img/default-radio-icon')
-          : (newFavicon = element.favicon);
+      const stations = formatResponse(result.data);
 
-        // don't add station if the url exists it the list and has disallowed format
-        if (
-          !urls.includes(element.url) &&
-          !['.m3u8', '.m3u', '?mp=/stream', '.pls'].some((format) => element.url.includes(format))
-        ) {
-          stations.push({
-            id: element.stationuuid,
-            name: element.name,
-            url: element.url,
-            favicon: newFavicon,
-            country: element.country
-          });
-        }
+      console.log(stations);
 
-        urls.push(element.url);
-      });
       response.status(200).json({
         status: 200,
         stations: stations
       });
     })
     .catch((error) => {
+      console.log(error);
       if (error.response && error.response.status === 503) {
         response.status(503).json({
           status: 503,

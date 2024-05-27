@@ -1,8 +1,8 @@
-const FavouriteStation = require('../models/favouriteStation.model');
+const { findByIdAndDelete } = require('../services/deleteFavourite.service');
 
-// add station to favourites
+// delete station from favourites
 const deleteFavourite = (request, response) => {
-  FavouriteStation.findOneAndDelete({ id: `${response.locals.user.username}_${request.body.id}` })
+  findByIdAndDelete(`${response.locals.user.username}_${request.body.id}`)
     .then(() => {
       response.status(200).json({
         status: 200,

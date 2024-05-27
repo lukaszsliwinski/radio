@@ -1,22 +1,12 @@
-const RecentStation = require('../models/recentStation.model');
+const { getRecentByUser, formatResponse } = require('../services/getRecent.service');
 
 // get list of recently played stations
 const getRecent = (request, response) => {
-  RecentStation.find({ user: response.locals.user.username })
+  getRecentByUser(response.locals.user.username)
     .sort({ datetime: -1 })
     .limit(10)
     .then((result) => {
-      let stations = [];
-      for (let i = 0; i < result.length; i++) {
-        stations.push({
-          id: result[i].id,
-          name: result[i].name,
-          url: result[i].url,
-          favicon: result[i].favicon,
-          country: result[i].country,
-          datetime: result[i].datetime
-        });
-      }
+      const stations = formatResponse(result);
 
       response.status(200).json({
         status: 200,

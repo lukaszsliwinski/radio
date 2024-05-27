@@ -1,20 +1,12 @@
-const FavouriteStation = require('../models/favouriteStation.model');
+const { saveFavourite } = require('../services/addFavourite.service');
 
 // add station to favourites
 const addFavourite = (request, response) => {
-  const favStation = new FavouriteStation({
-    id: `${response.locals.user.username}_${request.body.id}`,
-    stationId: request.body.id,
-    name: request.body.name,
-    url: request.body.url,
-    favicon: request.body.favicon,
-    country: request.body.country,
-    user: response.locals.user.username
-  });
+  const data = request.body;
+  const username = response.locals.user.username;
 
   // save station to database
-  favStation
-    .save()
+  saveFavourite(data, username)
     .then(() => {
       response.status(201).json({
         status: 201,

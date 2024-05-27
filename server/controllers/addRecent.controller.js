@@ -1,21 +1,12 @@
-const RecentStation = require('../models/recentStation.model');
-const moment = require('moment');
+const { saveRecent } = require('../services/addRecent.service');
 
 // add station to recenlty played list
 const addRecent = (request, response) => {
-  const recentStation = new RecentStation({
-    id: request.body.id,
-    name: request.body.name,
-    url: request.body.url,
-    favicon: request.body.favicon,
-    country: request.body.country,
-    user: response.locals.user.username,
-    datetime: moment().format('YYYY-MM-DD HH:mm:ss')
-  });
+  const data = request.body;
+  const username = response.locals.user.username;
 
   // save station to database
-  recentStation
-    .save()
+  saveRecent(data, username)
     .then(() => {
       response.status(201).json({
         status: 201,

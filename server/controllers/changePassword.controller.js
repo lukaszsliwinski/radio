@@ -1,52 +1,33 @@
-const passwordValidator = require('password-validator');
-const bcrypt = require('bcrypt');
+const { changePasswordByUsername } = require('../services/user.service');
 
-const User = require('../models/user.model');
-
-// password limitations
-const passwordSchema = new passwordValidator();
-passwordSchema
-  .is().min(8)
-  .is().max(100)
-  .has().uppercase()
-  .has().lowercase()
-  .has().digits(1)
-  .has().not().spaces();
-
-// find user in database by username, hash new password and update
+// change password controller
 const changePassword = async (request, response) => {
-  if (!passwordSchema.validate(request.body.passwordInput)) {
-    response.status(400).json({
-      status: 400,
-      message: 'Incorrect password format.'
+  const { passwordInput } = request.body;
+  const username = response.locals.user.username;
+
+  try {
+    await changePasswordByUsername(username, passwordInput);
+    response.status(201).json({
+      status: 201,
+      message: 'Password successfully changed.'
     });
-  } else {
-    bcrypt
-      .hash(request.body.passwordInput, 10)
-      .then((hashedPassword) => {
-        User.findOneAndUpdate(
-          { username: response.locals.user.username },
-          { password: hashedPassword }
-        )
-          .then(() => {
-            response.status(201).json({
-              status: 201,
-              message: 'Password successfully changed.'
-            });
-          })
-          .catch(() => {
-            response.status(500).json({
-              status: 500,
-              message: 'Error changing password.'
-            });
-          });
-      })
-      .catch(() => {
-        response.status(500).json({
-          status: 500,
-          message: 'Password was not hashed successfully.'
-        });
+  } catch (error) {
+    if (error.message === 'Incorrect password format') {
+      response.status(400).json({
+        status: 400,
+        message: 'Incorrect password format.'
       });
+    } else if (error.message === 'User not found') {
+      response.status(404).json({
+        status: 404,
+        message: 'User not found.'
+      });
+    } else {
+      response.status(500).json({
+        status: 500,
+        message: 'Error changing password.'
+      });
+    }
   }
 };
 
