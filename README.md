@@ -2,26 +2,35 @@
 
 ## Preview
 
-<b>www.radio.lukaszsliwinski.pl</b>
+**[www.radio.lukaszsliwinski.pl](http://www.radio.lukaszsliwinski.pl)**
 
 ## About project
 
-This is my side-project that I made to improve my web programming skills and learn Angular.<br>
-The application is an online radio player streaming audio from 3rd party API.<br><br>
-Features for all users:
+This is a side project created to improve my web programming skills and learn Angular. The application is an online radio player that streams audio from a third-party API.
 
-- search station and play
-- create an account and log in
-  <br>
+## Features
 
-Features only for logged in users:
+### for all users:
+- Search for stations and play them
+- Create an account and log in
 
-- add station to favourites
-- view the history of recently played stations
-- change password
+### for logged-in users:
+- Add stations to favourites
+- View the history of recently played stations
+- Change password
 
-## Used technologies
+## Technologies used
 
-frontend: Typescript / Angular / Scss<br>
-backend: Javascript / Node.js / Express.js / MongoDB<br>
-REST API: www.radio-browser.info
+### front-end:
+- TypeScript
+- Angular
+- SCSS
+
+### back-end:
+- JavaScript
+- Node.js
+- Express.js
+- MongoDB
+
+### REST API:
+- [Radio Browser](https://www.radio-browser.info)
