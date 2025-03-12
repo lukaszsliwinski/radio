@@ -1,7 +1,7 @@
 <!-- search stations form -->
 <form [formGroup]="searchForm" (ngSubmit)="submit()">
   <input id="searchInput" type="text" formControlName="searchInput" placeholder="" />
-  <label for="searchInput">Search station</label>
+  <label for="searchInput">Search station (name, genre...)</label>
   <button type="submit" [disabled]="!searchForm.valid">
     <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
   </button>
