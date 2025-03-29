@@ -1,12 +1,10 @@
 const axios = require('axios');
 
 const searchByName = (name) => {
-  console.log(name);
   // posible api hosts
-  const de1 = axios.get(`https://de1.api.radio-browser.info/json/stations/byname/${name}?limit=50`);
-  const at1 = axios.get(`https://at1.api.radio-browser.info/json/stations/byname/${name}?limit=50`);
-  const nl1 = axios.get(`https://nl1.api.radio-browser.info/json/stations/byname/${name}?limit=50`);
-  const requests = [de1, at1, nl1];
+  const de2 = axios.get(`https://de2.api.radio-browser.info/json/stations/byname/${name}?limit=50`);
+  const fi1 = axios.get(`https://fi1.api.radio-browser.info/json/stations/byname/${name}?limit=50`);
+  const requests = [de2, fi1];
 
   // get stations from one of three endpoints
   return Promise.any(requests);

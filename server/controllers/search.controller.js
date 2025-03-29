@@ -5,16 +5,12 @@ const search = (request, response) => {
   searchByName(request.body.query)
     .then((result) => {
       const stations = formatResponse(result.data);
-
-      console.log(stations);
-
       response.status(200).json({
         status: 200,
         stations: stations
       });
     })
     .catch((error) => {
-      console.log(error);
       if (error.response && error.response.status === 503) {
         response.status(503).json({
           status: 503,
