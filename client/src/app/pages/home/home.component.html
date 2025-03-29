@@ -7,7 +7,11 @@
   </button>
 </form>
 
-<section>
+<ng-template #loading>
+  <div class="loader"></div>
+</ng-template>
+
+<section *ngIf="!isLoading; else loading">
   <!-- render found stations -->
   <div *ngFor="let station of stations">
     <app-station

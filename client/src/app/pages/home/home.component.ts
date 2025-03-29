@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
 import { StationService } from '../../services/station.service';
 import { IStation } from 'src/app/models/station';
 
@@ -16,6 +17,9 @@ export class HomeComponent {
 
   // list for found stations
   public stations: IStation[] = [];
+  
+  // loading state
+  public isLoading = false;
 
   // create search station form
   public searchForm = new FormGroup({
@@ -27,7 +31,14 @@ export class HomeComponent {
   submit(): void {
     const input = this.searchForm.value.searchInput;
     if (input !== null && input !== undefined && input !== '') {
-      this.stationService.searchStations(input).subscribe((result) => {
+      this.isLoading = true; // set loading state to true
+      this.stationService.searchStations(input)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false; // reset loading state after completion or error
+        })
+      )
+      .subscribe((result) => {
         if (result.stations) this.stations = result.stations;
       });
     }
