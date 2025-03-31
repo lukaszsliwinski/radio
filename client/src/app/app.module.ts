@@ -18,6 +18,7 @@ import { ProfileFavouritesComponent } from './components/profile-favourites/prof
 import { ProfileRecentComponent } from './components/profile-recent/profile-recent.component';
 import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { BackHomeComponent } from './components/back-home/back-home.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AlertComponent } from './components/alert/alert.component';
     ProfileFavouritesComponent,
     ProfileRecentComponent,
     ProfileSettingsComponent,
-    AlertComponent
+    AlertComponent,
+    BackHomeComponent
   ],
   imports: [
     BrowserModule,
