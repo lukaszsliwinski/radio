@@ -4,6 +4,8 @@
 
 **[www.radio.lukaszsliwinski.pl](http://www.radio.lukaszsliwinski.pl)**
 
+![Website Preview](./preview.gif)
+
 ## About project
 
 This is a side project created to improve my web programming skills and learn Angular. The application is an online radio player that streams audio from a third-party API.
