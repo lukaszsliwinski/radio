@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,30 +20,23 @@ import { ProfileSettingsComponent } from './components/profile-settings/profile-
 import { AlertComponent } from './components/alert/alert.component';
 import { BackHomeComponent } from './components/back-home/back-home.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    StationComponent,
-    PlayerComponent,
-    RegisterComponent,
-    LoginComponent,
-    ProfileComponent,
-    NavComponent,
-    ProfileFavouritesComponent,
-    ProfileRecentComponent,
-    ProfileSettingsComponent,
-    AlertComponent,
-    BackHomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    FontAwesomeModule
-  ],
-  providers: [CookieService],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        StationComponent,
+        PlayerComponent,
+        RegisterComponent,
+        LoginComponent,
+        ProfileComponent,
+        NavComponent,
+        ProfileFavouritesComponent,
+        ProfileRecentComponent,
+        ProfileSettingsComponent,
+        AlertComponent,
+        BackHomeComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FontAwesomeModule], providers: [CookieService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
