@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use '../../../assets/styles/variables.scss';
 
 /* search stations form style */
 form {
@@ -13,7 +13,7 @@ form {
 form input {
   display: block;
   border-radius: 0.5rem;
-  border: 1px solid $placeholder;
+  border: 1px solid variables.$placeholder;
   width: 100%;
   padding: 0.75rem 0.625rem 0.375rem;
   font-size: 0.875rem;
@@ -22,16 +22,16 @@ form input {
   appearance: none;
 
   &:focus {
-    box-shadow: 0 0 0 1px $main;
-    border-color: $main;
+    box-shadow: 0 0 0 1px variables.$main;
+    border-color: variables.$main;
     outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
   &:focus + label,
   &:not(:placeholder-shown) + label {
-    color: $main;
-    background-color: $light;
+    color: variables.$main;
+    background-color: variables.$light;
     transform: scale(0.85) translateY(-1.5rem);
   }
 
@@ -39,7 +39,7 @@ form input {
   &:-webkit-autofill:hover,
   &:-webkit-autofill:focus,
   &:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px $light inset !important;
+    -webkit-box-shadow: 0 0 0 30px variables.$light inset !important;
   }
 }
 
@@ -49,7 +49,7 @@ form label {
   left: 0.5rem;
   padding: 0 0.25rem;
   font-size: 0.875rem;
-  color: $placeholder;
+  color: variables.$placeholder;
   background-color: transparent;
   cursor: text;
   transform-origin: 0%;
@@ -60,11 +60,11 @@ form button {
   position: absolute;
   top: 0.6rem;
   right: 0.75rem;
-  color: $placeholder;
+  color: variables.$placeholder;
   cursor: pointer;
 
   &:hover {
-    color: $main;
+    color: variables.$main;
   }
 }
 
@@ -80,9 +80,9 @@ div.loader {
   width: 120px;
   height: 20px;
   margin: 20px auto;
-  -webkit-mask: linear-gradient(90deg, $main 70%,#0000 0) left/20% 100%;
+  -webkit-mask: linear-gradient(90deg, variables.$main 70%,#0000 0) left/20% 100%;
   background:
-   linear-gradient($main 0 0) left -25% top 0 /20% 100% no-repeat
+   linear-gradient(variables.$main 0 0) left -25% top 0 /20% 100% no-repeat
    #ddd;
   animation: l7 1s infinite steps(6);
 }

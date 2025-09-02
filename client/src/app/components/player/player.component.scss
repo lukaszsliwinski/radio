@@ -1,11 +1,11 @@
-@import '../../../assets/styles/variables.scss';
+@use '../../../assets/styles/variables.scss';
 
 #playerBar {
   display: flex;
-  box-shadow: $shadow-md;
+  box-shadow: variables.$shadow-md;
   height: 4rem;
   padding: 0 1rem;
-  background-color: $main;
+  background-color: variables.$main;
   color: white;
 
   hgroup {
@@ -16,7 +16,7 @@
     overflow: hidden;
 
     > * {
-      @media only screen and (max-width: $display-sm) {
+      @media only screen and (max-width: variables.$display-sm) {
         white-space: nowrap;
 
         /* sliding animation properties */
@@ -117,7 +117,7 @@
       width: 2.5rem;
       height: 2.5rem;
       border-radius: 50%;
-      background: conic-gradient(#0000 10%, $light);
+      background: conic-gradient(#0000 10%, variables.$light);
       -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
       animation: spinner-zp9dbg 1s infinite linear;
 

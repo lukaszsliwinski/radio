@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use '../../../assets/styles/variables.scss';
 
 /* profile page navigation */
 nav {
@@ -21,11 +21,11 @@ nav {
     font-size: 0.85rem;
 
     &:hover {
-      box-shadow: $shadow-sm;
+      box-shadow: variables.$shadow-sm;
     }
 
     &.active-link {
-      color: $main;
+      color: variables.$main;
 
       &:hover {
         box-shadow: none;
@@ -39,7 +39,7 @@ nav {
       font-size: 0.75rem;
     }
 
-    @media only screen and (max-width: $display-sm) {
+    @media only screen and (max-width: variables.$display-sm) {
       margin: 0 0.6rem;
       width: 3rem;
 

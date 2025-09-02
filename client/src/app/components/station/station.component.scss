@@ -1,8 +1,8 @@
-@import '../../../assets/styles/variables.scss';
+@use '../../../assets/styles/variables.scss';
 
 .station {
   display: flex;
-  box-shadow: $shadow-md;
+  box-shadow: variables.$shadow-md;
   width: 44rem;
   height: 5rem;
   margin: 0.5rem 0;
@@ -68,7 +68,7 @@
     }
   }
 
-  @media only screen and (max-width: $display-md) {
+  @media only screen and (max-width: variables.$display-md) {
     width: 85vw;
     height: 3.5rem;
     padding: 0 0.5rem;
@@ -101,7 +101,7 @@
     }
   }
 
-  @media only screen and (max-width: $display-xs) {
+  @media only screen and (max-width: variables.$display-xs) {
     height: 6rem;
 
     img {

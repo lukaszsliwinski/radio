@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use '../../../assets/styles/variables.scss';
 
 a[type='button'] {
   display: flex;
@@ -11,7 +11,7 @@ a[type='button'] {
   font-size: 0.85rem;
 
   &:hover {
-    color: $main;
+    color: variables.$main;
   }
 
   span {

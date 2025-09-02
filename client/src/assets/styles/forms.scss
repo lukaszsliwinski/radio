@@ -1,4 +1,4 @@
-@import 'variables.scss';
+@use 'variables.scss';
 
 /* shared form style */
 form {
@@ -24,7 +24,7 @@ form {
     input {
       display: block;
       border: none;
-      border-bottom: 2px solid $placeholder;
+      border-bottom: 2px solid variables.$placeholder;
       width: 100%;
       padding: 0.75rem 0.625rem 0.375rem;
       font-size: 0.875rem;
@@ -39,24 +39,24 @@ form {
       }
 
       &:focus {
-        border-color: $main;
+        border-color: variables.$main;
       }
 
       &:focus + label,
       &:not(:placeholder-shown) + label {
-        background-color: $light;
+        background-color: variables.$light;
         transform: scale(0.85) translateY(-1.5rem);
       }
 
       &:focus + label {
-        color: $main;
+        color: variables.$main;
       }
 
       &:-webkit-autofill,
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus,
       &:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px $light inset !important;
+        -webkit-box-shadow: 0 0 0 30px variables.$light inset !important;
       }
     }
 
@@ -82,13 +82,13 @@ form {
       cursor: pointer;
 
       &:hover {
-        color: $main;
+        color: variables.$main;
       }
     }
   }
 
   button[type='submit'] {
-    box-shadow: $shadow-sm;
+    box-shadow: variables.$shadow-sm;
     padding: 0.5rem 1rem;
     cursor: pointer;
     text-transform: uppercase;
@@ -96,7 +96,7 @@ form {
     font-size: 0.85rem;
 
     &:hover {
-      color: $main;
+      color: variables.$main;
       border-radius: 1rem;
       transition: all 0.1s;
     }
@@ -112,7 +112,7 @@ form {
       cursor: pointer;
 
       &:hover {
-        color: $main;
+        color: variables.$main;
       }
     }
   }

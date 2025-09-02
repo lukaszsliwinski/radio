@@ -1,11 +1,11 @@
-@import '../../../styles.scss';
-@import '../../../assets/styles/variables.scss';
+@use '../../../styles.scss';
+@use '../../../assets/styles/variables.scss';
 
 nav {
   display: flex;
   align-items: center;
   padding: 0.35rem 0.75rem;
-  background-color: $dark;
+  background-color: variables.$dark;
 
   /* app logo style */
   h1 {
@@ -42,7 +42,7 @@ nav {
     color: white;
 
     &:hover {
-      color: $main;
+      color: variables.$main;
     }
 
     /* font awesome icon */
@@ -55,7 +55,7 @@ nav {
       margin-left: 0.4rem;
     }
 
-    @media only screen and (max-width: $display-sm) {
+    @media only screen and (max-width: variables.$display-sm) {
       .ng-fa-icon {
         font-size: 1rem;
       }

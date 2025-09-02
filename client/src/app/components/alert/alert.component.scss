@@ -1,4 +1,4 @@
-@import '../../../assets/styles/variables.scss';
+@use '../../../assets/styles/variables.scss';
 
 dialog {
   position: absolute;
@@ -7,16 +7,16 @@ dialog {
   right: 0;
   display: block;
   margin: 1rem auto;
-  box-shadow: $shadow-md;
+  box-shadow: variables.$shadow-md;
   width: fit-content;
   min-width: 10rem;
   max-width: 20rem;
   padding: 1rem 2rem;
   text-align: center;
-  background-color: $light;
-  color: $dark;
+  background-color: variables.$light;
+  color: variables.$dark;
 
-  @media only screen and (max-width: $display-sm) {
+  @media only screen and (max-width: variables.$display-sm) {
     max-width: 10rem;
   }
 

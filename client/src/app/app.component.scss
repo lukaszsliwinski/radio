@@ -1,10 +1,10 @@
-@import '../assets/styles/variables.scss';
+@use '../assets/styles/variables.scss';
 
 /* main app content style with custom scrollbar */
 main {
   height: calc(100vh - 7.75rem);
   overflow-y: auto;
-  scrollbar-color: $main transparent;
+  scrollbar-color: variables.$main transparent;
   scrollbar-width: thin;
   scroll-behavior: smooth;
 }
@@ -14,7 +14,7 @@ main::-webkit-scrollbar {
 }
 
 main::-webkit-scrollbar-thumb {
-  background: $main;
+  background: variables.$main;
 }
 
 main::-webkit-scrollbar-track {
