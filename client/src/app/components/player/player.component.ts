@@ -3,9 +3,10 @@ import { PlayerService } from '../../services/player.service';
 import { StationService } from 'src/app/services/station.service';
 
 @Component({
-  selector: 'app-player',
-  templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+    selector: 'app-player',
+    templateUrl: './player.component.html',
+    styleUrls: ['./player.component.scss'],
+    standalone: false
 })
 export class PlayerComponent {
   // player properties passed from played station

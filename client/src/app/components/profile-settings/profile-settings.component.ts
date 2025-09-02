@@ -5,9 +5,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { faEye, faEyeSlash, faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-profile-settings',
-  templateUrl: './profile-settings.component.html',
-  styleUrls: ['./profile-settings.component.scss']
+    selector: 'app-profile-settings',
+    templateUrl: './profile-settings.component.html',
+    styleUrls: ['./profile-settings.component.scss'],
+    standalone: false
 })
 export class ProfileSettingsComponent {
   // font awesome icons

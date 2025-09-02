@@ -7,9 +7,10 @@ import { faPlay, faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
-  selector: 'app-station',
-  templateUrl: './station.component.html',
-  styleUrls: ['./station.component.scss']
+    selector: 'app-station',
+    templateUrl: './station.component.html',
+    styleUrls: ['./station.component.scss'],
+    standalone: false
 })
 export class StationComponent implements OnInit {
   // station input parameters

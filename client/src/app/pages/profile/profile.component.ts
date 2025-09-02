@@ -4,9 +4,10 @@ import { AuthService } from 'src/app/services/auth.service';
 import { faStar, faClockRotateLeft, faGear } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+    selector: 'app-profile',
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.scss'],
+    standalone: false
 })
 export class ProfileComponent {
   // font awesome icon
