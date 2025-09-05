@@ -63,10 +63,14 @@ app.get('/api/img/default-radio-icon', (request, response) => {
   response.sendFile(path.resolve(__dirname, './img', 'default-radio-icon.png'));
 });
 
-// execute database connection
-dbConnect();
+// execute database connection and start server only if not in test environment
+if (NODE_ENV !== 'test') {
+  dbConnect();
 
-// run server
-app.listen(PORT, () => {
-  console.log(`server listening on ${PORT}\nenv: ${NODE_ENV}`);
-});
+  app.listen(PORT, () => {
+    console.log(`server listening on ${PORT}\nenv: ${NODE_ENV}`);
+  });
+}
+
+// export app for testing
+module.exports = app;
