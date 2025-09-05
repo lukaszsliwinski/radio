@@ -1,32 +1,7 @@
 // Auth integration tests
 
-const mongoose = require('mongoose');
 const request = require('supertest');
-const { MongoMemoryServer } = require('mongodb-memory-server');
 const app = require('../../index');
-
-let mongoServer;
-
-beforeAll(async () => {
-  // Setup mongodb-memory-server before all tests
-  mongoServer = await MongoMemoryServer.create();
-  const uri = mongoServer.getUri();
-  await mongoose.connect(uri);
-});
-
-afterAll(async () => {
-  // Disconnect and stop mongodb-memory-server
-  await mongoose.disconnect();
-  await mongoServer.stop();
-});
-
-afterEach(async () => {
-  // Clean up collections after every test
-  const collections = mongoose.connection.collections;
-  for (const key in collections) {
-    await collections[key].deleteMany({});
-  }
-});
 
 describe('Auth integration tests', () => {
   const user = { usernameInput: 'TestUser', passwordInput: 'TestPassword123' };
