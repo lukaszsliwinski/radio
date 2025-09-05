@@ -2,6 +2,7 @@
 
 const request = require('supertest');
 const app = require('../../index');
+const favStation = require('../__mocks__/favStation');
 
 let token;
 
@@ -28,7 +29,7 @@ describe('Favourites integration tests', () => {
       const response = await request(app)
         .post('/api/add-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send(station);
+        .send(favStation);
 
       // Check if API returns 201 for creation
       expect(response.status).toBe(201);
@@ -39,12 +40,12 @@ describe('Favourites integration tests', () => {
       await request(app)
         .post('/api/add-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send(station);
+        .send(favStation);
 
       const response = await request(app)
         .post('/api/add-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send(station);
+        .send(favStation);
 
       // Check if API returns 422 for duplicate
       expect(response.status).toBe(422);
@@ -57,12 +58,12 @@ describe('Favourites integration tests', () => {
       await request(app)
         .post('/api/add-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send(station);
+        .send(favStation);
 
       const response = await request(app)
         .post('/api/delete-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send({ id: station.id });
+        .send({ id: favStation.id });
 
       expect(response.status).toBe(200);
       expect(response.body.message).toMatch(/removed/i);
@@ -74,7 +75,7 @@ describe('Favourites integration tests', () => {
       await request(app)
         .post('/api/add-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send(station);
+        .send(favStation);
 
       const response = await request(app)
         .get('/api/get-favourites')
@@ -83,7 +84,7 @@ describe('Favourites integration tests', () => {
       expect(response.status).toBe(200);
       expect(Array.isArray(response.body.stations)).toBe(true);
       expect(response.body.stations.length).toBeGreaterThanOrEqual(1);
-      expect(response.body.stations[0]).toHaveProperty('id', station.id);
+      expect(response.body.stations[0]).toHaveProperty('id', favStation.id);
     });
   });
 
@@ -92,12 +93,12 @@ describe('Favourites integration tests', () => {
       await request(app)
         .post('/api/add-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send(station);
+        .send(favStation);
 
       const response = await request(app)
         .post('/api/check-favourite')
         .set('Authorization', `Bearer ${token}`)
-        .send({ id: station.id });
+        .send({ id: favStation.id });
 
       expect(response.status).toBe(200);
 
@@ -120,10 +121,10 @@ describe('Favourites integration tests', () => {
   describe('Access without JWT', () => {
     it('should reject all protected endpoints with 401', async () => {
       const endpoints = [
-        request(app).post('/api/add-favourite').send(station),
-        request(app).post('/api/delete-favourite').send({ id: station.id }),
+        request(app).post('/api/add-favourite').send(favStation),
+        request(app).post('/api/delete-favourite').send({ id: favStation.id }),
         request(app).get('/api/get-favourites'),
-        request(app).post('/api/check-favourite').send({ id: station.id })
+        request(app).post('/api/check-favourite').send({ id: favStation.id })
       ];
 
       for (const request of endpoints) {
