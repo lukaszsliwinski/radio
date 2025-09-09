@@ -1,6 +1,6 @@
 // Mock recently played stations data
 
-const recentlyPlayed = [
+const formattedStations = [
   {
     id: 'ca1b929e-1b92-4240-bb44-22fd8158808e',
     name: '[laut.fm] Progressiv Rock',
@@ -73,4 +73,4 @@ const recentlyPlayed = [
   }
 ];
 
-module.exports = recentlyPlayed;
+module.exports = formattedStations;
