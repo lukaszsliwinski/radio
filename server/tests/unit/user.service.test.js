@@ -1,6 +1,6 @@
 // User service unit tests
 
-const { registerUser, changePasswordByUsername, authenticate } = require('../../../services/user.service');
+const { registerUser, changePasswordByUsername, authenticate } = require('../../services/user.service');
 
 describe('User service - validation tests', () => {
 

@@ -1,8 +1,8 @@
 // Search service unit tests
 
 const axios = require('axios');
-const { searchByName, formatResponse } = require('../../../services/search.service');
-const mockStations = require('../../__mocks__/mockStations');
+const { searchByName, formatResponse } = require('../../services/search.service');
+const mockStations = require('../__mocks__/mockStations');
 
 // Mock axios to avoid real HTTP requests
 jest.mock('axios');
