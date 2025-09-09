@@ -33,6 +33,7 @@ This is a side project created to improve my web programming skills and learn An
 - Node.js
 - Express.js
 - MongoDB
+- Jest
 
 ### REST API:
 - [Radio Browser](https://www.radio-browser.info)
