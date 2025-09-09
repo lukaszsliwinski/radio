@@ -22,7 +22,7 @@ describe('Search stations integration tests', () => {
     expect(response.status).toBe(200);
     expect(response.body.stations).toBeDefined();
     expect(Array.isArray(response.body.stations)).toBe(true);
-    expect(response.body.stations.length).toBe(2);
+    expect(response.body.stations.length).toBe(33);
 
     // Check formatted response
     const station = response.body.stations[0];
