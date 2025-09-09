@@ -2,9 +2,9 @@ const axios = require('axios');
 
 const searchByName = (name) => {
   // posible api hosts
-  const de2 = axios.get(`https://de2.api.radio-browser.info/json/stations/byname/${name}?limit=50`);
-  const fi1 = axios.get(`https://fi1.api.radio-browser.info/json/stations/byname/${name}?limit=50`);
-  const requests = [de2, fi1];
+  const req1 = axios.get(`${process.env.API_URL_1}/json/stations/byname/${name}?limit=50`);
+  const req2 = axios.get(`${process.env.API_URL_2}/json/stations/byname/${name}?limit=50`);
+  const requests = [req1, req2];
 
   // get stations from one of three endpoints
   return Promise.any(requests);
@@ -30,7 +30,7 @@ const formatResponse = (responseData) => {
     ) {
       formattedStations.push({
         id: element.stationuuid,
-        name: element.name,
+        name: element.name.trim(),
         url: element.url,
         favicon: newFavicon,
         country: element.country
