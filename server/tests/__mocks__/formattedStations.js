@@ -3,21 +3,21 @@
 const formattedStations = [
   {
     id: 'db93a00f-9191-46ab-9e87-ec9b373b3eee',
-    name: '\tArrow Classic Rock',
+    name: 'Arrow Classic Rock',
     url: 'http://stream.gal.io/arrow',
     favicon: 'https://www.arrow.nl/wp-content/uploads/2020/08/logo.png',
     country: 'The Netherlands'
   },
   {
     id: 'd608bb74-0740-47e3-a1e2-c11edfeec91f',
-    name: ' \tROCKANTENNE Alternative (mp3)',
+    name: 'ROCKANTENNE Alternative (mp3)',
     url: 'https://stream.rockantenne.de/alternative/stream/mp3',
     favicon: 'https://www.rockantenne.de/logos/station-rock-antenne/apple-touch-icon.png',
     country: 'Germany'
   },
   {
     id: '336f18d8-6a0d-4422-9e70-785648d6c61f',
-    name: ' 101.9 ROCK',
+    name: '101.9 ROCK',
     url: 'https://rogers-hls.leanstream.co/rogers/nor1019.stream/icy?environment=tunein&args=tunein_01',
     favicon: 'api/img/default-radio-icon',
     country: 'Canada'

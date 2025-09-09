@@ -4,6 +4,7 @@ const request = require('supertest');
 const app = require('../../index');
 const axios = require('axios');
 const mockStations = require('../__mocks__/mockStations');
+const formattedStations = require('../__mocks__/formattedStations');
 
 // Mock axios to avoid real HTTP requests
 jest.mock('axios');
@@ -26,11 +27,7 @@ describe('Search stations integration tests', () => {
 
     // Check formatted response
     const station = response.body.stations[0];
-    expect(station).toHaveProperty('id', 'db93a00f-9191-46ab-9e87-ec9b373b3eee');
-    expect(station).toHaveProperty('name', 'Arrow Classic Rock');
-    expect(station).toHaveProperty('url', 'http://stream.gal.io/arrow');
-    expect(station).toHaveProperty('favicon', 'https://www.arrow.nl/wp-content/uploads/2020/08/logo.png');
-    expect(station).toHaveProperty('country', 'The Netherlands');
+    expect(station).toEqual(formattedStations[0]);
   });
 
   it('should handle empty results', async () => {
