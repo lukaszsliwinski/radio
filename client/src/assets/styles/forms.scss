@@ -52,13 +52,6 @@ form {
       &:focus + label {
         color: variables.$main;
       }
-
-      &:-webkit-autofill,
-      &:-webkit-autofill:hover,
-      &:-webkit-autofill:focus,
-      &:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px variables.$dark inset !important;
-      }
     }
 
     label {
@@ -89,7 +82,6 @@ form {
   }
 
   button[type='submit'] {
-    box-shadow: variables.$shadow-sm;
     padding: 0.5rem 1rem;
     cursor: pointer;
     text-transform: uppercase;

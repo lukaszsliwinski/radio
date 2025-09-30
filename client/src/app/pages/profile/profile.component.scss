@@ -21,7 +21,7 @@ nav {
     font-size: 0.85rem;
 
     &:hover {
-      box-shadow: variables.$shadow-sm;
+      scale: 1.1;
     }
 
     &.active-link {
