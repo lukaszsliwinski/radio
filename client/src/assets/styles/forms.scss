@@ -30,6 +30,7 @@ form {
       font-size: 0.875rem;
       line-height: 1.25rem;
       background-color: transparent;
+      color: variables.$light;
       appearance: none;
 
       &:focus,
@@ -44,7 +45,7 @@ form {
 
       &:focus + label,
       &:not(:placeholder-shown) + label {
-        background-color: variables.$light;
+        background-color: variables.$dark;
         transform: scale(0.85) translateY(-1.5rem);
       }
 
@@ -56,7 +57,7 @@ form {
       &:-webkit-autofill:hover,
       &:-webkit-autofill:focus,
       &:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px variables.$light inset !important;
+        -webkit-box-shadow: 0 0 0 30px variables.$dark inset !important;
       }
     }
 

@@ -6,15 +6,15 @@ dialog {
   left: 0;
   right: 0;
   display: block;
+  border: 1px solid variables.$main;
   margin: 1rem auto;
-  box-shadow: variables.$shadow-md;
   width: fit-content;
   min-width: 10rem;
   max-width: 20rem;
   padding: 1rem 2rem;
   text-align: center;
-  background-color: variables.$light;
-  color: variables.$dark;
+  background-color: variables.$dark;
+  color: variables.$main;
 
   @media only screen and (max-width: variables.$display-sm) {
     max-width: 10rem;

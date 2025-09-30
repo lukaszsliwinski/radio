@@ -1,4 +1,4 @@
-// Mock recently played stations data
+// Mock formatted stations before send to client
 
 const formattedStations = [
   {

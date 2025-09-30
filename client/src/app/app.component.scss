@@ -2,7 +2,7 @@
 
 /* main app content style with custom scrollbar */
 main {
-  height: calc(100vh - 7.75rem);
+  height: calc(100vh - 8.5rem);
   overflow-y: auto;
   scrollbar-color: variables.$main transparent;
   scrollbar-width: thin;
@@ -23,6 +23,6 @@ main::-webkit-scrollbar-track {
 
 section#content {
   margin: 0 auto;
-  padding: 1rem;
+  padding: 1rem 0.5rem;
   max-width: 42rem;
 }

@@ -2,11 +2,16 @@
 
 #playerBar {
   display: flex;
-  box-shadow: variables.$shadow-md;
+  border-top: 1px solid variables.$main;
+  // border-bottom: 1px solid variables.$main;
   height: 4rem;
-  padding: 0 1rem;
-  background-color: variables.$main;
+  padding: 0.25rem 1rem;
+  background-color: variables.$mid;
   color: white;
+
+  img {
+    border-radius: 0.25rem;
+  }
 
   hgroup {
     display: flex;

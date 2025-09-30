@@ -8,7 +8,7 @@
 
   <!-- fav button -->
   <button *ngIf="user$ | async" class="fav-btn" (click)="this.toggleFavourite()">
-    <fa-icon *ngIf="fav; else notFavIcon" [icon]="faStarSolid"></fa-icon>
+    <fa-icon *ngIf="fav; else notFavIcon" [icon]="faStarSolid" class="active"></fa-icon>
     <ng-template #notFavIcon>
       <fa-icon [icon]="faStarRegular"></fa-icon>
     </ng-template>
