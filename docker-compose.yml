@@ -1,0 +1,24 @@
+services:
+  radio:
+    build: .
+    container_name: radio
+    restart: always
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - PORT=${PORT}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.radio.rule=Host(`${DOMAIN}`) || Host(`www.${DOMAIN}`)"
+      - "traefik.http.routers.radio.entrypoints=websecure"
+      - "traefik.http.routers.radio.tls.certresolver=le"
+      - "traefik.http.services.radio.loadbalancer.server.port=${PORT}"
+    networks:
+      - web
+    expose:
+      - "${PORT}"
+
+networks:
+  web:
+    external: true
