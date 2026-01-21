@@ -1,3 +1,10 @@
-<dialog [ngClass]="(shown$ | async) ? 'shown' : 'hidden'">
+<dialog
+  [ngClass]="{
+    'shown': (shown$ | async),
+    'hidden': !(shown$ | async),
+    'success': (type$ | async) === 'success',
+    'error': (type$ | async) === 'error'
+  }"
+>
   {{ message$ | async }}
 </dialog>

@@ -10,6 +10,7 @@ import { AlertService } from 'src/app/services/alert.service';
 export class AlertComponent {
   public shown$ = this.alertService.shown$;
   public message$ = this.alertService.message$;
+  public type$ = this.alertService.type$;
 
   constructor(private alertService: AlertService) {}
 }

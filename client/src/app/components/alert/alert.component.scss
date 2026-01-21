@@ -30,4 +30,16 @@ dialog {
     margin-top: -10rem;
     transition: all 0.4s ease-in-out;
   }
+
+  /* type border */
+  &.success {
+    color: variables.$alert-success;
+    border-color: variables.$alert-success;
+  }
+
+  &.error {
+    color: variables.$alert-error;
+    border-color: variables.$alert-error;
+
+  }
 }

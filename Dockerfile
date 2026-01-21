@@ -14,10 +14,10 @@ COPY client/package*.json ./
 # Install all dependencies (prod + dev)
 RUN npm install
 
-# Copy the rest of the React application code
+# Copy the rest of the Angular application code
 COPY client .
 
-# Build the React application
+# Build the Angular application
 RUN npm run build
 
 # Remove devDependencies, keep only production
@@ -43,7 +43,7 @@ RUN npm install --production
 # Copy the backend application code
 COPY server ./server
 
-# Copy built React static files from previous stage
+# Copy built Angular static files from previous stage
 COPY --from=client-build /app/client/dist ./client/dist
 
 # Expose port 3000 (or the one your app uses)

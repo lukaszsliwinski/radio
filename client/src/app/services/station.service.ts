@@ -40,10 +40,10 @@ export class StationService {
 
     return this.http.post<IStationsHttpResponse>('/api/search', body).pipe(
       tap((result) => {
-        if (result.stations.length === 0) this.alertService.setAlert('No station found.');
+        if (result.stations.length === 0) this.alertService.setAlert('No station found.', 'error');
       }),
       catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message);
+        this.alertService.setAlert(error.error.message, 'error');
         return throwError(() => error);
       })
     );
@@ -91,7 +91,7 @@ export class StationService {
       .pipe(
         tap((result) => {
           this.getFavourites().subscribe();
-          this.alertService.setAlert(result.message);
+          this.alertService.setAlert(result.message, 'success');
         }),
         catchError((error: HttpErrorResponse) => {
           return throwError(() => error);
@@ -116,7 +116,7 @@ export class StationService {
       .pipe(
         tap((result) => {
           this.getFavourites().subscribe();
-          this.alertService.setAlert(result.message);
+          this.alertService.setAlert(result.message, 'success');
         }),
         catchError((error: HttpErrorResponse) => {
           return throwError(() => error);
@@ -135,7 +135,7 @@ export class StationService {
     return this.http.get<IStationsHttpResponse>('/api/get-favourites', { headers: headers }).pipe(
       tap((result) => this.favStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message);
+        this.alertService.setAlert(error.error.message, 'error');
         return throwError(() => error);
       })
     );
@@ -177,7 +177,7 @@ export class StationService {
     return this.http.get<IStationsHttpResponse>('/api/get-recent', { headers: headers }).pipe(
       tap((result) => this.recentStations.next(result.stations)),
       catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message);
+        this.alertService.setAlert(error.error.message, 'error');
         return throwError(() => error);
       })
     );

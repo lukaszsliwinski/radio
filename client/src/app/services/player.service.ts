@@ -53,7 +53,7 @@ export class PlayerService {
       this.audioObj.addEventListener('error', () => {
         this.loading.next(false);
         this.alertService.setAlert(
-          'Failed to load due to a problem with stream source. Please select another station.'
+          'Failed to load due to a problem with stream source. Please select another station.', 'error'
         );
       })
 

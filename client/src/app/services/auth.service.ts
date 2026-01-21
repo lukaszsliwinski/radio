@@ -71,11 +71,11 @@ export class AuthService {
 
     return this.http.post<IRegisterHttpResponse>('/api/register', body).pipe(
       tap((result) => {
-        this.alertService.setAlert(result.message);
+        this.alertService.setAlert(result.message, 'success');
         this.router.navigate(['login']);
       }),
       catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message);
+        this.alertService.setAlert(error.error.message, 'error');
         return throwError(() => error);
       })
     );
@@ -90,13 +90,13 @@ export class AuthService {
 
     return this.http.post<ILoginHttpResponse>('/api/login', body).pipe(
       tap((result) => {
-        this.alertService.setAlert(result.message);
+        this.alertService.setAlert(result.message, 'success');
         if (result.token) this.cookieService.set('TOKEN', result.token, { path: '/' });
         this.setLoggedUser(result.username);
         this.router.navigate(['']);
       }),
       catchError((error: HttpErrorResponse) => {
-        this.alertService.setAlert(error.error.message);
+        this.alertService.setAlert(error.error.message, 'error');
         this.setLoggedUser(undefined);
         return throwError(() => error);
       })
@@ -125,9 +125,9 @@ export class AuthService {
     return this.http
       .post<IChangePasswordHttpResponse>('api/change-password', body, { headers: headers })
       .pipe(
-        tap((result) => this.alertService.setAlert(result.message)),
+        tap((result) => this.alertService.setAlert(result.message, 'success')),
         catchError((error: HttpErrorResponse) => {
-          this.alertService.setAlert(error.error.message);
+          this.alertService.setAlert(error.error.message, 'error');
           return throwError(() => error);
         })
       );
